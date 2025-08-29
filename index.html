@@ -2,21 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>CHEF LIL J — recipes</title>
+  <title>Judiths Frigo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Typography: Titles in Roboto (ALL CAPS), body in EB Garamond -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#ffffff;
-      --text:#141414;
-      --muted:#6a6a6a;
-      --line:#e7e7e7;
-      --maxw:1100px;
-      --radius:12px;
-      --pad:16px;
-    }
+    :root{ --bg:#ffffff; --text:#141414; --muted:#6a6a6a; --line:#e7e7e7; --maxw:1100px; --radius:12px; --pad:16px; }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text)}
     body{font-family:"EB Garamond", serif;-webkit-font-smoothing:antialiased}
@@ -29,55 +21,52 @@
     .bar{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:10px 0}
     .brand{font-family:"Roboto",system-ui,sans-serif;text-transform:uppercase;letter-spacing:.12em;font-weight:700;font-size:15px}
 
-    /* Search takes center stage */
+    /* Search */
     .search-wrap{display:flex;align-items:center}
     #q{width:100%;appearance:none;border:none;border-bottom:1px solid var(--line);padding:10px 8px 12px;font:inherit}
     #q::placeholder{color:var(--muted)}
     #q:focus{outline:none;border-color:#bbb}
     .kbd{font-family:"Roboto",sans-serif;font-size:11px;border:1px solid var(--line);padding:2px 6px;border-radius:6px;margin-left:8px;color:var(--muted)}
 
-    /* Controls: clean, no chrome */
-    .controls{display:flex;gap:10px;align-items:center}
-    .select{position:relative}
-    .select select{appearance:none;background:transparent;border:1px solid var(--line);padding:8px 28px 8px 10px;border-radius:999px;font:inherit}
-    .select:after{content:"▾";position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--muted)}
+    /* Two-button filter menus */
+    .filters{display:flex;gap:10px;align-items:center;position:relative}
+    .btn{appearance:none;border:1px solid var(--line);background:#fff;padding:8px 12px;border-radius:999px;font:inherit;cursor:pointer}
+    .btn .count{color:var(--muted)}
+    .menu{position:relative}
+    .pop{position:absolute;right:0;top:calc(100% + 8px);background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.08);padding:12px;min-width:min(92vw,380px);max-height:60vh;overflow:auto;display:none}
+    .menu.open .pop{display:block}
+    .pop h3{margin:4px 0 10px;font-family:"Roboto",sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:#444}
+    .row{display:flex;gap:8px;align-items:center;margin:6px 0}
+    .row label{font-size:14px}
+    .hr{height:1px;background:var(--line);margin:10px 0}
+    .pop .actions{display:flex;gap:8px;justify-content:space-between;align-items:center;margin-top:8px}
+    .link{background:transparent;border:none;color:#333;text-decoration:underline;cursor:pointer;font:inherit}
 
-    /* Results header */
+    /* Ingredients panel */
+    .ing-search{display:flex;gap:8px;align-items:center;margin:4px 0 10px}
+    .ing-search input{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit}
+    .ing-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+    /* Grid */
     .results-bar{display:flex;align-items:center;justify-content:space-between;padding:18px 0 8px}
     .results-bar .count{color:var(--muted);font-size:14px}
-
-    /* Grid: image-first, no borders or shadows */
     .grid{display:grid;gap:18px;grid-template-columns:repeat(12,1fr)}
     @media (max-width:1100px){.grid{grid-template-columns:repeat(8,1fr)}}
     @media (max-width:720px){.grid{grid-template-columns:repeat(4,1fr)}}
-    .card{grid-column:span 4}
-    .media{aspect-ratio:4/3;background:#f7f7f7;display:block;border-radius:6px;overflow:hidden}
-    .media>img{width:100%;height:100%;object-fit:cover;display:block}
-    .title{margin:.55rem 0 0;font-family:"Roboto",sans-serif;text-transform:uppercase;letter-spacing:.08em;font-weight:700;font-size:13px;line-height:1.35}
-    .meta{margin:.1rem 0 0;color:var(--muted);font-size:13px}
-
-    /* Footer note */
-    footer{border-top:1px solid var(--line);margin-top:36px}
-    footer .foot{padding:14px 0;color:var(--muted);font-size:13px}
-      /* Chip filters */
-    .chipbar{display:flex;flex-wrap:wrap;gap:8px;padding:8px 0 14px}
-    .chipbar button{appearance:none;background:transparent;border:1px solid var(--line);padding:6px 12px;border-radius:999px;font:inherit;cursor:pointer}
-    .chipbar button.active{border-color:#bbb;background:#f7f7f7}
 
     /* Mixed tile sizes */
     .card{grid-column:span 4}
     .card.m{grid-column:span 6}
     .card.l{grid-column:span 8}
-    .card .media{aspect-ratio:4/3}
+    .media{aspect-ratio:4/3;background:#f7f7f7;display:block;border-radius:6px;overflow:hidden}
     .card.m .media{aspect-ratio:1/1}
     .card.l .media{aspect-ratio:16/9}
-    @media (max-width:1100px){
-      .card{grid-column:span 4}
-      .card.m,.card.l{grid-column:span 8}
-    }
-    @media (max-width:720px){
-      .card,.card.m,.card.l{grid-column:span 4}
-    }
+    .media>img{width:100%;height:100%;object-fit:cover;display:block}
+    .title{margin:.55rem 0 0;font-family:"Roboto",sans-serif;text-transform:uppercase;letter-spacing:.08em;font-weight:700;font-size:13px;line-height:1.35}
+    .meta{margin:.1rem 0 0;color:var(--muted);font-size:13px}
+
+    footer{border-top:1px solid var(--line);margin-top:36px}
+    footer .foot{padding:14px 0;color:var(--muted);font-size:13px}
   </style>
 </head>
 <body>
@@ -85,7 +74,7 @@
   <header>
     <div class="container">
       <div class="bar">
-        <div class="brand">CHEF LIL J</div>
+        <div class="brand">FRIGO</div>
 
         <div class="search-wrap">
           <label for="q" class="sr-only">Search by ingredient or keyword</label>
@@ -93,22 +82,68 @@
           <span class="kbd" aria-hidden="true">/</span>
         </div>
 
-        <div class="controls" aria-label="Filters and sorting">
-          <div class="select">
-            <label class="sr-only" for="ingredient">Ingredient</label>
-            <select id="ingredient">
-              <option value="">Any ingredient</option>
-            </select>
+        <div class="filters" aria-label="Filter menus">
+          <!-- Button 1: Ingredients -->
+          <div class="menu" id="menu-ing">
+            <button class="btn" type="button" id="btn-ing">Ingredients <span class="count" id="count-ing"></span></button>
+            <div class="pop" role="dialog" aria-labelledby="btn-ing">
+              <h3>Ingredients</h3>
+              <div class="ing-search">
+                <input id="ingFilter" type="search" placeholder="Filter ingredients…" aria-label="Filter ingredients" />
+              </div>
+              <div class="ing-list" id="ingList"></div>
+              <div class="hr"></div>
+              <div class="actions">
+                <button class="link" id="clearIng" type="button">Clear</button>
+                <button class="btn" type="button" data-close="menu-ing">Done</button>
+              </div>
+            </div>
           </div>
-          <div class="select">
-            <label class="sr-only" for="sort">Sort</label>
-            <select id="sort">
-              <option value="relevance">Relevance</option>
-              <option value="random">Random</option>
-              <option value="alpha">A–Z</option>
-              <option value="prep">Prep time</option>
-              <option value="warm">First warm day</option>
-            </select>
+
+          <!-- Button 2: Type & time -->
+          <div class="menu" id="menu-type">
+            <button class="btn" type="button" id="btn-type">Type & time <span class="count" id="count-type"></span></button>
+            <div class="pop" role="dialog" aria-labelledby="btn-type">
+              <h3>Diet</h3>
+              <div class="row"><label><input type="radio" name="diet" value="any" checked> Any</label></div>
+              <div class="row"><label><input type="radio" name="diet" value="veggie"> Veggie</label></div>
+              <div class="row"><label><input type="radio" name="diet" value="vegan"> Vegan</label></div>
+
+              <div class="hr"></div>
+              <h3>Type of meal</h3>
+              <div class="row"><label><input type="checkbox" data-type value="breakfast"> Breakfast</label></div>
+              <div class="row"><label><input type="checkbox" data-type value="brunch"> Brunch</label></div>
+              <div class="row"><label><input type="checkbox" data-type value="lunch"> Lunch</label></div>
+              <div class="row"><label><input type="checkbox" data-type value="dinner"> Dinner</label></div>
+              <div class="row"><label><input type="checkbox" data-type value="tapas"> Tapas</label></div>
+              <div class="row"><label><input type="checkbox" data-type value="drinks"> Drinks</label></div>
+              <div class="row"><label><input type="checkbox" data-type value="sunday-afternoon"> Sunday afternoon</label></div>
+              <div class="row"><label><input type="checkbox" data-type value="day-after-night-out"> Day after a night out</label></div>
+              <div class="row"><label><input type="checkbox" data-type value="friends"> When friends come by</label></div>
+              <div class="row"><label><input type="checkbox" data-type value="many-friends"> When a lot of friends come by</label></div>
+
+              <div class="hr"></div>
+              <h3>Prep time</h3>
+              <div class="row"><label><input type="radio" name="preptime" value="any" checked> Any</label></div>
+              <div class="row"><label><input type="radio" name="preptime" value="10"> ≤ 10 min</label></div>
+              <div class="row"><label><input type="radio" name="preptime" value="15"> ≤ 15 min</label></div>
+              <div class="row"><label><input type="radio" name="preptime" value="20"> ≤ 20 min</label></div>
+              <div class="row"><label><input type="radio" name="preptime" value="30"> ≤ 30 min</label></div>
+              <div class="row"><label><input type="radio" name="preptime" value="45"> ≤ 45 min</label></div>
+
+              <div class="hr"></div>
+              <h3>Order</h3>
+              <div class="row"><label><input type="radio" name="order" value="relevance" checked> Relevance</label></div>
+              <div class="row"><label><input type="radio" name="order" value="alpha"> A–Z</label></div>
+              <div class="row"><label><input type="radio" name="order" value="prep"> Prep time</label></div>
+              <div class="row"><label><input type="radio" name="order" value="random"> Random</label></div>
+
+              <div class="hr"></div>
+              <div class="actions">
+                <button class="link" id="clearType" type="button">Clear</button>
+                <button class="btn" type="button" data-close="menu-type">Done</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -119,154 +154,130 @@
     <div class="results-bar">
       <div class="count" id="count">Search: all recipes</div>
     </div>
-
-    <div class="chipbar" id="chips" aria-label="Quick filters">
-      <button type="button" data-tag="vegan">Vegan</button>
-      <button type="button" data-tag="veggie">Veggie</button>
-      <button type="button" data-tag="tapas">Tapas</button>
-      <button type="button" data-tag="dinner">Dinner</button>
-      <button type="button" data-tag="lunch">Lunch</button>
-      <button type="button" data-tag="brunch">Brunch</button>
-      <button type="button" data-tag="breakfast">Breakfast</button>
-      <button type="button" data-tag="day-after-night-out">Day after a night out</button>
-      <button type="button" data-tag="friends">When friends come by</button>
-      <button type="button" data-tag="many-friends">When a lot of friends come by</button>
-      <button type="button" data-tag="drinks">Drinks</button>
-      <button type="button" data-tag="sunday-afternoon">Sunday afternoon</button>
-    </div>
-
     <section id="grid" class="grid" role="list"></section>
   </main>
 
   <footer>
     <div class="container">
-      <div class="foot">© <span id="year"></span> CHEF LIL J</div>
+      <div class="foot">© <span id="year"></span> FRIGO </div>
     </div>
   </footer>
 
   <script>
     // ===== Demo data (swap for your CMS/JSON) =====
     const RECIPES = [
-      {id:"pad-thai",title:"Zesty Pad Thai",img:"images/pad-thai.jpg",ingredients:["rice noodles","chicken","tamarind","soy sauce","lime","peanuts","spring onion","coriander","garlic"],tags:["noodles","quick","street-food","first-warm-day"],prepTime:25},
-      {id:"courgette-ribbons",title:"Courgette Ribbon Salad",img:"images/courgette.jpg",ingredients:["courgette","lemon","olive oil","parmesan","mint","chili"],tags:["salad","summer","first-warm-day"],prepTime:12},
-      {id:"cold-sesame-noodles",title:"Cold Sesame Noodles",img:"images/sesame-noodles.jpg",ingredients:["noodles","soy sauce","tahini","sesame oil","spring onion","chili"],tags:["noodles","cold","picnic","first-warm-day"],prepTime:15},
-      {id:"roasted-cauliflower-tahini",title:"Roasted Cauliflower + Tahini",img:"images/cauli.jpg",ingredients:["cauliflower","tahini","lemon","garlic","parsley"],tags:["roast","comfort"],prepTime:35},
-      {id:"crispy-rosti-beet",title:"Crispy Rösti with Beet",img:"images/rosti.jpg",ingredients:["potato","beetroot","spring onion","egg","yoghurt"],tags:["brunch","cozy"],prepTime:30},
-      {id:"edamame-ginger-stirfry",title:"Edamame Ginger Stir-Fry",img:"images/edamame.jpg",ingredients:["edamame","ginger","garlic","soy sauce","sesame"],tags:["stir-fry","green","first-warm-day"],prepTime:14},
-      {id:"cranberry-meatballs",title:"Cranberry Glazed Meatballs (IKEA hack)",img:"images/meatballs.jpg",ingredients:["beef meatballs","cranberry sauce","soy sauce","spring onion"],tags:["party","sweet-savory"],prepTime:20},
-      {id:"summer-tomato-salad",title:"Summer Tomato Salad",img:"images/tomato.jpg",ingredients:["tomato","olive oil","basil","red onion","vinegar"],tags:["salad","summer","first-warm-day"],prepTime:10},
-      {id:"miso-glazed-salmon",title:"Miso Glazed Salmon",img:"images/salmon.jpg",ingredients:["salmon","miso","soy sauce","ginger","honey"],tags:["weeknight","umami"],prepTime:22}
+      {id:"pad-thai",title:"Zesty Pad Thai",img:"images/pad-thai.jpg",ingredients:["rice noodles","chicken","tamarind","soy sauce","lime","peanuts","spring onion","coriander","garlic"],tags:["noodles","quick","street-food","dinner","friends"],prepTime:25},
+      {id:"courgette-ribbons",title:"Courgette Ribbon Salad",img:"images/courgette.jpg",ingredients:["courgette","lemon","olive oil","parmesan","mint","chili"],tags:["salad","summer","lunch","veggie","first-warm-day"],prepTime:12},
+      {id:"cold-sesame-noodles",title:"Cold Sesame Noodles",img:"images/sesame-noodles.jpg",ingredients:["noodles","soy sauce","tahini","sesame oil","spring onion","chili"],tags:["noodles","cold","picnic","vegan","lunch","first-warm-day"],prepTime:15},
+      {id:"roasted-cauliflower-tahini",title:"Roasted Cauliflower + Tahini",img:"images/cauli.jpg",ingredients:["cauliflower","tahini","lemon","garlic","parsley"],tags:["roast","comfort","vegan","dinner"],prepTime:35},
+      {id:"crispy-rosti-beet",title:"Crispy Rösti with Beet",img:"images/rosti.jpg",ingredients:["potato","beetroot","spring onion","egg","yoghurt"],tags:["brunch","cozy","veggie"],prepTime:30},
+      {id:"edamame-ginger-stirfry",title:"Edamame Ginger Stir-Fry",img:"images/edamame.jpg",ingredients:["edamame","ginger","garlic","soy sauce","sesame"],tags:["stir-fry","green","vegan","dinner","many-friends"],prepTime:14},
+      {id:"cranberry-meatballs",title:"Cranberry Glazed Meatballs (IKEA hack)",img:"images/meatballs.jpg",ingredients:["beef meatballs","cranberry sauce","soy sauce","spring onion"],tags:["party","sweet-savory","tapas","drinks","friends"],prepTime:20},
+      {id:"summer-tomato-salad",title:"Summer Tomato Salad",img:"images/tomato.jpg",ingredients:["tomato","olive oil","basil","red onion","vinegar"],tags:["salad","summer","vegan","first-warm-day","sunday-afternoon"],prepTime:10},
+      {id:"miso-glazed-salmon",title:"Miso Glazed Salmon",img:"images/salmon.jpg",ingredients:["salmon","miso","soy sauce","ginger","honey"],tags:["weeknight","umami","dinner"],prepTime:22}
     ];
 
     // ===== Utilities =====
     const $ = (s,root=document)=>root.querySelector(s);
+    const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
     const shuffle = arr => arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(v=>v[1]);
-    const pickSize = (id, tags=[])=>{
-      if(tags.includes('many-friends') || tags.includes('friends')) return 'l';
-      const h = [...id].reduce((a,c)=>a + c.charCodeAt(0), 0);
-      return (h % 5 === 0) ? 'l' : ((h % 3 === 0) ? 'm' : 's');
-    }; 
+    const pickSize = (id, tags=[])=>{ if(tags.includes('many-friends') || tags.includes('friends')) return 'l'; const h=[...id].reduce((a,c)=>a+c.charCodeAt(0),0); return (h%5===0)?'l':((h%3===0)?'m':'s'); };
 
     // ===== State =====
-    let state = { q:"", ingredient:"", sort:"relevance", tags: new Set() }; 
+    const state = {
+      q:"",
+      ingredients: new Set(),
+      diet: 'any',
+      types: new Set(),
+      prepMax: Infinity,
+      order: 'relevance'
+    };
 
     const grid = $('#grid');
     const countEl = $('#count');
 
     function scoreRelevance(r,q){
-      if(!q) return 0;
-      const t = r.title.toLowerCase();
-      const ing = r.ingredients.map(i=>i.toLowerCase());
-      const terms = q.split(/\s+/).filter(Boolean);
-      let s=0;
-      terms.forEach(term=>{
-        if(t.includes(term)) s+=3;
-        ing.forEach(i=>{ if(i.includes(term)) s+=1; });
-      });
-      return s;
+      if(!q) return 0; const t=r.title.toLowerCase(); const ing=r.ingredients.map(i=>i.toLowerCase()); const terms=q.split(/\s+/).filter(Boolean); let s=0; terms.forEach(term=>{ if(t.includes(term)) s+=3; ing.forEach(i=>{ if(i.includes(term)) s+=1; }); }); return s;
     }
 
     function render(){
       const q = state.q.trim().toLowerCase();
       let list = RECIPES.filter(r=>{
         const matchesQ = !q || r.title.toLowerCase().includes(q) || r.ingredients.some(i=>i.toLowerCase().includes(q));
-        const matchesIng = !state.ingredient || r.ingredients.map(x=>x.toLowerCase()).includes(state.ingredient);
-        const matchesTags = state.tags.size===0 || [...state.tags].every(t=>r.tags.includes(t));
-        return matchesQ && matchesIng && matchesTags;
-      });
-        const matchesIng = !state.ingredient || r.ingredients.map(x=>x.toLowerCase()).includes(state.ingredient);
-        return matchesQ && matchesIng;
+        const matchesIngredients = state.ingredients.size===0 || [...state.ingredients].some(tag=> r.ingredients.map(i=>i.toLowerCase()).includes(tag));
+        const matchesDiet = state.diet==='any' || r.tags.includes(state.diet);
+        const matchesType = state.types.size===0 || [...state.types].every(t=>r.tags.includes(t));
+        const matchesPrep = state.prepMax===Infinity || r.prepTime <= state.prepMax;
+        return matchesQ && matchesIngredients && matchesDiet && matchesType && matchesPrep;
       });
 
       // Sorting
-      if(state.sort === 'relevance'){
-        list.sort((a,b)=>scoreRelevance(b,q)-scoreRelevance(a,q) || a.title.localeCompare(b.title));
-      } else if(state.sort === 'alpha'){
-        list.sort((a,b)=>a.title.localeCompare(b.title));
-      } else if(state.sort === 'prep'){
-        list.sort((a,b)=>a.prepTime - b.prepTime || a.title.localeCompare(b.title));
-      } else if(state.sort === 'warm'){
-        const score = r => (r.tags.includes('first-warm-day')?2:0) + (r.tags.includes('summer')?1:0) - (r.prepTime/200);
-        list.sort((a,b)=>score(b)-score(a) || a.title.localeCompare(b.title));
-      } else if(state.sort === 'random'){
-        list = shuffle(list);
-      }
+      if(state.order==='relevance'){ list.sort((a,b)=>scoreRelevance(b,q)-scoreRelevance(a,q)||a.title.localeCompare(b.title)); }
+      else if(state.order==='alpha'){ list.sort((a,b)=>a.title.localeCompare(b.title)); }
+      else if(state.order==='prep'){ list.sort((a,b)=>a.prepTime-b.prepTime||a.title.localeCompare(b.title)); }
+      else if(state.order==='random'){ list = shuffle(list); }
 
       // Paint
-      grid.innerHTML = '';
-      if(!list.length){
-        countEl.textContent = 'No results';
-        return;
-      }
-      countEl.textContent = `Search: ${list.length} result${list.length>1?'s':''}${q?` for "${state.q}"`:''}`;
-
+      grid.innerHTML='';
+      countEl.textContent = list.length? `Search: ${list.length} result${list.length>1?'s':''}${q?` for "${state.q}"`:''}` : 'No results';
       list.forEach(r=>{
-        const size = r.size || pickSize(r.id, r.tags);
-        const card = document.createElement('article');
-        card.className = 'card ' + (size==='m'?'m':(size==='l'?'l':''));
-        card.setAttribute('role','listitem');
-        card.innerHTML = `
-          <a class="media" href="#${r.id}" aria-label="${r.title}">
+        const size=r.size||pickSize(r.id,r.tags);
+        const card=document.createElement('article'); card.className='card '+(size==='m'?'m':(size==='l'?'l':'')); card.setAttribute('role','listitem');
+        card.innerHTML=`
+          <a class="media" href="recipe.html?id=${r.id}" aria-label="${r.title}">
             <img src="${r.img}" alt="" loading="lazy" onerror="this.remove();this.parentElement.style.display='grid';this.parentElement.style.placeItems='center';this.parentElement.textContent='no image'"/>
           </a>
           <h3 class="title">${r.title}</h3>
-          <div class="meta">${r.prepTime} min · ${r.ingredients.length} ingredients</div>
-        `;
+          <div class="meta">${r.prepTime} min · ${r.ingredients.length} ingredients</div>`;
         grid.appendChild(card);
+      });
+
+      // Update button counts
+      $('#count-ing').textContent = state.ingredients.size?`(${state.ingredients.size})`:'';
+      const typeCount = (state.diet!=='any'?1:0) + state.types.size + (state.prepMax===Infinity?0:1) + (state.order!=='relevance'?1:0);
+      $('#count-type').textContent = typeCount?`(${typeCount})`:'';
+    }
+
+    // Populate ingredient list
+    const allIngredients = Array.from(new Set(RECIPES.flatMap(r=>r.ingredients.map(i=>i.toLowerCase())))).sort();
+    const ingList = $('#ingList');
+    function paintIngList(filter=''){
+      ingList.innerHTML='';
+      allIngredients.filter(i=> i.includes(filter.trim().toLowerCase())).forEach(i=>{
+        const id = 'ing-'+i.replace(/[^a-z0-9]+/g,'-');
+        const row=document.createElement('label'); row.className='row'; row.htmlFor=id; row.innerHTML=`<input id="${id}" type="checkbox" value="${i}"> ${i}`;
+        const input = row.querySelector('input'); input.checked = state.ingredients.has(i);
+        input.addEventListener('change', (e)=>{ if(e.target.checked) state.ingredients.add(i); else state.ingredients.delete(i); render(); });
+        ingList.appendChild(row);
       });
     }
 
-    // Populate ingredient select
-    const ingSelect = $('#ingredient');
-    Array.from(new Set(RECIPES.flatMap(r=>r.ingredients.map(i=>i.toLowerCase())))).sort().forEach(i=>{
-      const o=document.createElement('option'); o.value=i; o.textContent=i; ingSelect.appendChild(o);
-    });
+    // Wire search + keyboard
+    const qInput=$('#q');
+    qInput.addEventListener('input', e=>{ state.q=e.target.value; render(); });
+    window.addEventListener('keydown', (e)=>{ if(e.key==='/' && document.activeElement!==qInput){ e.preventDefault(); qInput.focus(); } });
 
-    // Wire controls
-    const qInput = $('#q');
-    qInput.addEventListener('input', e=>{ state.q = e.target.value; render(); });
-    ingSelect.addEventListener('change', e=>{ state.ingredient = e.target.value; render(); });
-    const sortSelect = $('#sort');
-    sortSelect.addEventListener('change', e=>{ state.sort = e.target.value; render(); });
+    // Popover open/close
+    function toggleMenu(id){ const el=$('#'+id); const open=el.classList.toggle('open'); if(open){ document.addEventListener('click', outsideClose); } }
+    function outsideClose(e){ if(!e.target.closest('.menu')){ $$('.menu').forEach(m=>m.classList.remove('open')); document.removeEventListener('click', outsideClose); } }
+    $('#btn-ing').addEventListener('click', ()=>{ toggleMenu('menu-ing'); $('#ingFilter').focus(); });
+    $('#btn-type').addEventListener('click', ()=>{ toggleMenu('menu-type'); });
+    $$('[data-close]') .forEach(btn=> btn.addEventListener('click', (e)=>{ $('#'+e.target.dataset.close).classList.remove('open'); }));
 
-    // Keyboard: focus search with '/'
-    window.addEventListener('keydown', (e)=>{
-      if(e.key === '/' && document.activeElement !== qInput){ e.preventDefault(); qInput.focus(); }
-    });
+    // Ingredient filter box
+    $('#ingFilter').addEventListener('input', e=> paintIngList(e.target.value));
+    $('#clearIng').addEventListener('click', ()=>{ state.ingredients.clear(); paintIngList($('#ingFilter').value); render(); });
 
-    // Init chip filters
-    const chipbar = document.getElementById('chips');
-    chipbar.addEventListener('click', (e)=>{
-      const btn = e.target.closest('button[data-tag]');
-      if(!btn) return;
-      const tag = btn.dataset.tag;
-      if(state.tags.has(tag)){ state.tags.delete(tag); btn.classList.remove('active'); }
-      else { state.tags.add(tag); btn.classList.add('active'); }
-      render();
-    });
+    // Type & time listeners
+    $$('input[name="diet"]').forEach(r=> r.addEventListener('change', (e)=>{ state.diet=e.target.value; render(); }));
+    $$('input[data-type]').forEach(cb=> cb.addEventListener('change', (e)=>{ const v=e.target.value; if(e.target.checked) state.types.add(v); else state.types.delete(v); render(); }));
+    $$('input[name="preptime"]').forEach(r=> r.addEventListener('change', (e)=>{ state.prepMax = (e.target.value==='any')?Infinity:parseInt(e.target.value,10); render(); }));
+    $$('input[name="order"]').forEach(r=> r.addEventListener('change', (e)=>{ state.order=e.target.value; render(); }));
+    $('#clearType').addEventListener('click', ()=>{ state.diet='any'; state.types.clear(); state.prepMax=Infinity; state.order='relevance'; $$('input[name="diet"]').forEach((r,i)=>r.checked=i===0); $$('input[data-type]').forEach(cb=>cb.checked=false); $$('input[name="preptime"]').forEach((r,i)=>r.checked=i===0); $$('input[name="order"]').forEach((r,i)=>r.checked=i===0); render(); });
 
     // Init
-    document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
+    document.getElementById('year').textContent = new Date().getFullYear();
+    paintIngList();
     render();
   </script>
 </body>
