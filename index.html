@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>CHEF LIL J — recipes</title>
+  <title>FRIGO — recipes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Typography: Titles in Roboto (ALL CAPS), body in EB Garamond -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
   <style>
     :root{ --bg:#ffffff; --text:#141414; --muted:#6a6a6a; --line:#e7e7e7; --maxw:1100px; --radius:12px; --pad:16px; }
     *{box-sizing:border-box}
@@ -19,7 +20,7 @@
     /* Header: ultra-minimal */
     header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .bar{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:10px 0}
-    .brand{font-family:"Roboto",system-ui,sans-serif;text-transform:uppercase;letter-spacing:.12em;font-weight:700;font-size:15px}
+    .brand{font-family:"Caveat", system-ui, sans-serif; letter-spacing:0; text-transform:none; font-weight:700; font-size:26px}
 
     /* Search */
     .search-wrap{display:flex;align-items:center}
@@ -51,8 +52,8 @@
     .results-bar{display:flex;align-items:center;justify-content:space-between;padding:18px 0 8px}
     .results-bar .count{color:var(--muted);font-size:14px}
     .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));grid-auto-rows:8px;grid-auto-flow:dense}
-    @media (max-width:1100px){.grid{grid-template-columns:repeat(8,1fr)}}
-    @media (max-width:720px){.grid{grid-template-columns:repeat(4,1fr)}}
+    
+    @media (max-width:720px){.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}}
 
     /* Mixed tile sizes */
     .card{grid-column:span 1}
@@ -68,6 +69,16 @@
     footer{border-top:1px solid var(--line);margin-top:36px}
     footer .foot{padding:14px 0;color:var(--muted);font-size:13px}
   .inner{display:block}
+  /* Mobile layout tweaks */
+    @media (max-width:640px){
+      .bar{display:flex;flex-wrap:wrap;gap:8px}
+      .search-wrap{flex:1 1 100%}
+      .filters{flex:1 1 100%}
+      .kbd{display:none}
+      .ing-list{grid-template-columns:1fr}
+      .btn{padding:10px 12px}
+      .pop{min-width:96vw;max-height:70vh}
+    }
   </style>
 </head>
 <body>
@@ -75,7 +86,7 @@
   <header>
     <div class="container">
       <div class="bar">
-        <div class="brand">CHEF LIL J</div>
+        <div class="brand" id="brand">FRIGO</div>
 
         <div class="search-wrap">
           <label for="q" class="sr-only">Search by ingredient or keyword</label>
@@ -148,7 +159,7 @@
 
   <footer>
     <div class="container">
-      <div class="foot">© <span id="year"></span> CHEF LIL J</div>
+      <div class="foot">© <span id="year"></span> <span id="brandFoot"></span></div>
     </div>
   </footer>
 
@@ -252,7 +263,7 @@
 
       // Update button counts
       $('#count-ing').textContent = state.ingredients.size?`(${state.ingredients.size})`:'';
-      const typeCount = (state.diet!=='any'?1:0) + state.types.size + (state.prepMax===Infinity?0:1) + (state.order!=='relevance'?1:0);
+      const typeCount = (state.diet!=='any'?1:0) + state.types.size + (state.prepCat!=='any'?1:0);
       $('#count-type').textContent = typeCount?`(${typeCount})`:'';
     }
 
@@ -289,9 +300,16 @@
     // Type & time listeners
     $$('input[name="diet"]').forEach(r=> r.addEventListener('change', (e)=>{ state.diet=e.target.value; render(); }));
     $$('input[data-type]').forEach(cb=> cb.addEventListener('change', (e)=>{ const v=e.target.value; if(e.target.checked) state.types.add(v); else state.types.delete(v); render(); }));
-    $$('input[name="preptime"]').forEach(r=> r.addEventListener('change', (e)=>{ state.prepMax = (e.target.value==='any')?Infinity:parseInt(e.target.value,10); render(); }));
-    $$('input[name="order"]').forEach(r=> r.addEventListener('change', (e)=>{ state.order=e.target.value; render(); }));
-    $('#clearType').addEventListener('click', ()=>{ state.diet='any'; state.types.clear(); state.prepMax=Infinity; state.order='relevance'; $$('input[name="diet"]').forEach((r,i)=>r.checked=i===0); $$('input[data-type]').forEach(cb=>cb.checked=false); $$('input[name="preptime"]').forEach((r,i)=>r.checked=i===0); $$('input[name="order"]').forEach((r,i)=>r.checked=i===0); render(); });
+    $$('input[name="preptime"]').forEach(r=> r.addEventListener('change', (e)=>{ state.prepCat = e.target.value; render(); }));
+     }));
+    $('#clearType').addEventListener('click', ()=>{ state.diet='any'; state.types.clear(); state.prepCat='any'; $$('input[name="diet"]').forEach((r,i)=>r.checked=i===0); $$('input[data-type]').forEach(cb=>cb.checked=false); $$('input[name="preptime"]').forEach((r,i)=>r.checked=i===0); render(); });
+
+    // Init
+    // Brand init
+    const BRAND = (localStorage.getItem('brand') || 'FRIGO');
+    $('#brand').textContent = BRAND;
+    document.title = BRAND + ' — recipes';
+    const bf = document.getElementById('brandFoot'); if(bf) bf.textContent = BRAND;
 
     // Init
     document.getElementById('year').textContent = new Date().getFullYear();
