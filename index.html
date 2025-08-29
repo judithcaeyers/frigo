@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Judiths Frigo</title>
+  <title>CHEF LIL J — recipes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Typography: Titles in Roboto (ALL CAPS), body in EB Garamond -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,23 +50,24 @@
     /* Grid */
     .results-bar{display:flex;align-items:center;justify-content:space-between;padding:18px 0 8px}
     .results-bar .count{color:var(--muted);font-size:14px}
-    .grid{display:grid;gap:18px;grid-template-columns:repeat(12,1fr)}
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));grid-auto-rows:8px;grid-auto-flow:dense}
     @media (max-width:1100px){.grid{grid-template-columns:repeat(8,1fr)}}
     @media (max-width:720px){.grid{grid-template-columns:repeat(4,1fr)}}
 
     /* Mixed tile sizes */
-    .card{grid-column:span 4}
-    .card.m{grid-column:span 6}
-    .card.l{grid-column:span 8}
-    .media{aspect-ratio:4/3;background:#f7f7f7;display:block;border-radius:6px;overflow:hidden}
-    .card.m .media{aspect-ratio:1/1}
-    .card.l .media{aspect-ratio:16/9}
-    .media>img{width:100%;height:100%;object-fit:cover;display:block}
+    .card{grid-column:span 1}
+    .card.m{grid-column:span 2}
+    .card.l{grid-column:span 3}
+    .media{background:#f7f7f7;display:block;border-radius:6px;overflow:hidden}
+    /* aspect ratio removed for masonry */
+    /* aspect ratio removed for masonry */
+    .media>img{width:100%;height:auto;display:block}
     .title{margin:.55rem 0 0;font-family:"Roboto",sans-serif;text-transform:uppercase;letter-spacing:.08em;font-weight:700;font-size:13px;line-height:1.35}
     .meta{margin:.1rem 0 0;color:var(--muted);font-size:13px}
 
     footer{border-top:1px solid var(--line);margin-top:36px}
     footer .foot{padding:14px 0;color:var(--muted);font-size:13px}
+  .inner{display:block}
   </style>
 </head>
 <body>
@@ -74,7 +75,7 @@
   <header>
     <div class="container">
       <div class="bar">
-        <div class="brand">FRIGO</div>
+        <div class="brand">CHEF LIL J</div>
 
         <div class="search-wrap">
           <label for="q" class="sr-only">Search by ingredient or keyword</label>
@@ -102,7 +103,7 @@
 
           <!-- Button 2: Type & time -->
           <div class="menu" id="menu-type">
-            <button class="btn" type="button" id="btn-type">Type & time <span class="count" id="count-type"></span></button>
+            <button class="btn" type="button" id="btn-type">Vibe & time <span class="count" id="count-type"></span></button>
             <div class="pop" role="dialog" aria-labelledby="btn-type">
               <h3>Diet</h3>
               <div class="row"><label><input type="radio" name="diet" value="any" checked> Any</label></div>
@@ -110,34 +111,22 @@
               <div class="row"><label><input type="radio" name="diet" value="vegan"> Vegan</label></div>
 
               <div class="hr"></div>
-              <h3>Type of meal</h3>
-              <div class="row"><label><input type="checkbox" data-type value="breakfast"> Breakfast</label></div>
+              <h3>Vibe / type</h3>
               <div class="row"><label><input type="checkbox" data-type value="brunch"> Brunch</label></div>
-              <div class="row"><label><input type="checkbox" data-type value="lunch"> Lunch</label></div>
-              <div class="row"><label><input type="checkbox" data-type value="dinner"> Dinner</label></div>
               <div class="row"><label><input type="checkbox" data-type value="tapas"> Tapas</label></div>
               <div class="row"><label><input type="checkbox" data-type value="drinks"> Drinks</label></div>
               <div class="row"><label><input type="checkbox" data-type value="sunday-afternoon"> Sunday afternoon</label></div>
               <div class="row"><label><input type="checkbox" data-type value="day-after-night-out"> Day after a night out</label></div>
               <div class="row"><label><input type="checkbox" data-type value="friends"> When friends come by</label></div>
               <div class="row"><label><input type="checkbox" data-type value="many-friends"> When a lot of friends come by</label></div>
-
               <div class="hr"></div>
               <h3>Prep time</h3>
               <div class="row"><label><input type="radio" name="preptime" value="any" checked> Any</label></div>
-              <div class="row"><label><input type="radio" name="preptime" value="10"> ≤ 10 min</label></div>
-              <div class="row"><label><input type="radio" name="preptime" value="15"> ≤ 15 min</label></div>
-              <div class="row"><label><input type="radio" name="preptime" value="20"> ≤ 20 min</label></div>
-              <div class="row"><label><input type="radio" name="preptime" value="30"> ≤ 30 min</label></div>
-              <div class="row"><label><input type="radio" name="preptime" value="45"> ≤ 45 min</label></div>
-
-              <div class="hr"></div>
-              <h3>Order</h3>
-              <div class="row"><label><input type="radio" name="order" value="relevance" checked> Relevance</label></div>
-              <div class="row"><label><input type="radio" name="order" value="alpha"> A–Z</label></div>
-              <div class="row"><label><input type="radio" name="order" value="prep"> Prep time</label></div>
-              <div class="row"><label><input type="radio" name="order" value="random"> Random</label></div>
-
+              <div class="row"><label><input type="radio" name="preptime" value="really-quick"> really quick</label></div>
+              <div class="row"><label><input type="radio" name="preptime" value="quick"> quick</label></div>
+              <div class="row"><label><input type="radio" name="preptime" value="not-so-long"> not so long</label></div>
+              <div class="row"><label><input type="radio" name="preptime" value="long"> long</label></div>
+              <div class="row"><label><input type="radio" name="preptime" value="testing"> testing your patience</label></div>
               <div class="hr"></div>
               <div class="actions">
                 <button class="link" id="clearType" type="button">Clear</button>
@@ -159,12 +148,13 @@
 
   <footer>
     <div class="container">
-      <div class="foot">© <span id="year"></span> FRIGO </div>
+      <div class="foot">© <span id="year"></span> CHEF LIL J</div>
     </div>
   </footer>
 
   <script>
     // ===== Demo data (swap for your CMS/JSON) =====
+    // Optional per-recipe page path: add `page: "/recepten/recept1.html"` to any item. If omitted, it falls back to `/recepten/${r.id}.html`.
     const RECIPES = [
       {id:"pad-thai",title:"Zesty Pad Thai",img:"images/pad-thai.jpg",ingredients:["rice noodles","chicken","tamarind","soy sauce","lime","peanuts","spring onion","coriander","garlic"],tags:["noodles","quick","street-food","dinner","friends"],prepTime:25},
       {id:"courgette-ribbons",title:"Courgette Ribbon Salad",img:"images/courgette.jpg",ingredients:["courgette","lemon","olive oil","parmesan","mint","chili"],tags:["salad","summer","lunch","veggie","first-warm-day"],prepTime:12},
@@ -184,14 +174,7 @@
     const pickSize = (id, tags=[])=>{ if(tags.includes('many-friends') || tags.includes('friends')) return 'l'; const h=[...id].reduce((a,c)=>a+c.charCodeAt(0),0); return (h%5===0)?'l':((h%3===0)?'m':'s'); };
 
     // ===== State =====
-    const state = {
-      q:"",
-      ingredients: new Set(),
-      diet: 'any',
-      types: new Set(),
-      prepMax: Infinity,
-      order: 'relevance'
-    };
+    const state = { q:"", ingredients:new Set(), diet:'any', types:new Set(), prepCat:'any' };
 
     const grid = $('#grid');
     const countEl = $('#count');
@@ -207,15 +190,24 @@
         const matchesIngredients = state.ingredients.size===0 || [...state.ingredients].some(tag=> r.ingredients.map(i=>i.toLowerCase()).includes(tag));
         const matchesDiet = state.diet==='any' || r.tags.includes(state.diet);
         const matchesType = state.types.size===0 || [...state.types].every(t=>r.tags.includes(t));
-        const matchesPrep = state.prepMax===Infinity || r.prepTime <= state.prepMax;
+        const matchesPrep = (function(cat){
+          if(cat==='any') return true;
+          if(cat==='really-quick') return r.prepTime <= 10;
+          if(cat==='quick') return r.prepTime <= 15;
+          if(cat==='not-so-long') return r.prepTime <= 25;
+          if(cat==='long') return r.prepTime <= 40;
+          if(cat==='testing') return r.prepTime > 40;
+          return true;
+        })(state.prepCat);
         return matchesQ && matchesIngredients && matchesDiet && matchesType && matchesPrep;
       });
 
       // Sorting
-      if(state.order==='relevance'){ list.sort((a,b)=>scoreRelevance(b,q)-scoreRelevance(a,q)||a.title.localeCompare(b.title)); }
-      else if(state.order==='alpha'){ list.sort((a,b)=>a.title.localeCompare(b.title)); }
-      else if(state.order==='prep'){ list.sort((a,b)=>a.prepTime-b.prepTime||a.title.localeCompare(b.title)); }
-      else if(state.order==='random'){ list = shuffle(list); }
+      if(q){
+        list.sort((a,b)=>scoreRelevance(b,q)-scoreRelevance(a,q)||a.title.localeCompare(b.title));
+      } else {
+        list = shuffle(list);
+      }
 
       // Paint
       grid.innerHTML='';
@@ -224,13 +216,39 @@
         const size=r.size||pickSize(r.id,r.tags);
         const card=document.createElement('article'); card.className='card '+(size==='m'?'m':(size==='l'?'l':'')); card.setAttribute('role','listitem');
         card.innerHTML=`
-          <a class="media" href="recipe.html?id=${r.id}" aria-label="${r.title}">
-            <img src="${r.img}" alt="" loading="lazy" onerror="this.remove();this.parentElement.style.display='grid';this.parentElement.style.placeItems='center';this.parentElement.textContent='no image'"/>
-          </a>
-          <h3 class="title">${r.title}</h3>
-          <div class="meta">${r.prepTime} min · ${r.ingredients.length} ingredients</div>`;
+          <div class="inner">
+            <a class=\"media\" href=\"${r.page || ('/recepten/' + r.id + '.html')}\" aria-label=\"${r.title}\">
+              <img src=\"${r.img}\" alt=\"\" loading=\"lazy\" />
+            </a>
+            <h3 class=\"title\">${r.title}</h3>
+            <div class=\"meta\">${r.prepTime} min · ${r.ingredients.length} ingredients</div>
+          </div>`;
         grid.appendChild(card);
+
+        // Size this card for masonry
+        const sizeCard = ()=>{
+          const rowH = parseInt(getComputedStyle(grid).getPropertyValue('grid-auto-rows')) || 8;
+          const gap = parseInt(getComputedStyle(grid).getPropertyValue('gap')) || 0;
+          const inner = card.querySelector('.inner');
+          if(!inner) return;
+          const span = Math.ceil((inner.getBoundingClientRect().height + gap)/(rowH+gap));
+          card.style.gridRowEnd = 'span '+span;
+        };
+        const img = card.querySelector('img');
+        if(img){ img.complete ? sizeCard() : (img.addEventListener('load', sizeCard), img.addEventListener('error', sizeCard)); }
+        else { sizeCard(); }
       });
+
+      // Resize all on viewport changes (bind once)
+      const resizeAll = ()=>{ Array.from(grid.children).forEach(card=>{
+        const rowH = parseInt(getComputedStyle(grid).getPropertyValue('grid-auto-rows')) || 8;
+        const gap = parseInt(getComputedStyle(grid).getPropertyValue('gap')) || 0;
+        const inner = card.querySelector('.inner'); if(!inner) return;
+        const span = Math.ceil((inner.getBoundingClientRect().height + gap)/(rowH+gap));
+        card.style.gridRowEnd = 'span '+span;
+      }); };
+      if(!window.__masonryBound){ window.addEventListener('resize', resizeAll); window.__masonryBound=true; }
+      resizeAll();
 
       // Update button counts
       $('#count-ing').textContent = state.ingredients.size?`(${state.ingredients.size})`:'';
