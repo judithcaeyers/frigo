@@ -59,6 +59,25 @@
     /* Footer note */
     footer{border-top:1px solid var(--line);margin-top:36px}
     footer .foot{padding:14px 0;color:var(--muted);font-size:13px}
+      /* Chip filters */
+    .chipbar{display:flex;flex-wrap:wrap;gap:8px;padding:8px 0 14px}
+    .chipbar button{appearance:none;background:transparent;border:1px solid var(--line);padding:6px 12px;border-radius:999px;font:inherit;cursor:pointer}
+    .chipbar button.active{border-color:#bbb;background:#f7f7f7}
+
+    /* Mixed tile sizes */
+    .card{grid-column:span 4}
+    .card.m{grid-column:span 6}
+    .card.l{grid-column:span 8}
+    .card .media{aspect-ratio:4/3}
+    .card.m .media{aspect-ratio:1/1}
+    .card.l .media{aspect-ratio:16/9}
+    @media (max-width:1100px){
+      .card{grid-column:span 4}
+      .card.m,.card.l{grid-column:span 8}
+    }
+    @media (max-width:720px){
+      .card,.card.m,.card.l{grid-column:span 4}
+    }
   </style>
 </head>
 <body>
@@ -100,6 +119,22 @@
     <div class="results-bar">
       <div class="count" id="count">Search: all recipes</div>
     </div>
+
+    <div class="chipbar" id="chips" aria-label="Quick filters">
+      <button type="button" data-tag="vegan">Vegan</button>
+      <button type="button" data-tag="veggie">Veggie</button>
+      <button type="button" data-tag="tapas">Tapas</button>
+      <button type="button" data-tag="dinner">Dinner</button>
+      <button type="button" data-tag="lunch">Lunch</button>
+      <button type="button" data-tag="brunch">Brunch</button>
+      <button type="button" data-tag="breakfast">Breakfast</button>
+      <button type="button" data-tag="day-after-night-out">Day after a night out</button>
+      <button type="button" data-tag="friends">When friends come by</button>
+      <button type="button" data-tag="many-friends">When a lot of friends come by</button>
+      <button type="button" data-tag="drinks">Drinks</button>
+      <button type="button" data-tag="sunday-afternoon">Sunday afternoon</button>
+    </div>
+
     <section id="grid" class="grid" role="list"></section>
   </main>
 
@@ -126,9 +161,14 @@
     // ===== Utilities =====
     const $ = (s,root=document)=>root.querySelector(s);
     const shuffle = arr => arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(v=>v[1]);
+    const pickSize = (id, tags=[])=>{
+      if(tags.includes('many-friends') || tags.includes('friends')) return 'l';
+      const h = [...id].reduce((a,c)=>a + c.charCodeAt(0), 0);
+      return (h % 5 === 0) ? 'l' : ((h % 3 === 0) ? 'm' : 's');
+    }; 
 
     // ===== State =====
-    let state = { q:"", ingredient:"", sort:"relevance" };
+    let state = { q:"", ingredient:"", sort:"relevance", tags: new Set() }; 
 
     const grid = $('#grid');
     const countEl = $('#count');
@@ -150,6 +190,10 @@
       const q = state.q.trim().toLowerCase();
       let list = RECIPES.filter(r=>{
         const matchesQ = !q || r.title.toLowerCase().includes(q) || r.ingredients.some(i=>i.toLowerCase().includes(q));
+        const matchesIng = !state.ingredient || r.ingredients.map(x=>x.toLowerCase()).includes(state.ingredient);
+        const matchesTags = state.tags.size===0 || [...state.tags].every(t=>r.tags.includes(t));
+        return matchesQ && matchesIng && matchesTags;
+      });
         const matchesIng = !state.ingredient || r.ingredients.map(x=>x.toLowerCase()).includes(state.ingredient);
         return matchesQ && matchesIng;
       });
@@ -177,8 +221,9 @@
       countEl.textContent = `Search: ${list.length} result${list.length>1?'s':''}${q?` for "${state.q}"`:''}`;
 
       list.forEach(r=>{
+        const size = r.size || pickSize(r.id, r.tags);
         const card = document.createElement('article');
-        card.className = 'card';
+        card.className = 'card ' + (size==='m'?'m':(size==='l'?'l':''));
         card.setAttribute('role','listitem');
         card.innerHTML = `
           <a class="media" href="#${r.id}" aria-label="${r.title}">
@@ -209,8 +254,19 @@
       if(e.key === '/' && document.activeElement !== qInput){ e.preventDefault(); qInput.focus(); }
     });
 
+    // Init chip filters
+    const chipbar = document.getElementById('chips');
+    chipbar.addEventListener('click', (e)=>{
+      const btn = e.target.closest('button[data-tag]');
+      if(!btn) return;
+      const tag = btn.dataset.tag;
+      if(state.tags.has(tag)){ state.tags.delete(tag); btn.classList.remove('active'); }
+      else { state.tags.add(tag); btn.classList.add('active'); }
+      render();
+    });
+
     // Init
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
     render();
   </script>
 </body>
