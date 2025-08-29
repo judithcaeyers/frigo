@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>cheflilj — recipes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Fonts: titles in Roboto (ALL CAPS), body in EB Garamond -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fff;
+      --text:#141414;
+      --muted:#666;
+      --line:#eaeaea;
+      --chip:#f4f4f4;
+      --accent:#111;
+      --radius:16px;
+      --space:14px;
+      --shadow:0 2px 20px rgba(0,0,0,.06);
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text)}
+    body{font-family:"EB Garamond",serif; -webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:10;
+      background:rgba(255,255,255,.8); backdrop-filter:saturate(1.2) blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:10px 16px}
+    .bar{
+      display:flex; align-items:center; gap:14px; justify-content:space-between; flex-wrap:wrap;
+    }
+    .brand{
+      font-family:"Roboto",system-ui,sans-serif;
+      letter-spacing:.12em; text-transform:uppercase;
+      font-weight:700; font-size:18px;
+    }
+    .controls{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    }
+    .controls label{font-size:12px; color:var(--muted)}
+    .control{
+      display:flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--line);
+      padding:8px 10px; border-radius:999px;
+    }
+    .control input[type="search"], .control select{
+      border:none; outline:none; background:transparent; font:inherit; min-width:120px;
+    }
+    .control button{
+      border:none; background:var(--accent); color:#fff; padding:8px 12px; border-radius:999px; cursor:pointer;
+    }
+    .hint{display:none; font-size:12px; color:var(--muted)}
+    @media (max-width:640px){ .hint{display:block; padding:4px 0 0 2px;} }
+
+    /* Grid */
+    main{max-width:var(--maxw); margin:0 auto; padding:18px 16px 40px}
+    .grid{
+      display:grid; grid-template-columns:repeat(12,1fr); gap:16px;
+    }
+    @media (max-width:1100px){ .grid{grid-template-columns:repeat(8,1fr);} }
+    @media (max-width:740px){ .grid{grid-template-columns:repeat(4,1fr);} }
+
+    .card{
+      grid-column:span 4; background:#fff; border:1px solid var(--line);
+      border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .card:hover{ transform:translateY(-2px); box-shadow:0 6px 30px rgba(0,0,0,.08); }
+    .media{
+      position:relative; aspect-ratio:4/3; background:#f6f6f6;
+      display:grid; place-items:center; color:#bbb; font-family:"Roboto",sans-serif; font-size:12px; letter-spacing:.1em;
+    }
+    .media img{ width:100%; height:100%; object-fit:cover; display:block }
+    .body{ padding:14px }
+    .title{
+      font-family:"Roboto",sans-serif; text-transform:uppercase; letter-spacing:.08em;
+      font-size:14px; line-height:1.3; margin:0 0 8px; font-weight:700;
+    }
+    .meta{ display:flex; gap:10px; align-items:center; color:var(--muted); font-size:13px; margin-bottom:8px}
+    .chips{ display:flex; gap:8px; flex-wrap:wrap }
+    .chip{ font-size:12px; background:var(--chip); border:1px solid var(--line); padding:4px 8px; border-radius:999px }
+
+    /* Subtle “section cap” */
+    .cap{ margin:12px 0 2px; font-size:12px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; font-family:"Roboto",sans-serif }
+
+    /* Empty state */
+    .empty{ grid-column:1/-1; text-align:center; color:var(--muted); padding:40px 0; border:1px dashed var(--line); border-radius:var(--radius)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="bar">
+        <div class="brand">CHEF LIL J</div>
+
+        <div class="controls">
+          <div class="control" title="Search">
+            <label for="q">Search</label>
+            <input id="q" type="search" placeholder="Title or ingredient…" aria-label="Search recipes" />
+          </div>
+
+          <div class="control" title="Filter by ingredient">
+            <label for="ingredient">Ingredient</label>
+            <select id="ingredient" aria-label="Filter by ingredient">
+              <option value="">Any</option>
+              <!-- dynamically populated -->
+            </select>
+          </div>
+
+          <div class="control" title="Sort">
+            <label for="sort">Sort</label>
+            <select id="sort" aria-label="Sort recipes">
+              <option value="random">Random</option>
+              <option value="alpha">A–Z</option>
+              <option value="fewest">Fewest ingredients</option>
+              <option value="prep">Prep time</option>
+              <option value="warm">First warm day</option>
+            </select>
+            <button id="shuffleBtn" aria-label="Shuffle recipes">Shuffle</button>
+          </div>
+        </div>
+        <div class="hint">Tip: try the “First warm day” sort for light, fresh picks.</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div id="grid" class="grid" role="list"></div>
+    </section>
+  </main>
+
+  <script>
+    // ====== Demo data (replace with your real recipes) ======
+    const RECIPES = [
+      {
+        id:"pad-thai",
+        title:"Zesty Pad Thai",
+        img:"images/pad-thai.jpg",
+        ingredients:["rice noodles","chicken","tamarind","soy sauce","lime","peanuts","spring onion","coriander","garlic"],
+        tags:["noodles","quick","street-food","first-warm-day"],
+        prepTime:25
+      },
+      {
+        id:"courgette-ribbons",
+        title:"Courgette Ribbon Salad",
+        img:"images/courgette.jpg",
+        ingredients:["courgette","lemon","olive oil","parmesan","mint","chili"],
+        tags:["salad","summer","first-warm-day"],
+        prepTime:12
+      },
+      {
+        id:"cold-sesame-noodles",
+        title:"Cold Sesame Noodles",
+        img:"images/sesame-noodles.jpg",
+        ingredients:["noodles","soy sauce","tahini","sesame oil","spring onion","chili"],
+        tags:["noodles","cold","picnic","first-warm-day"],
+        prepTime:15
+      },
+      {
+        id:"roasted-cauliflower-tahini",
+        title:"Roasted Cauliflower + Tahini",
+        img:"images/cauli.jpg",
+        ingredients:["cauliflower","tahini","lemon","garlic","parsley"],
+        tags:["roast","comfort"],
+        prepTime:35
+      },
+      {
+        id:"crispy-rosti-beet",
+        title:"Crispy Rösti with Beet",
+        img:"images/rosti.jpg",
+        ingredients:["potato","beetroot","spring onion","egg","yoghurt"],
+        tags:["brunch","cozy"],
+        prepTime:30
+      },
+      {
+        id:"edamame-ginger-stirfry",
+        title:"Edamame Ginger Stir-Fry",
+        img:"images/edamame.jpg",
+        ingredients:["edamame","ginger","garlic","soy sauce","sesame"],
+        tags:["stir-fry","green","first-warm-day"],
+        prepTime:14
+      },
+      {
+        id:"cranberry-meatballs",
+        title:"Cranberry Glazed Meatballs (IKEA hack)",
+        img:"images/meatballs.jpg",
+        ingredients:["beef meatballs","cranberry sauce","soy sauce","spring onion"],
+        tags:["party","sweet-savory"],
+        prepTime:20
+      },
+      {
+        id:"summer-tomato-salad",
+        title:"Summer Tomato Salad",
+        img:"images/tomato.jpg",
+        ingredients:["tomato","olive oil","basil","red onion","vinegar"],
+        tags:["salad","summer","first-warm-day"],
+        prepTime:10
+      },
+      {
+        id:"miso-glazed-salmon",
+        title:"Miso Glazed Salmon",
+        img:"images/salmon.jpg",
+        ingredients:["salmon","miso","soy sauce","ginger","honey"],
+        tags:["weeknight","umami"],
+        prepTime:22
+      }
+    ];
+
+    // ====== Utilities ======
+    const $ = (sel,root=document)=>root.querySelector(sel);
+    const $$ = (sel,root=document)=>Array.from(root.querySelectorAll(sel));
+    const shuffle = arr => arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(v=>v[1]);
+    const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+
+    // ====== State ======
+    let state = {
+      q: "",
+      ingredient: "",
+      sort: "random",
+      pool: shuffle(RECIPES.slice())
+    };
+
+    // ====== Rendering ======
+    const grid = $('#grid');
+
+    function render(){
+      // Filter
+      const q = state.q.trim().toLowerCase();
+      let list = state.pool.filter(r=>{
+        const matchesQ = !q || r.title.toLowerCase().includes(q) || r.ingredients.some(i=>i.toLowerCase().includes(q));
+        const matchesIng = !state.ingredient || r.ingredients.map(x=>x.toLowerCase()).includes(state.ingredient);
+        return matchesQ && matchesIng;
+      });
+
+      // Sort
+      switch(state.sort){
+        case 'alpha':
+          list.sort((a,b)=>a.title.localeCompare(b.title)); break;
+        case 'fewest':
+          list.sort((a,b)=>a.ingredients.length - b.ingredients.length || a.title.localeCompare(b.title)); break;
+        case 'prep':
+          list.sort((a,b)=>a.prepTime - b.prepTime || a.title.localeCompare(b.title)); break;
+        case 'warm':
+          // Boost recipes with “first-warm-day” or “summer”
+          const score = r => (r.tags.includes('first-warm-day')?2:0) + (r.tags.includes('summer')?1:0) - (r.prepTime/200);
+          list.sort((a,b)=>score(b)-score(a) || a.title.localeCompare(b.title)); break;
+        default: // random
+          list = shuffle(list);
+      }
+
+      // Paint
+      grid.innerHTML = '';
+      if(!list.length){
+        const div = document.createElement('div');
+        div.className='empty';
+        div.textContent = 'No recipes found — try clearing filters.';
+        grid.appendChild(div);
+        return;
+      }
+
+      list.forEach(r=>{
+        const card = document.createElement('article');
+        card.className='card'; card.setAttribute('role','listitem');
+        card.innerHTML = `
+          <div class="media" aria-label="${r.title}">
+            <img src="${r.img}" alt="" loading="lazy" onerror="this.remove();this.parentElement.textContent='no image';" />
+          </div>
+          <div class="body">
+            <h3 class="title">${r.title}</h3>
+            <div class="meta">
+              <span>${r.prepTime} min</span>
+              <span>•</span>
+              <span>${r.ingredients.length} ingred.</span>
+            </div>
+            <div class="cap">Key ingredients</div>
+            <div class="chips">
+              ${r.ingredients.slice(0,4).map(i=>`<span class="chip">${i}</span>`).join('')}
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // ====== Controls ======
+    const qInput = $('#q');
+    const ingSelect = $('#ingredient');
+    const sortSelect = $('#sort');
+    const shuffleBtn = $('#shuffleBtn');
+
+    // Populate ingredient list from data
+    const allIngredients = Array.from(new Set(RECIPES.flatMap(r=>r.ingredients.map(i=>i.toLowerCase())))).sort();
+    allIngredients.forEach(i=>{
+      const opt = document.createElement('option');
+      opt.value = i; opt.textContent = i;
+      ingSelect.appendChild(opt);
+    });
+
+    qInput.addEventListener('input', e=>{ state.q = e.target.value; render(); });
+    ingSelect.addEventListener('change', e=>{ state.ingredient = e.target.value; render(); });
+    sortSelect.addEventListener('change', e=>{
+      state.sort = e.target.value;
+      if(state.sort==='random'){ state.pool = shuffle(state.pool); }
+      render();
+      localStorage.setItem('recipes-sort', state.sort);
+    });
+    shuffleBtn.addEventListener('click', ()=>{
+      state.pool = shuffle(state.pool);
+      // keep current filters but reshuffle order
+      if(state.sort!=='random'){ sortSelect.value='random'; state.sort='random'; }
+      render();
+    });
+
+    // Restore last sort (nice-to-have)
+    const savedSort = localStorage.getItem('recipes-sort');
+    if(savedSort){ sortSelect.value = savedSort; state.sort = savedSort; }
+
+    // First paint
+    render();
+
+    // ====== Optional: “real” warm-day behavior
+    // If you want this to react to actual weather:
+    // 1) Add a toggle to enable “use weather”.
+    // 2) Query a weather API (e.g. Open-Meteo) for today’s max temp at your location.
+    // 3) If temp >= 20°C, auto-switch sort to 'warm'.
+    // (Kept out here to stay API-free and “basic HTML”.)
+  </script>
+</body>
+</html>
