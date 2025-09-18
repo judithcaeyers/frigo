@@ -1,10 +1,16 @@
 :root{
   --bg:#ffffff; --text:#141414; --muted:#6a6a6a; --line:#e7e7e7;
-  --space:14px; --maxw:1100px;
+  --space:14px; --maxw:1100px; --radius:10px; --shadow:0 8px 24px rgba(0,0,0,.08);
 }
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--text)}
 body{font-family:"EB Garamond", serif;}
+
+/* Visually hidden labels (a11y) */
+.visually-hidden{
+  position:absolute!important; width:1px;height:1px; padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
 
 /* Typography */
 .caps{font-family:"Roboto", sans-serif; letter-spacing:.06em; text-transform:uppercase;}
@@ -16,32 +22,61 @@ header{max-width:var(--maxw); margin:0 auto; padding:20px var(--space) 10px}
 .logo{display:flex; align-items:center; justify-content:center;}
 .logo svg{height:60px; width:auto; display:block}
 
-/* Filters */
-.controls{max-width:var(--maxw); margin:0 auto; padding:0 var(--space) 10px; display:flex; flex-wrap:wrap; gap:16px; justify-content:center}
-select{appearance:none; -webkit-appearance:none; font:inherit; padding:8px 28px 8px 10px; border:none; border-bottom:1px solid var(--line); background:transparent;}
-.select-wrap{position:relative}
-.select-wrap svg{position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none}
-
-/* Multiple select styling */
-select[multiple]{
-  min-width:220px;
-  min-height:200px;
-  padding-right:10px;
-  background:transparent;
-  border:1px solid var(--line);
-  border-radius:8px;
+/* Controls layout */
+.controls{
+  max-width:var(--maxw); margin:0 auto;
+  padding:0 var(--space) 10px;
+  display:flex; flex-wrap:wrap; gap:16px; justify-content:center; align-items:flex-start;
 }
-.select-wrap.multi svg{display:none}
+.control{position:relative}
 
-/* Filters footer */
+/* ===== Custom Multiselect (ms) ===== */
+select.ms{ display:none; } /* hide native */
+
+.ms{
+  position:relative;
+  min-width:220px;
+}
+.ms-trigger{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px;
+  width:100%; height:36px;
+  padding:8px 10px;
+  border:none; border-bottom:1px solid var(--line);
+  background:transparent; cursor:pointer; font:inherit;
+}
+.ms-label{
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.ms-chevron{
+  width:16px; height:16px; flex:0 0 auto;
+}
+.ms.open .ms-chevron{ transform:rotate(180deg); }
+
+/* Panel */
+.ms-panel{
+  position:absolute; z-index:30;
+  top:42px; left:0; width:100%;
+  max-height:280px; overflow:auto;
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:8px;
+  display:none;
+}
+.ms.open .ms-panel{ display:block; }
+
+/* Option rows */
+.ms-option{
+  display:flex; align-items:center; gap:8px;
+  padding:6px 6px; border-radius:8px; cursor:pointer;
+}
+.ms-option:hover{ background:#f7f7f7; }
+.ms-option input{ width:16px; height:16px; }
+
+/* Footer (search / clear) */
 .filters-footer{
   width:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:16px;
-  margin-top:20px;
-  flex-wrap:wrap;
+  display:flex; justify-content:center; align-items:center;
+  gap:16px; margin-top:20px; flex-wrap:wrap;
 }
 
 /* Search */
@@ -50,10 +85,9 @@ select[multiple]{
 .search-input{display:none; width:220px; max-width:75vw; padding:6px 8px; border:none; border-bottom:1px solid var(--line); margin-left:8px;}
 .search-input.show{display:inline-block}
 
-/* Button */
+/* Buttons */
 .btn{font:inherit; padding:8px 12px; border-radius:8px; border:1px solid var(--line); background:#f7f7f7; cursor:pointer}
 .btn:hover{background:#f0f0f0}
-.btn-clear{}
 
 /* Masonry grid */
 .grid-wrap{max-width:var(--maxw); margin:0 auto 60px; padding:0 var(--space)}
