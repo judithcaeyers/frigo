@@ -1,102 +1,126 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="utf-8" />
-  <title>FRIGO — recipes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Fonts: body EB Garamond, headings Roboto, handwritten brand Caveat -->
+  <title>CHEF LIL J — Recepten</title>
+  <meta name="description" content="Een minimalistische receptenwebsite met filters (ingrediënten, sfeer, dieet, prep-tijd), zoekfunctie en masonry grid." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a href="#main" class="sr-only">Skip to content</a>
-
   <header>
-    <div class="container">
-      <div class="bar">
-        <div class="brand" id="brand">FRIGO</div>
-
-        <div class="search-wrap">
-          <label for="q" class="sr-only">Search by ingredient or keyword</label>
-          <input id="q" type="search" placeholder="Search by ingredient, keyword" aria-label="Search recipes" />
-          <span class="kbd" aria-hidden="true">/</span>
-        </div>
-
-        <div class="filters" aria-label="Filter menus">
-          <!-- Ingredients -->
-          <div class="menu" id="menu-ing">
-            <button class="btn" type="button" id="btn-ing" aria-haspopup="dialog" aria-expanded="false">
-              Ingredients <span class="count" id="count-ing"></span>
-            </button>
-            <div class="pop" role="dialog" aria-labelledby="btn-ing" aria-modal="false">
-              <h3>Ingredients</h3>
-              <div class="ing-search">
-                <input id="ingFilter" type="search" placeholder="Filter ingredients…" aria-label="Filter ingredients" />
-              </div>
-              <div class="ing-list" id="ingList"></div>
-              <div class="hr"></div>
-              <div class="actions">
-                <button class="link" id="clearIng" type="button">Clear</button>
-                <button class="btn" type="button" data-close="menu-ing">Done</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Vibe & time -->
-          <div class="menu" id="menu-type">
-            <button class="btn" type="button" id="btn-type" aria-haspopup="dialog" aria-expanded="false">
-              Vibe &amp; time <span class="count" id="count-type"></span>
-            </button>
-            <div class="pop" role="dialog" aria-labelledby="btn-type" aria-modal="false">
-              <h3>Diet</h3>
-              <div class="row"><label><input type="radio" name="diet" value="any" checked> Any</label></div>
-              <div class="row"><label><input type="radio" name="diet" value="veggie"> Veggie</label></div>
-              <div class="row"><label><input type="radio" name="diet" value="vegan"> Vegan</label></div>
-
-              <div class="hr"></div>
-              <h3>Vibe / type</h3>
-              <div class="row"><label><input type="checkbox" data-type value="brunch"> Brunch</label></div>
-              <div class="row"><label><input type="checkbox" data-type value="tapas"> Tapas</label></div>
-              <div class="row"><label><input type="checkbox" data-type value="drinks"> Drinks</label></div>
-              <div class="row"><label><input type="checkbox" data-type value="sunday-afternoon"> Sunday afternoon</label></div>
-              <div class="row"><label><input type="checkbox" data-type value="day-after-night-out"> Day after a night out</label></div>
-              <div class="row"><label><input type="checkbox" data-type value="friends"> When friends come by</label></div>
-              <div class="row"><label><input type="checkbox" data-type value="many-friends"> When a lot of friends come by</label></div>
-
-              <div class="hr"></div>
-              <h3>Prep time</h3>
-              <div class="row"><label><input type="radio" name="preptime" value="any" checked> Any</label></div>
-              <div class="row"><label><input type="radio" name="preptime" value="really-quick"> really quick</label></div>
-              <div class="row"><label><input type="radio" name="preptime" value="quick"> quick</label></div>
-              <div class="row"><label><input type="radio" name="preptime" value="not-so-long"> not so long</label></div>
-
-              <div class="actions" style="margin-top:10px">
-                <button class="btn" type="button" data-close="menu-type">Done</button>
-              </div>
-            </div>
-          </div>
-        </div> <!-- /.filters -->
-      </div>
+    <div class="logo">
+      <!-- Vervang door je echte logo of laat dit SVG-zonnetje staan -->
+      <svg width="64" height="64" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Chef Lil J logo">
+        <rect x="6" y="6" width="84" height="84" rx="16" stroke="#111" stroke-width="2"/>
+        <path d="M24 60 C 24 44 44 36 48 48 C 52 36 72 44 72 60" stroke="#111" stroke-width="2" fill="none"/>
+        <circle cx="48" cy="36" r="6" stroke="#111" stroke-width="2"/>
+      </svg>
     </div>
+    <h1 class="caps">chef lil j — recepten</h1>
+    <p class="muted">Filter of zoek door de recepten</p>
   </header>
 
-  <main id="main" class="container">
-    <div class="results-bar">
-      <div class="count" id="resultsCount">0 results</div>
+  <section class="controls" aria-label="Filters">
+    <div class="control select-wrap">
+      <select id="f-ingredient" aria-label="Filter op ingrediënten">
+        <option value="">Ingrediënten (alles)</option>
+        <option value="tomaat">tomaat</option>
+        <option value="pasta">pasta</option>
+        <option value="rijst">rijst</option>
+        <option value="citroen">citroen</option>
+        <option value="aubergine">aubergine</option>
+        <option value="zalm">zalm</option>
+        <option value="tonijn">tonijn</option>
+        <option value="chili">chili</option>
+        <option value="chocolade">chocolade</option>
+      </select>
+      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <div class="control select-wrap">
+      <select id="f-sfeer" aria-label="Filter op sfeer">
+        <option value="">Sfeer (alles)</option>
+        <option value="comfort">comfort</option>
+        <option value="fris">fris</option>
+        <option value="brunch">brunch</option>
+        <option value="feest">feest</option>
+        <option value="spicy">spicy</option>
+        <option value="weeknight">weeknight</option>
+      </select>
+      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <div class="control select-wrap">
+      <select id="f-dieet" aria-label="Filter op dieet">
+        <option value="">Dieet (alles)</option>
+        <option value="vegan">vegan</option>
+        <option value="vegetarisch">vegetarisch</option>
+        <option value="pescetarisch">pescetarisch</option>
+        <option value="glutenvrij">glutenvrij</option>
+        <option value="lactosevrij">lactosevrij</option>
+        <option value="omnivoor">omnivoor</option>
+      </select>
+      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <div class="control select-wrap">
+      <select id="f-prep" aria-label="Filter op prep-tijd">
+        <option value="">Prep tijd (alles)</option>
+        <option value="15">≤ 15 min</option>
+        <option value="30">≤ 30 min</option>
+        <option value="45">≤ 45 min</option>
+        <option value="60">≤ 60 min</option>
+        <option value="120">≤ 120 min</option>
+      </select>
+      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
     </div>
 
-    <div id="grid" class="grid" aria-live="polite"></div>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="foot">
-        <span id="brandFoot">FRIGO</span> · <span id="year"></span>
-      </div>
+    <div class="search-wrap">
+      <button class="search-btn" id="searchToggle" aria-label="Toon zoekveld" title="Zoek">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="#111" stroke-width="2" fill="none"/><path d="M20 20l-3.5-3.5" stroke="#111" stroke-width="2"/></svg>
+      </button>
+      <input type="search" id="searchInput" class="search-input" placeholder="Zoek vrij…" aria-label="Vrije zoekopdracht" />
     </div>
-  </footer>
+  </section>
 
-  <script defer src="assets/app.js"></script>
+  <section class="grid-wrap">
+    <div id="emptyState" class="empty">Geen recepten gevonden. Pas je filters aan of wis de zoekopdracht.</div>
+    <div id="grid" class="grid" aria-live="polite">
+      <a class="card" href="#" data-ingredients='["pasta","tomaat","chili"]' data-sfeer="comfort" data-dieet="omnivoor" data-prep="30" data-title="Arrabbiata met knoflookchips">
+        <img src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2a389?q=80&w=1200&auto=format&fit=crop" alt="Arrabbiata met knoflookchips"/>
+        <div class="card-title"><div class="caps">Arrabbiata met knoflookchips</div></div>
+      </a>
+      <a class="card" href="#" data-ingredients='["rijst","tonijn","citroen"]' data-sfeer="fris" data-dieet="pescetarisch" data-prep="20" data-title="Citrus tonijntartaar op rijst">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop" alt="Citrus tonijntartaar op rijst"/>
+        <div class="card-title"><div class="caps">Citrus tonijntartaar op rijst</div></div>
+      </a>
+      <a class="card" href="#" data-ingredients='["aubergine","tomaat","citroen"]' data-sfeer="brunch" data-dieet="vegetarisch" data-prep="45" data-title="Geroosterde aubergine met yoghurt en sumak">
+        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=1200&auto=format&fit=crop" alt="Geroosterde aubergine met yoghurt en sumak"/>
+        <div class="card-title"><div class="caps">Geroosterde aubergine met yoghurt en sumak</div></div>
+      </a>
+      <a class="card" href="#" data-ingredients='["pasta","zalm","citroen"]' data-sfeer="weeknight" data-dieet="pescetarisch" data-prep="25" data-title="Citroenpasta met zalmflakes">
+        <img src="https://images.unsplash.com/photo-1458644267420-66bc8a5f21e4?q=80&w=1200&auto=format&fit=crop" alt="Citroenpasta met zalmflakes"/>
+        <div class="card-title"><div class="caps">Citroenpasta met zalmflakes</div></div>
+      </a>
+      <a class="card" href="#" data-ingredients='["chocolade","citroen"]' data-sfeer="feest" data-dieet="vegetarisch" data-prep="60" data-title="Donkere chocolademousse met citroenzout">
+        <img src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?q=80&w=1200&auto=format&fit=crop" alt="Donkere chocolademousse met citroenzout"/>
+        <div class="card-title"><div class="caps">Donkere chocolademousse met citroenzout</div></div>
+      </a>
+      <a class="card" href="#" data-ingredients='["pasta","tomaat","aubergine"]' data-sfeer="comfort" data-dieet="vegan" data-prep="35" data-title="Siciliaanse pasta alla Norma">
+        <img src="https://images.unsplash.com/photo-1473090928358-00fcead4f08b?q=80&w=1200&auto=format&fit=crop" alt="Siciliaanse pasta alla Norma"/>
+        <div class="card-title"><div class="caps">Siciliaanse pasta alla Norma</div></div>
+      </a>
+      <a class="card" href="#" data-ingredients='["rijst","chili"]' data-sfeer="spicy" data-dieet="vegan" data-prep="15" data-title="Chili-limoen rijstsalade">
+        <img src="https://images.unsplash.com/photo-1547496502-affa22d38842?q=80&w=1200&auto=format&fit=crop" alt="Chili-limoen rijstsalade"/>
+        <div class="card-title"><div class="caps">Chili-limoen rijstsalade</div></div>
+      </a>
+      <a class="card" href="#" data-ingredients='["aubergine","rijst"]' data-sfeer="comfort" data-dieet="glutenvrij" data-prep="50" data-title="Sticky miso-aubergine met sesamrijst">
+        <img src="https://images.unsplash.com/photo-1540713434306-58505cf1b6fc?q=80&w=1200&auto=format&fit=crop" alt="Sticky miso-aubergine met sesamrijst"/>
+        <div class="card-title"><div class="caps">Sticky miso-aubergine met sesamrijst</div></div>
+      </a>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
 </body>
 </html>
