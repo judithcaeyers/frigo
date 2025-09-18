@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CHEF LIL J — Recepten</title>
+  <title>Mijn recepten</title>
   <meta name="description" content="Een minimalistische receptenwebsite met filters (ingrediënten, sfeer, dieet, prep-tijd), zoekfunctie en masonry grid." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=inter:wght@400;500&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -19,79 +20,79 @@
         <circle cx="48" cy="36" r="6" stroke="#111" stroke-width="2"/>
       </svg>
     </div>
-    <h1 class="caps">chef lil j — recepten</h1>
+    <h1 class="caps">%Mijn recepten</h1>
     <p class="muted">Filter of zoek door de recepten</p>
   </header>
 
   <section class="controls" aria-label="Filters">
-<div class="control select-wrap">
-  <select id="f-ingredient" aria-label="Filter op ingrediënten" multiple size="8">
-    <!-- (geen “Alles”-optie nodig bij multiple) -->
-    <option value="abrikoos">abrikoos</option>
-    <option value="ananas">ananas</option>
-    <option value="aubergine">aubergine</option>
-    <option value="avocado">avocado</option>
-    <option value="bieslook">bieslook</option>
-    <option value="bloem">bloem</option>
-    <option value="boontjes">boontjes</option>
-    <option value="burrata">burrata</option>
-    <option value="champignon">champignon</option>
-    <option value="chili">chili</option>
-    <option value="chocolade">chocolade</option>
-    <option value="citroen">citroen</option>
-    <option value="courgette">courgette</option>
-    <option value="edamame">edamame</option>
-    <option value="ei">ei</option>
-    <option value="filo">filo</option>
-    <option value="garnaal">garnaal</option>
-    <option value="gehakt">gehakt</option>
-    <option value="geitenkaas">geitenkaas</option>
-    <option value="haloumi">haloumi</option>
-    <option value="kikkererwten">kikkererwten</option>
-    <option value="kip">kip</option>
-    <option value="komkommer">komkommer</option>
-    <option value="limoen">limoen</option>
-    <option value="look">look</option>
-    <option value="mandarijn">mandarijn</option>
-    <option value="mayonnaise">mayonnaise</option>
-    <option value="mozzarella">mozzarella</option>
-    <option value="munt">munt</option>
-    <option value="oesterzwam">oesterzwam</option>
-    <option value="paprika">paprika</option>
-    <option value="parmazaan">parmazaan</option>
-    <option value="pasta">pasta</option>
-    <option value="pecorino romano">pecorino romano</option>
-    <option value="pinda">pinda</option>
-    <option value="pistache">pistache</option>
-    <option value="pitta">pitta</option>
-    <option value="pompoen">pompoen</option>
-    <option value="pruim">pruim</option>
-    <option value="ricotta">ricotta</option>
-    <option value="rijst">rijst</option>
-    <option value="room">room</option>
-    <option value="rucola">rucola</option>
-    <option value="rundsvlees">rundsvlees</option>
-    <option value="scampis">scampis</option>
-    <option value="shiitake">shiitake</option>
-    <option value="soyasaus">soyasaus</option>
-    <option value="spek">spek</option>
-    <option value="sriracha">sriracha</option>
-    <option value="steak">steak</option>
-    <option value="tomaat">tomaat</option>
-    <option value="tonijn">tonijn</option>
-    <option value="tortellini">tortellini</option>
-    <option value="ui">ui</option>
-    <option value="varkensvlees">varkensvlees</option>
-    <option value="walnoot">walnoot</option>
-    <option value="wortel">wortel</option>
-    <option value="yoghurt">yoghurt</option>
-    <option value="zalm">zalm</option>
-  </select>
-</div>
+    <!-- Ingrediënten -->
+    <div class="control select-wrap multi">
+      <select id="f-ingredient" aria-label="Filter op ingrediënten" multiple size="10">
+        <option value="abrikoos">abrikoos</option>
+        <option value="ananas">ananas</option>
+        <option value="aubergine">aubergine</option>
+        <option value="avocado">avocado</option>
+        <option value="bieslook">bieslook</option>
+        <option value="bloem">bloem</option>
+        <option value="boontjes">boontjes</option>
+        <option value="burrata">burrata</option>
+        <option value="champignon">champignon</option>
+        <option value="chili">chili</option>
+        <option value="chocolade">chocolade</option>
+        <option value="citroen">citroen</option>
+        <option value="courgette">courgette</option>
+        <option value="edamame">edamame</option>
+        <option value="ei">ei</option>
+        <option value="filo">filo</option>
+        <option value="garnaal">garnaal</option>
+        <option value="gehakt">gehakt</option>
+        <option value="geitenkaas">geitenkaas</option>
+        <option value="haloumi">haloumi</option>
+        <option value="kikkererwten">kikkererwten</option>
+        <option value="kip">kip</option>
+        <option value="komkommer">komkommer</option>
+        <option value="limoen">limoen</option>
+        <option value="look">look</option>
+        <option value="mandarijn">mandarijn</option>
+        <option value="mayonnaise">mayonnaise</option>
+        <option value="mozzarella">mozzarella</option>
+        <option value="munt">munt</option>
+        <option value="oesterzwam">oesterzwam</option>
+        <option value="paprika">paprika</option>
+        <option value="parmezaan">parmezaan</option>
+        <option value="pasta">pasta</option>
+        <option value="pecorino romano">pecorino romano</option>
+        <option value="pinda">pinda</option>
+        <option value="pistache">pistache</option>
+        <option value="pitta">pitta</option>
+        <option value="pompoen">pompoen</option>
+        <option value="pruim">pruim</option>
+        <option value="ricotta">ricotta</option>
+        <option value="rijst">rijst</option>
+        <option value="room">room</option>
+        <option value="rucola">rucola</option>
+        <option value="rundsvlees">rundsvlees</option>
+        <option value="scampis">scampis</option>
+        <option value="shiitake">shiitake</option>
+        <option value="soyasaus">soyasaus</option>
+        <option value="spek">spek</option>
+        <option value="sriracha">sriracha</option>
+        <option value="steak">steak</option>
+        <option value="tomaat">tomaat</option>
+        <option value="tonijn">tonijn</option>
+        <option value="tortellini">tortellini</option>
+        <option value="ui">ui</option>
+        <option value="varkensvlees">varkensvlees</option>
+        <option value="walnoot">walnoot</option>
+        <option value="wortel">wortel</option>
+        <option value="yoghurt">yoghurt</option>
+        <option value="zalm">zalm</option>
+      </select>
+    </div>
 
-    <div class="control select-wrap">
-      <select id="f-sfeer" aria-label="Filter op sfeer">
-        <option value="">Sfeer (alles)</option>
+    <!-- Sfeer -->
+    <div class="control select-wrap multi">
+      <select id="f-sfeer" aria-label="Filter op sfeer" multiple size="6">
         <option value="comfort">comfort</option>
         <option value="fris">fris</option>
         <option value="brunch">brunch</option>
@@ -99,11 +100,11 @@
         <option value="spicy">spicy</option>
         <option value="weeknight">weeknight</option>
       </select>
-      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
     </div>
-    <div class="control select-wrap">
-      <select id="f-dieet" aria-label="Filter op dieet">
-        <option value="">Dieet (alles)</option>
+
+    <!-- Dieet -->
+    <div class="control select-wrap multi">
+      <select id="f-dieet" aria-label="Filter op dieet" multiple size="6">
         <option value="vegan">vegan</option>
         <option value="vegetarisch">vegetarisch</option>
         <option value="pescetarisch">pescetarisch</option>
@@ -111,63 +112,38 @@
         <option value="lactosevrij">lactosevrij</option>
         <option value="omnivoor">omnivoor</option>
       </select>
-      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
     </div>
-    <div class="control select-wrap">
-      <select id="f-prep" aria-label="Filter op prep-tijd">
-        <option value="">Prep tijd (alles)</option>
+
+    <!-- Prep -->
+    <div class="control select-wrap multi">
+      <select id="f-prep" aria-label="Filter op prep-tijd" multiple size="5">
         <option value="15">≤ 15 min</option>
         <option value="30">≤ 30 min</option>
         <option value="45">≤ 45 min</option>
         <option value="60">≤ 60 min</option>
         <option value="120">≤ 120 min</option>
       </select>
-      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
     </div>
 
-    <div class="search-wrap">
-      <button class="search-btn" id="searchToggle" aria-label="Toon zoekveld" title="Zoek">
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="#111" stroke-width="2" fill="none"/><path d="M20 20l-3.5-3.5" stroke="#111" stroke-width="2"/></svg>
-      </button>
-      <input type="search" id="searchInput" class="search-input" placeholder="Zoek vrij…" aria-label="Vrije zoekopdracht" />
+    <!-- Footer onder filters -->
+    <div class="filters-footer">
+      <div class="search-wrap">
+        <button class="search-btn" id="searchToggle" aria-label="Toon zoekveld" title="Zoek">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" stroke="#111" stroke-width="2" fill="none"/>
+            <path d="M20 20l-3.5-3.5" stroke="#111" stroke-width="2"/>
+          </svg>
+        </button>
+        <input type="search" id="searchInput" class="search-input" placeholder="Zoek vrij…" aria-label="Vrije zoekopdracht" />
+      </div>
+      <button id="clearFilters" class="btn btn-clear" type="button" aria-label="Wis alle filters">Wis alle filters</button>
     </div>
   </section>
 
   <section class="grid-wrap">
     <div id="emptyState" class="empty">Geen recepten gevonden. Pas je filters aan of wis de zoekopdracht.</div>
     <div id="grid" class="grid" aria-live="polite">
-      <a class="card" href="#" data-ingredients='["pasta","tomaat","chili"]' data-sfeer="comfort" data-dieet="omnivoor" data-prep="30" data-title="Arrabbiata met knoflookchips">
-        <img src="https://images.unsplash.com/photo-1523986371872-9d3ba2e2a389?q=80&w=1200&auto=format&fit=crop" alt="Arrabbiata met knoflookchips"/>
-        <div class="card-title"><div class="caps">Arrabbiata met knoflookchips</div></div>
-      </a>
-      <a class="card" href="#" data-ingredients='["rijst","tonijn","citroen"]' data-sfeer="fris" data-dieet="pescetarisch" data-prep="20" data-title="Citrus tonijntartaar op rijst">
-        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop" alt="Citrus tonijntartaar op rijst"/>
-        <div class="card-title"><div class="caps">Citrus tonijntartaar op rijst</div></div>
-      </a>
-      <a class="card" href="#" data-ingredients='["aubergine","tomaat","citroen"]' data-sfeer="brunch" data-dieet="vegetarisch" data-prep="45" data-title="Geroosterde aubergine met yoghurt en sumak">
-        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=1200&auto=format&fit=crop" alt="Geroosterde aubergine met yoghurt en sumak"/>
-        <div class="card-title"><div class="caps">Geroosterde aubergine met yoghurt en sumak</div></div>
-      </a>
-      <a class="card" href="#" data-ingredients='["pasta","zalm","citroen"]' data-sfeer="weeknight" data-dieet="pescetarisch" data-prep="25" data-title="Citroenpasta met zalmflakes">
-        <img src="https://images.unsplash.com/photo-1458644267420-66bc8a5f21e4?q=80&w=1200&auto=format&fit=crop" alt="Citroenpasta met zalmflakes"/>
-        <div class="card-title"><div class="caps">Citroenpasta met zalmflakes</div></div>
-      </a>
-      <a class="card" href="#" data-ingredients='["chocolade","citroen"]' data-sfeer="feest" data-dieet="vegetarisch" data-prep="60" data-title="Donkere chocolademousse met citroenzout">
-        <img src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?q=80&w=1200&auto=format&fit=crop" alt="Donkere chocolademousse met citroenzout"/>
-        <div class="card-title"><div class="caps">Donkere chocolademousse met citroenzout</div></div>
-      </a>
-      <a class="card" href="#" data-ingredients='["pasta","tomaat","aubergine"]' data-sfeer="comfort" data-dieet="vegan" data-prep="35" data-title="Siciliaanse pasta alla Norma">
-        <img src="https://images.unsplash.com/photo-1473090928358-00fcead4f08b?q=80&w=1200&auto=format&fit=crop" alt="Siciliaanse pasta alla Norma"/>
-        <div class="card-title"><div class="caps">Siciliaanse pasta alla Norma</div></div>
-      </a>
-      <a class="card" href="#" data-ingredients='["rijst","chili"]' data-sfeer="spicy" data-dieet="vegan" data-prep="15" data-title="Chili-limoen rijstsalade">
-        <img src="https://images.unsplash.com/photo-1547496502-affa22d38842?q=80&w=1200&auto=format&fit=crop" alt="Chili-limoen rijstsalade"/>
-        <div class="card-title"><div class="caps">Chili-limoen rijstsalade</div></div>
-      </a>
-      <a class="card" href="#" data-ingredients='["aubergine","rijst"]' data-sfeer="comfort" data-dieet="glutenvrij" data-prep="50" data-title="Sticky miso-aubergine met sesamrijst">
-        <img src="https://images.unsplash.com/photo-1540713434306-58505cf1b6fc?q=80&w=1200&auto=format&fit=crop" alt="Sticky miso-aubergine met sesamrijst"/>
-        <div class="card-title"><div class="caps">Sticky miso-aubergine met sesamrijst</div></div>
-      </a>
+      <!-- Receptkaarten hier -->
     </div>
   </section>
 
