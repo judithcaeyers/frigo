@@ -10,41 +10,40 @@ const cards = Array.from(grid.querySelectorAll('.card'));
 const emptyState = document.getElementById('emptyState');
 const searchToggle = document.getElementById('searchToggle');
 const searchInput = document.getElementById('searchInput');
+const clearBtn = document.getElementById('clearFilters');
 
 // ====== Helpers ======
 function getSelectedValues(selectEl){
-  // Werkt voor zowel single- als multi-select; bij single komt er 0 of 1 value uit
   if (!selectEl) return [];
   if (selectEl.multiple) {
-    return Array.from(selectEl.selectedOptions).map(o => (o.value || '').toLowerCase().trim());
+    return Array.from(selectEl.selectedOptions)
+      .map(o => (o.value || '').toLowerCase().trim())
+      .filter(Boolean);
   }
-  const val = (selectEl.value || '').toLowerCase().trim();
-  return val ? [val] : [];
+  const v = (selectEl.value || '').toLowerCase().trim();
+  return v ? [v] : [];
 }
 
 // ====== Filter check ======
 function matchesFilters(card){
-  // Gekozen filters
-  const ingSelected = getSelectedValues(selects.ingredient); // array (multi)
-  const sfeerSel = (selects.sfeer.value || '').trim().toLowerCase();
-  const dieetSel = (selects.dieet.value || '').trim().toLowerCase();
-  const prepSel = (selects.prep.value || '').trim();
+  const ingSelected = getSelectedValues(selects.ingredient); // AND
+  const sfeerSelected = getSelectedValues(selects.sfeer);    // OR
+  const dieetSelected = getSelectedValues(selects.dieet);    // OR
+  const prepSelected  = getSelectedValues(selects.prep)
+                        .map(n => Number(n)).filter(n => !Number.isNaN(n));
   const q = (searchInput.value || '').trim().toLowerCase();
 
-  // Data op de kaart
   const ingredients = JSON.parse(card.dataset.ingredients || '[]').map(s => (s || '').toLowerCase());
   const sfeer = (card.dataset.sfeer || '').toLowerCase();
   const dieet = (card.dataset.dieet || '').toLowerCase();
   const prep = Number(card.dataset.prep || 0);
   const title = (card.dataset.title || '').toLowerCase();
 
-  // Ingrediënten: AND-logica → elk gekozen ingrediënt moet aanwezig zijn
   const ingOK = ingSelected.length === 0 || ingSelected.every(v => ingredients.includes(v));
-  const sfeerOK = !sfeerSel || sfeer === sfeerSel;
-  const dieetOK = !dieetSel || dieet === dieetSel;
-  const prepOK = !prepSel || (prep && prep <= Number(prepSel));
+  const sfeerOK = sfeerSelected.length === 0 || sfeerSelected.includes(sfeer);
+  const dieetOK = dieetSelected.length === 0 || dieetSelected.includes(dieet);
+  const prepOK = prepSelected.length === 0 || prepSelected.some(max => prep && prep <= max);
 
-  // Vrije zoek: match in titel, ingrediënten, sfeer, dieet of prep-waarde
   const haystack = [title, ...ingredients, sfeer, dieet, String(prep)];
   const searchOK = !q || haystack.some(s => (s || '').includes(q));
 
@@ -66,18 +65,15 @@ function applyFilters(){
 }
 
 // ====== Event listeners ======
-// Luister naar zowel 'change' als 'input' (zeker bij multi-select handig)
 Object.values(selects).forEach(sel => {
   if (!sel) return;
   sel.addEventListener('change', applyFilters);
   sel.addEventListener('input', applyFilters);
 });
 
-// Live zoeken
 searchInput.addEventListener('input', applyFilters);
 
-// Toggle zoekveld
-searchToggle.addEventListener('click', () => {
+searchToggle?.addEventListener('click', () => {
   const show = !searchInput.classList.contains('show');
   searchInput.classList.toggle('show', show);
   if (show) {
@@ -86,6 +82,19 @@ searchToggle.addEventListener('click', () => {
     searchInput.value = '';
     applyFilters();
   }
+});
+
+clearBtn?.addEventListener('click', () => {
+  Object.values(selects).forEach(sel => {
+    if (!sel) return;
+    if (sel.multiple) {
+      Array.from(sel.options).forEach(opt => opt.selected = false);
+    } else {
+      sel.value = '';
+    }
+  });
+  searchInput.value = '';
+  applyFilters();
 });
 
 // ====== Init ======
