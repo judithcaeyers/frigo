@@ -22,6 +22,15 @@ select{appearance:none; -webkit-appearance:none; font:inherit; padding:8px 28px 
 .select-wrap{position:relative}
 .select-wrap svg{position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none}
 
+/* Multiple select styling */
+select[multiple]{
+  min-width: 220px;
+  min-height: 200px;
+  padding-right: 10px; /* geen chevron nodig */
+}
+.select-wrap svg{ display:none; } /* pijltje verbergen bij multiple */
+
+
 /* Search */
 .search-wrap{margin-left:8px}
 .search-btn{display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border:none; background:transparent; cursor:pointer}
