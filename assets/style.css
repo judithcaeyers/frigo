@@ -14,28 +14,46 @@ p.muted{color:var(--muted); text-align:center; margin:0 0 28px; font-size:15px}
 /* Header */
 header{max-width:var(--maxw); margin:0 auto; padding:20px var(--space) 10px}
 .logo{display:flex; align-items:center; justify-content:center;}
-.logo img{height:60px; width:auto; display:block}
+.logo svg{height:60px; width:auto; display:block}
 
 /* Filters */
-.controls{max-width:var(--maxw); margin:0 auto; padding:0 var(--space) 30px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; justify-content:center}
+.controls{max-width:var(--maxw); margin:0 auto; padding:0 var(--space) 10px; display:flex; flex-wrap:wrap; gap:16px; justify-content:center}
 select{appearance:none; -webkit-appearance:none; font:inherit; padding:8px 28px 8px 10px; border:none; border-bottom:1px solid var(--line); background:transparent;}
 .select-wrap{position:relative}
 .select-wrap svg{position:absolute; right:8px; top:50%; transform:translateY(-50%); pointer-events:none}
 
 /* Multiple select styling */
 select[multiple]{
-  min-width: 220px;
-  min-height: 200px;
-  padding-right: 10px; /* geen chevron nodig */
+  min-width:220px;
+  min-height:200px;
+  padding-right:10px;
+  background:transparent;
+  border:1px solid var(--line);
+  border-radius:8px;
 }
-.select-wrap svg{ display:none; } /* pijltje verbergen bij multiple */
+.select-wrap.multi svg{display:none}
 
+/* Filters footer */
+.filters-footer{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:16px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
 
 /* Search */
-.search-wrap{margin-left:8px}
+.search-wrap{display:flex; align-items:center;}
 .search-btn{display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border:none; background:transparent; cursor:pointer}
 .search-input{display:none; width:220px; max-width:75vw; padding:6px 8px; border:none; border-bottom:1px solid var(--line); margin-left:8px;}
 .search-input.show{display:inline-block}
+
+/* Button */
+.btn{font:inherit; padding:8px 12px; border-radius:8px; border:1px solid var(--line); background:#f7f7f7; cursor:pointer}
+.btn:hover{background:#f0f0f0}
+.btn-clear{}
 
 /* Masonry grid */
 .grid-wrap{max-width:var(--maxw); margin:0 auto 60px; padding:0 var(--space)}
