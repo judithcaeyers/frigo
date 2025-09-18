@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mijn recepten</title>
+  <title>CHEF LIL J — Recepten</title>
   <meta name="description" content="Een minimalistische receptenwebsite met filters (ingrediënten, sfeer, dieet, prep-tijd), zoekfunctie en masonry grid." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,21 +13,21 @@
 <body>
   <header>
     <div class="logo">
-      <!-- Vervang door je echte logo of laat dit SVG-zonnetje staan -->
       <svg width="64" height="64" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Chef Lil J logo">
         <rect x="6" y="6" width="84" height="84" rx="16" stroke="#111" stroke-width="2"/>
         <path d="M24 60 C 24 44 44 36 48 48 C 52 36 72 44 72 60" stroke="#111" stroke-width="2" fill="none"/>
         <circle cx="48" cy="36" r="6" stroke="#111" stroke-width="2"/>
       </svg>
     </div>
-    <h1 class="caps">%Mijn recepten</h1>
+    <h1 class="caps">chef lil j — recepten</h1>
     <p class="muted">Filter of zoek door de recepten</p>
   </header>
 
   <section class="controls" aria-label="Filters">
-    <!-- Ingrediënten -->
-    <div class="control select-wrap multi">
-      <select id="f-ingredient" aria-label="Filter op ingrediënten" multiple size="10">
+    <!-- Ingrediënten (custom multiselect) -->
+    <div class="control">
+      <label class="visually-hidden" for="f-ingredient">Ingrediënten</label>
+      <select id="f-ingredient" class="ms" aria-label="Filter op ingrediënten" multiple>
         <option value="abrikoos">abrikoos</option>
         <option value="ananas">ananas</option>
         <option value="aubergine">aubergine</option>
@@ -91,8 +91,9 @@
     </div>
 
     <!-- Sfeer -->
-    <div class="control select-wrap multi">
-      <select id="f-sfeer" aria-label="Filter op sfeer" multiple size="6">
+    <div class="control">
+      <label class="visually-hidden" for="f-sfeer">Sfeer</label>
+      <select id="f-sfeer" class="ms" aria-label="Filter op sfeer" multiple>
         <option value="comfort">comfort</option>
         <option value="fris">fris</option>
         <option value="brunch">brunch</option>
@@ -103,8 +104,9 @@
     </div>
 
     <!-- Dieet -->
-    <div class="control select-wrap multi">
-      <select id="f-dieet" aria-label="Filter op dieet" multiple size="6">
+    <div class="control">
+      <label class="visually-hidden" for="f-dieet">Dieet</label>
+      <select id="f-dieet" class="ms" aria-label="Filter op dieet" multiple>
         <option value="vegan">vegan</option>
         <option value="vegetarisch">vegetarisch</option>
         <option value="pescetarisch">pescetarisch</option>
@@ -115,8 +117,9 @@
     </div>
 
     <!-- Prep -->
-    <div class="control select-wrap multi">
-      <select id="f-prep" aria-label="Filter op prep-tijd" multiple size="5">
+    <div class="control">
+      <label class="visually-hidden" for="f-prep">Prep tijd</label>
+      <select id="f-prep" class="ms" aria-label="Filter op prep-tijd" multiple>
         <option value="15">≤ 15 min</option>
         <option value="30">≤ 30 min</option>
         <option value="45">≤ 45 min</option>
@@ -136,7 +139,7 @@
         </button>
         <input type="search" id="searchInput" class="search-input" placeholder="Zoek vrij…" aria-label="Vrije zoekopdracht" />
       </div>
-      <button id="clearFilters" class="btn btn-clear" type="button" aria-label="Wis alle filters">Wis alle filters</button>
+      <button id="clearFilters" class="btn btn-clear" type="button">Wis alle filters</button>
     </div>
   </section>
 
