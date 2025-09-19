@@ -96,7 +96,7 @@ select.ms{ display:none; } /* hide native */
 @media (max-width:600px){ .grid{column-count:1} }
 .card{break-inside:avoid; display:block; margin:0 0 28px; text-decoration:none; color:inherit}
 .card img{display:block; width:100%; height:auto; border-radius:0}
-.card-title{padding:8px 0 0; text-align:left}
+.card-title{padding:8px 0 0; text-align:center}
 .card-title .caps{font-size:14px; font-weight:500}
 
 /* Empty state */
