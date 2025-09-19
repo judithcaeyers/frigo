@@ -1,0 +1,88 @@
+/* Receptspecifieke layout bovenop je algemene style.css */
+.recipe{
+  max-width: var(--maxw);
+  margin: 0 auto 60px;
+  padding: 0 var(--space);
+}
+
+.hero{
+  margin: 0 0 22px;
+}
+.hero img{
+  width:100%; height:auto; display:block;
+  border-radius: 12px;
+}
+.hero figcaption{
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.layout{
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+}
+@media (max-width: 900px){
+  .layout{ grid-template-columns: 1fr; }
+}
+
+.card{
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 18px rgba(0,0,0,.04);
+}
+
+/* Ingrediëntenkaart */
+.ingredients .servings{
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.servings-ctrl{
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.servings-btn{
+  width:32px; height:32px; border:1px solid var(--line);
+  background:#f7f7f7; border-radius: 8px; cursor:pointer;
+}
+.servings-btn:hover{ background:#f0f0f0; }
+#servingsInput{
+  width:54px; height:32px; border:1px solid var(--line);
+  border-radius:8px; padding:0 8px; font:inherit; text-align:center;
+}
+.servings-label{ color: var(--muted); font-size: 14px; }
+
+.ing-list{
+  list-style: none; margin: 12px 0 4px; padding: 0;
+}
+.ing-list li{
+  display: flex; align-items: baseline; gap: 6px;
+  padding: 6px 0; border-bottom: 1px dashed var(--line);
+}
+.ing-list li:last-child{ border-bottom: none; }
+.ing-qty{
+  font-variant-numeric: tabular-nums;
+  min-width: 78px; /* ruimte voor aantallen */
+  display: inline-block;
+}
+.ing-name{ flex: 1; }
+.ing-optional{ color: var(--muted); font-size: 13px; margin-left: 6px; }
+
+/* Stappen */
+.steps h2{ margin: 0 0 8px; }
+.step-list{ margin: 0; padding-left: 18px; }
+.step-list li{ margin: 8px 0; }
+
+/* Aanraders */
+.more{ margin-top: 34px; }
+.more h2{ margin-bottom: 12px; }
+.more-grid{ column-count: 3; column-gap: 28px; }
+@media (max-width:1000px){ .more-grid{ column-count:2; } }
+@media (max-width:600px){ .more-grid{ column-count:1; } }
+
+/* Terugknop */
+.backbar{
+  display:flex; justify-content:center; margin-top: 28px;
+}
