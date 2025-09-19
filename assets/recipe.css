@@ -1,22 +1,28 @@
-/* ================================
-   Receptpagina (bovenop style.css)
-   ================================ */
+/* =========================================
+   Receptpagina – strakkere typografie & layout
+   ========================================= */
 
+:root{
+  /* optioneel: subtielere schaduw voor heel de pagina */
+  --card-shadow: 0 1px 10px rgba(0,0,0,.04);
+}
+
+/* Pagina wrapper */
 .recipe{
   max-width: var(--maxw);
-  margin: 0 auto 60px;
+  margin: 0 auto 64px;
   padding: 0 var(--space);
 }
 
-/* Hero */
+/* Hero – illustratie compact, gecentreerd */
 .hero{
-  margin: 0 0 22px;
-  text-align: center; /* afbeelding centreren */
+  margin: 0 0 24px;
+  text-align: center;
 }
 .hero img{
   display: inline-block;
-  max-width: 420px;   /* begrenzing voor grote schermen */
-  width: 100%;        /* wel responsief */
+  max-width: 420px;
+  width: 100%;
   height: auto;
 }
 .hero figcaption{
@@ -25,75 +31,74 @@
   margin-top: 8px;
 }
 
-/* Layout: ingredients + steps */
+/* Layout */
 .layout{
   display: grid;
   grid-template-columns: 320px 1fr;
-  gap: 24px;
+  gap: 28px;
 }
 @media (max-width: 900px){
-  .layout{ grid-template-columns: 1fr; }
+  .layout{ grid-template-columns: 1fr; gap: 24px; }
 }
 
-/* Kaart-basis — alleen gebruiken waar nodig */
+/* Kaart-basis (alleen gebruiken waar echt nodig) */
 .card{
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 0px; /* geen afgeronde hoeken */
+  border-radius: 0;
   padding: 16px;
-  box-shadow: 0 2px 18px rgba(0,0,0,.04);
+  box-shadow: var(--card-shadow);
 }
 
-/* ================================
-   Ingrediëntenkaart (gekleurde tile)
-   ================================ */
+/* -----------------------------------------
+   Kopstijlen (uniform voor secties)
+   ----------------------------------------- */
+.caps{ font-family:"Roboto", sans-serif; letter-spacing:.06em; text-transform:uppercase; }
+
+h2.caps{
+  font-size: 16px;          /* zelfde voor Ingrediënten & Stappen */
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+/* =========================================
+   Ingrediëntenkaart – citroengeel accent
+   ========================================= */
 .ingredients{
-  background: #fff9b0;   /* zacht citroengeel */
+  background: #fff9b0;   /* citroengeel */
   border: none;
-  border-radius: 0px;
+  border-radius: 0;
   padding: 16px 18px;
-  box-shadow: none;
+  box-shadow: none;      /* vlak i.p.v. zwevend */
 }
 
-.ingredients #ing-title{
-  display: block;
-  margin-bottom: 8px;
-}
+#ing-title{ margin-bottom: 10px; }
 
 .servings-ctrl{
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 12px;
 }
-
 .servings-btn{
-  width: 32px;
-  height: 32px;
+  width: 32px; height: 32px;
   border: 1px solid var(--line);
   background: #fff;
-  border-radius: 0px;
+  border-radius: 0;
   cursor: pointer;
 }
-.servings-btn:hover{ background: #f9f9f9; }
-
+.servings-btn:hover{ background:#f9f9f9; }
 #servingsInput{
-  width: 54px;
-  height: 32px;
+  width: 56px; height: 32px;
   border: 1px solid var(--line);
-  border-radius: 0px;
+  border-radius: 0;
   padding: 0 8px;
-  font: inherit;
-  text-align: center;
-  background: #fff;
+  font: inherit; text-align: center; background:#fff;
 }
+.servings-label{ color: var(--muted); font-size: 13px; }
 
-.servings-label{
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* Ingrediëntenlijst */
+/* Ingrediëntenlijst – strak ritme */
 .ing-list{
   list-style: none;
   margin: 12px 0 4px;
@@ -102,63 +107,54 @@
 .ing-list li{
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 8px;
   padding: 6px 0;
-  border-bottom: 1px dashed rgba(0,0,0,0.1);
+  border-bottom: 1px dashed rgba(0,0,0,.1);
 }
 .ing-list li:last-child{ border-bottom: none; }
 
 .ing-qty{
   font-variant-numeric: tabular-nums;
-  min-width: 78px; /* kolom voor aantallen */
+  min-width: 86px;            /* iets ruimer voor rust */
   display: inline-block;
 }
 .ing-name{ flex: 1; }
-.ing-optional{
-  color: var(--muted);
-  font-size: 13px;
-  margin-left: 6px;
-}
+.ing-optional{ color: var(--muted); font-size: 12.5px; margin-left: 6px; }
 
-.note{ margin-top: 10px; }
+.note{ margin-top: 10px; color: var(--muted); font-size: 14px; }
 
-/* ================================
-   Stappen — zonder kader
-   ================================ */
+/* =========================================
+   Stappen – clean, zonder kaders
+   ========================================= */
 .steps{
-  padding: 0;              /* geen padding */
-  border: none;            /* geen rand */
-  background: transparent; /* geen achtergrond */
-  box-shadow: none;        /* geen schaduw */
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
 }
-.steps h2{ margin: 0 0 12px; }
+.steps h2{ /* h2.caps al gedefinieerd */ }
 .step-list{
   margin: 0;
-  padding-left: 20px; /* nette nummering-inspring */
+  padding-left: 20px;  /* nette nummering */
 }
 .step-list li{
   margin: 10px 0;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
-/* ================================
-   Aanraders (“ook lekker?”)
-   ================================ */
-.more{ margin-top: 34px; }
+/* =========================================
+   Aanraders – eenvoudige grid (geen masonry)
+   ========================================= */
+.more{ margin-top: 36px; }
 .more h2{ margin-bottom: 12px; }
 
-/* Eenvoudige grid ipv masonry */
-.more-cards {
+.more-cards{
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 16px;
 }
-@media (max-width: 1000px){
-  .more-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 600px){
-  .more-cards { grid-template-columns: 1fr; }
-}
+@media (max-width: 1000px){ .more-cards{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 600px){  .more-cards{ grid-template-columns: 1fr; } }
 
 .more-cards .card{
   display: block;
@@ -170,23 +166,12 @@
   background: transparent;
 }
 .more-cards .card img{
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 0;
+  display:block; width:100%; height:auto; border-radius:0;
 }
-.more-cards .card-title{
-  padding: 8px 0 0;
-  text-align: left;
-}
-.more-cards .card-title .caps{
-  font-size: 14px;
-  font-weight: 500;
-}
+.more-cards .card-title{ padding: 8px 0 0; text-align:left; }
+.more-cards .card-title .caps{ font-size:14px; font-weight:500; }
 
-/* Terugknop onderaan */
+/* Terugknop */
 .backbar{
-  display: flex;
-  justify-content: center;
-  margin-top: 28px;
+  display:flex; justify-content:center; margin-top: 28px;
 }
