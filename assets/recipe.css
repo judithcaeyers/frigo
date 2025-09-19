@@ -1,6 +1,28 @@
-/* Hero blijft hetzelfde */
+/* ================================
+   Receptpagina (bovenop style.css)
+   ================================ */
 
-/* Layout */
+.recipe{
+  max-width: var(--maxw);
+  margin: 0 auto 60px;
+  padding: 0 var(--space);
+}
+
+/* Hero */
+.hero{ margin: 0 0 22px; }
+.hero img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+.hero figcaption{
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+/* Layout: ingredients + steps */
 .layout{
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -10,64 +32,151 @@
   .layout{ grid-template-columns: 1fr; }
 }
 
-/* Ingrediëntenkaart: met kleur */
+/* Kaart-basis — alleen gebruiken waar nodig */
+.card{
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 18px rgba(0,0,0,.04);
+}
+
+/* ================================
+   Ingrediëntenkaart (gekleurde tile)
+   ================================ */
 .ingredients{
-  background: #eaf2e0; /* zacht olijfgroen */
+  background: #eaf2e0;          /* zacht (licht) olijfgroen */
   border: none;
   border-radius: 12px;
   padding: 16px 18px;
+  box-shadow: none;              /* clean vlak */
 }
+
 .ingredients .servings{
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 10px;
 }
 .servings-ctrl{
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 .servings-btn{
-  width:32px; height:32px; border:1px solid var(--line);
-  background:#fff; border-radius: 6px; cursor:pointer;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
 }
-.servings-btn:hover{ background:#f9f9f9; }
+.servings-btn:hover{ background: #f9f9f9; }
 #servingsInput{
-  width:54px; height:32px; border:1px solid var(--line);
-  border-radius:6px; padding:0 8px; font:inherit; text-align:center;
-  background:#fff;
+  width: 54px;
+  height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0 8px;
+  font: inherit;
+  text-align: center;
+  background: #fff;
 }
-.servings-label{ color: var(--muted); font-size: 14px; }
+.servings-label{
+  color: var(--muted);
+  font-size: 14px;
+}
 
+/* Ingrediëntenlijst */
 .ing-list{
-  list-style: none; margin: 12px 0 4px; padding: 0;
+  list-style: none;
+  margin: 12px 0 4px;
+  padding: 0;
 }
 .ing-list li{
-  display: flex; align-items: baseline; gap: 6px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
   padding: 6px 0;
-  border-bottom: 1px dashed rgba(0,0,0,0.08);
+  border-bottom: 1px dashed rgba(0,0,0,0.1);
 }
 .ing-list li:last-child{ border-bottom: none; }
-.ing-qty{ font-variant-numeric: tabular-nums; min-width: 78px; display:inline-block; }
-.ing-name{ flex: 1; }
-.ing-optional{ color: var(--muted); font-size: 13px; margin-left: 6px; }
 
-/* Stappen: zonder kader */
+.ing-qty{
+  font-variant-numeric: tabular-nums;
+  min-width: 78px;              /* kolom voor aantallen */
+  display: inline-block;
+}
+.ing-name{ flex: 1; }
+.ing-optional{
+  color: var(--muted);
+  font-size: 13px;
+  margin-left: 6px;
+}
+
+.note{ margin-top: 10px; }
+
+/* ================================
+   Stappen — zonder kader
+   ================================ */
 .steps{
-  padding: 0;  /* geen padding */
-  border: none; /* geen kader */
-  box-shadow: none; /* geen schaduw */
-  background: transparent; /* transparant */
+  padding: 0;                    /* geen padding */
+  border: none;                  /* geen rand */
+  background: transparent;       /* geen achtergrond */
+  box-shadow: none;              /* geen schaduw */
 }
 .steps h2{ margin: 0 0 12px; }
-.step-list{ margin: 0; padding-left: 20px; }
-.step-list li{ margin: 10px 0; line-height: 1.6; }
+.step-list{
+  margin: 0;
+  padding-left: 20px;            /* nette nummering-inspring */
+}
+.step-list li{
+  margin: 10px 0;
+  line-height: 1.6;
+}
 
-/* Aanraders */
+/* ================================
+   Aanraders (“ook lekker?”)
+   ================================ */
 .more{ margin-top: 34px; }
 .more h2{ margin-bottom: 12px; }
-.more-grid{ column-count: 3; column-gap: 28px; }
-@media (max-width:1000px){ .more-grid{ column-count:2; } }
-@media (max-width:600px){ .more-grid{ column-count:1; } }
 
-/* Terugknop */
+/* Gebruik dezelfde masonry-look als index */
+.more-grid{
+  column-count: 3;
+  column-gap: 28px;
+}
+@media (max-width: 1000px){ .more-grid{ column-count: 2; } }
+@media (max-width: 600px){  .more-grid{ column-count: 1; } }
+
+.more .card{
+  display: block;
+  margin: 0 0 28px;
+  text-decoration: none;
+  color: inherit;
+  border: none;                  /* strakker voor cards */
+  box-shadow: none;
+  padding: 0;                    /* beeld + titel-only vibe */
+  background: transparent;
+}
+.more .card img{
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+.more .card-title{
+  padding: 8px 0 0;
+  text-align: left;
+}
+.more .card-title .caps{
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Terugknop onderaan */
 .backbar{
-  display:flex; justify-content:center; margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
 }
