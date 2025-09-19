@@ -40,7 +40,7 @@
 .card{
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 0px;
   padding: 16px;
   box-shadow: 0 2px 18px rgba(0,0,0,.04);
 }
@@ -52,7 +52,7 @@
 .ingredients{
   background: #fff9b0;   /* zacht citroengeel */
   border: none;
-  border-radius: 12px;
+  border-radius: 0px;
   padding: 16px 18px;
   box-shadow: none;
 }
@@ -74,7 +74,7 @@
   height: 32px;
   border: 1px solid var(--line);
   background: #fff;
-  border-radius: 6px;
+  border-radius: 0px;
   cursor: pointer;
 }
 .servings-btn:hover{ background: #f9f9f9; }
@@ -82,7 +82,7 @@
   width: 54px;
   height: 32px;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 0px;
   padding: 0 8px;
   font: inherit;
   text-align: center;
