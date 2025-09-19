@@ -20,7 +20,12 @@ p.muted{color:var(--muted); text-align:center; margin:0 0 28px; font-size:15px}
 /* Header */
 header{max-width:var(--maxw); margin:0 auto; padding:20px var(--space) 10px}
 .logo{display:flex; align-items:center; justify-content:center;}
-.logo svg{height:60px; width:auto; display:block}
+.logo img{
+  display:block;
+  height:64px;       /* hou ’m even groot als de oude SVG */
+  width:auto;
+}
+
 
 /* Controls layout */
 .controls{
