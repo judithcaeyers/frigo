@@ -1,23 +1,6 @@
-/* Receptspecifieke layout bovenop je algemene style.css */
-.recipe{
-  max-width: var(--maxw);
-  margin: 0 auto 60px;
-  padding: 0 var(--space);
-}
+/* Hero blijft hetzelfde */
 
-.hero{
-  margin: 0 0 22px;
-}
-.hero img{
-  width:100%; height:auto; display:block;
-  border-radius: 12px;
-}
-.hero figcaption{
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 8px;
-}
-
+/* Layout */
 .layout{
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -27,15 +10,13 @@
   .layout{ grid-template-columns: 1fr; }
 }
 
-.card{
-  background: #fff;
-  border: 1px solid var(--line);
+/* Ingrediëntenkaart: met kleur */
+.ingredients{
+  background: #eaf2e0; /* zacht olijfgroen */
+  border: none;
   border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 2px 18px rgba(0,0,0,.04);
+  padding: 16px 18px;
 }
-
-/* Ingrediëntenkaart */
 .ingredients .servings{
   display: flex; align-items: center; justify-content: space-between;
   margin-bottom: 10px;
@@ -45,12 +26,13 @@
 }
 .servings-btn{
   width:32px; height:32px; border:1px solid var(--line);
-  background:#f7f7f7; border-radius: 8px; cursor:pointer;
+  background:#fff; border-radius: 6px; cursor:pointer;
 }
-.servings-btn:hover{ background:#f0f0f0; }
+.servings-btn:hover{ background:#f9f9f9; }
 #servingsInput{
   width:54px; height:32px; border:1px solid var(--line);
-  border-radius:8px; padding:0 8px; font:inherit; text-align:center;
+  border-radius:6px; padding:0 8px; font:inherit; text-align:center;
+  background:#fff;
 }
 .servings-label{ color: var(--muted); font-size: 14px; }
 
@@ -59,21 +41,24 @@
 }
 .ing-list li{
   display: flex; align-items: baseline; gap: 6px;
-  padding: 6px 0; border-bottom: 1px dashed var(--line);
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(0,0,0,0.08);
 }
 .ing-list li:last-child{ border-bottom: none; }
-.ing-qty{
-  font-variant-numeric: tabular-nums;
-  min-width: 78px; /* ruimte voor aantallen */
-  display: inline-block;
-}
+.ing-qty{ font-variant-numeric: tabular-nums; min-width: 78px; display:inline-block; }
 .ing-name{ flex: 1; }
 .ing-optional{ color: var(--muted); font-size: 13px; margin-left: 6px; }
 
-/* Stappen */
-.steps h2{ margin: 0 0 8px; }
-.step-list{ margin: 0; padding-left: 18px; }
-.step-list li{ margin: 8px 0; }
+/* Stappen: zonder kader */
+.steps{
+  padding: 0;  /* geen padding */
+  border: none; /* geen kader */
+  box-shadow: none; /* geen schaduw */
+  background: transparent; /* transparant */
+}
+.steps h2{ margin: 0 0 12px; }
+.step-list{ margin: 0; padding-left: 20px; }
+.step-list li{ margin: 10px 0; line-height: 1.6; }
 
 /* Aanraders */
 .more{ margin-top: 34px; }
