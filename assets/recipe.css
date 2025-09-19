@@ -154,7 +154,7 @@ h2.caps{
 /* Stappenlijst */
 .step-list{
   margin: 0;
-  padding-left: 28px;       /* extra ruimte voor nummer */
+  padding-right: 28px;       /* extra ruimte voor nummer */
 }
 
 .step-list li{
@@ -164,7 +164,7 @@ h2.caps{
 
 /* Kleur de cijfers (markers) */
 .step-list li::marker {
-  color: #e3ff24;           /* pittig groen uit je project */
+  color: #213810;           /* donkergroen uit je project */
   font-weight: 600;
 }
 
