@@ -34,18 +34,15 @@
     <div class="layout">
       <!-- Ingrediëntenkaart -->
       <aside class="card ingredients" aria-labelledby="ing-title">
-        <div class="servings">
-          <span class="caps" id="ing-title">Ingrediënten</span>
-          <div class="servings-ctrl" aria-label="Aantal personen">
-            <button class="servings-btn" data-action="dec" aria-label="Minder personen">−</button>
-            <input id="servingsInput" type="number" min="1" value="2" aria-label="Aantal personen" />
-            <button class="servings-btn" data-action="inc" aria-label="Meer personen">+</button>
-            <span class="servings-label">personen</span>
-          </div>
-        </div>
-
-        <ul class="ing-list" id="ingList">
-          <!-- Gebruik data-qty als basis per 1 persoon; unit los in data-unit -->
+  <span class="caps" id="ing-title">Ingrediënten</span>
+  <div class="servings-ctrl" aria-label="Aantal personen">
+    <button class="servings-btn" data-action="dec" aria-label="Minder personen">−</button>
+    <input id="servingsInput" type="number" min="1" value="2" aria-label="Aantal personen" />
+    <button class="servings-btn" data-action="inc" aria-label="Meer personen">+</button>
+    <span class="servings-label">personen</span>
+  </div>
+  <ul class="ing-list" id="ingList"> 
+    <!-- Gebruik data-qty als basis per 1 persoon; unit los in data-unit -->
           <li data-qty="150" data-unit="g">komkommer (in linten of halve maantjes)</li>
           <li data-qty="100" data-unit="g">edamame (gekookt/ontdooid)</li>
           <li data-qty="10" data-unit="g">koriander (grof gehakt)</li>
@@ -54,10 +51,12 @@
           <li data-qty="0.25" data-unit="tl">chilivlokken (naar smaak)</li>
           <li data-qty="1" data-unit="el">sojasaus</li>
           <li data-qty="1" data-unit="el" data-optional="true">neutrale olie of sesamolie (optioneel)</li>
-        </ul>
+    
+  </ul>
+                <div class="note muted">Suggestie: zin in extra fris? Voeg een beetje limoensap toe.</div>
+</aside>
 
-        <div class="note muted">Tip: zin in extra zuur? Voeg 1 tl rijstazijn per persoon toe (optioneel).</div>
-      </aside>
+
 
       <!-- Stappen -->
       <section class="card steps" aria-labelledby="steps-title">
