@@ -25,7 +25,6 @@
   margin-top: 8px;
 }
 
-
 /* Layout: ingredients + steps */
 .layout{
   display: grid;
@@ -40,7 +39,7 @@
 .card{
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 0px;
+  border-radius: 0px; /* geen afgeronde hoeken */
   padding: 16px;
   box-shadow: 0 2px 18px rgba(0,0,0,.04);
 }
@@ -48,7 +47,6 @@
 /* ================================
    Ingrediëntenkaart (gekleurde tile)
    ================================ */
-/* Ingrediëntenkaart */
 .ingredients{
   background: #fff9b0;   /* zacht citroengeel */
   border: none;
@@ -78,6 +76,7 @@
   cursor: pointer;
 }
 .servings-btn:hover{ background: #f9f9f9; }
+
 #servingsInput{
   width: 54px;
   height: 32px;
@@ -88,6 +87,7 @@
   text-align: center;
   background: #fff;
 }
+
 .servings-label{
   color: var(--muted);
   font-size: 14px;
@@ -110,7 +110,7 @@
 
 .ing-qty{
   font-variant-numeric: tabular-nums;
-  min-width: 78px;              /* kolom voor aantallen */
+  min-width: 78px; /* kolom voor aantallen */
   display: inline-block;
 }
 .ing-name{ flex: 1; }
@@ -126,15 +126,15 @@
    Stappen — zonder kader
    ================================ */
 .steps{
-  padding: 0;                    /* geen padding */
-  border: none;                  /* geen rand */
-  background: transparent;       /* geen achtergrond */
-  box-shadow: none;              /* geen schaduw */
+  padding: 0;              /* geen padding */
+  border: none;            /* geen rand */
+  background: transparent; /* geen achtergrond */
+  box-shadow: none;        /* geen schaduw */
 }
 .steps h2{ margin: 0 0 12px; }
 .step-list{
   margin: 0;
-  padding-left: 20px;            /* nette nummering-inspring */
+  padding-left: 20px; /* nette nummering-inspring */
 }
 .step-list li{
   margin: 10px 0;
@@ -147,35 +147,39 @@
 .more{ margin-top: 34px; }
 .more h2{ margin-bottom: 12px; }
 
-/* Gebruik dezelfde masonry-look als index */
-.more-grid{
-  column-count: 3;
-  column-gap: 28px;
+/* Eenvoudige grid ipv masonry */
+.more-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
-@media (max-width: 1000px){ .more-grid{ column-count: 2; } }
-@media (max-width: 600px){  .more-grid{ column-count: 1; } }
+@media (max-width: 1000px){
+  .more-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px){
+  .more-cards { grid-template-columns: 1fr; }
+}
 
-.more .card{
+.more-cards .card{
   display: block;
-  margin: 0 0 28px;
   text-decoration: none;
   color: inherit;
-  border: none;                  /* strakker voor cards */
+  border: none;
   box-shadow: none;
-  padding: 0;                    /* beeld + titel-only vibe */
+  padding: 0;
   background: transparent;
 }
-.more .card img{
+.more-cards .card img{
   display: block;
   width: 100%;
   height: auto;
   border-radius: 0;
 }
-.more .card-title{
+.more-cards .card-title{
   padding: 8px 0 0;
   text-align: left;
 }
-.more .card-title .caps{
+.more-cards .card-title .caps{
   font-size: 14px;
   font-weight: 500;
 }
