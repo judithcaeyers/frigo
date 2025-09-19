@@ -109,8 +109,17 @@ h2.caps{
   align-items: baseline;
   gap: 8px;
   padding: 6px 0;
-  border-bottom: 1px dashed rgba(0,0,0,.1);
+  border-bottom: none; /* geen lijnen standaard */
 }
+
+/* sectiekoppen (optioneel) */
+.ing-section{
+  font-weight: 600;
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line); /* dunne volle lijn */
+}
+
 .ing-list li:last-child{ border-bottom: none; }
 
 .ing-qty{
