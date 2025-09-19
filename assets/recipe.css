@@ -14,7 +14,7 @@
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 12px;
+  border-radius: 0px;
 }
 .hero figcaption{
   color: var(--muted);
@@ -47,7 +47,7 @@
 .ingredients{
   background: #fff9b0;          /* zacht citroengeel */
   border: none;
-  border-radius: 12px;
+  border-radius: 0px;
   padding: 16px 18px;
   box-shadow: none;              /* clean vlak */
 }
