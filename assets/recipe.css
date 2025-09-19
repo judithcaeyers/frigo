@@ -44,25 +44,27 @@
 /* ================================
    Ingrediëntenkaart (gekleurde tile)
    ================================ */
+/* Ingrediëntenkaart */
 .ingredients{
-  background: #fff9b0;          /* zacht citroengeel */
+  background: #fff9b0;   /* zacht citroengeel */
   border: none;
-  border-radius: 0px;
+  border-radius: 12px;
   padding: 16px 18px;
-  box-shadow: none;              /* clean vlak */
+  box-shadow: none;
 }
 
-.ingredients .servings{
+.ingredients #ing-title{
+  display: block;
+  margin-bottom: 8px;
+}
+
+.servings-ctrl{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-.servings-ctrl{
-  display: inline-flex;
-  align-items: center;
   gap: 8px;
+  margin-bottom: 12px;
 }
+
 .servings-btn{
   width: 32px;
   height: 32px;
