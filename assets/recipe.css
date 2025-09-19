@@ -9,18 +9,22 @@
 }
 
 /* Hero */
-.hero{ margin: 0 0 22px; }
+.hero{
+  margin: 0 0 22px;
+  text-align: center; /* afbeelding centreren */
+}
 .hero img{
-  width: 100%;
+  display: inline-block;
+  max-width: 420px;   /* begrenzing voor grote schermen */
+  width: 100%;        /* wel responsief */
   height: auto;
-  display: block;
-  border-radius: 0px;
 }
 .hero figcaption{
   color: var(--muted);
   font-size: 14px;
   margin-top: 8px;
 }
+
 
 /* Layout: ingredients + steps */
 .layout{
