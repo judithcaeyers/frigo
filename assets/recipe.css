@@ -151,6 +151,24 @@ h2.caps{
   line-height: 1.65;
 }
 
+/* Stappenlijst */
+.step-list{
+  margin: 0;
+  padding-left: 28px;       /* extra ruimte voor nummer */
+}
+
+.step-list li{
+  margin: 10px 0;
+  line-height: 1.65;
+}
+
+/* Kleur de cijfers (markers) */
+.step-list li::marker {
+  color: #e3ff24;           /* pittig groen uit je project */
+  font-weight: 600;
+}
+
+
 /* =========================================
    Aanraders – eenvoudige grid (geen masonry)
    ========================================= */
