@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Komkommer–edamame — Duo Spread</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --text:#1a1a1a; --muted:#6d6d6d;
+    --cyan:#bfe7e2; --oker:#f2b24b; --line:#e8e8e8; --maxw:1080px;
+  }
+  html,body{margin:0;background:var(--bg);color:var(--text)}
+  body{font:16px/1.75 "EB Garamond",serif}
+  .caps{font:700 12px/1 "Roboto",sans-serif;letter-spacing:.14em;text-transform:uppercase}
+  header{max-width:var(--maxw);margin:40px auto 10px;padding:0 24px;text-align:center}
+  .logo{display:inline-flex;text-decoration:none;margin-bottom:10px}
+  .logo img{height:60px}
+  h1{font-size:40px;line-height:1.05;margin:4px 0}
+  .muted{color:var(--muted);margin:0}
+
+  .spread{max-width:var(--maxw);margin:28px auto 64px;padding:0 24px;
+          display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line)}
+  @media (max-width:900px){.spread{grid-template-columns:1fr}}
+  .left{background:var(--cyan);padding:24px}
+  .right{background:var(--oker);padding:24px}
+  .hero{text-align:center;margin:0 0 12px}
+  .hero img{max-width:380px;width:100%;height:auto;display:inline-block}
+
+  .ingredients h2,.steps h2{margin:0 0 12px}
+  .servings{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+  .btn{width:30px;height:30px;border:1px solid #333;background:#fff;cursor:pointer}
+  .servings input{width:54px;height:30px;border:1px solid #333;text-align:center;background:#fff}
+  .ing-list{list-style:none;margin:0;padding:0}
+  .ing-list li{display:flex;gap:10px;padding:6px 0;border-bottom:1px dotted rgba(0,0,0,.25)}
+  .ing-list li:last-child{border-bottom:none}
+  .ing-qty{min-width:86px;font-variant-numeric:tabular-nums}
+
+  .step-list{margin:0;padding-left:22px}
+  .step-list li{margin:8px 0}
+  .step-list li::marker{color:#000;font-weight:700}
+
+  .more{max-width:var(--maxw);margin:24px auto;padding:0 24px}
+  .more h2{margin:0 0 12px}
+  .more-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  @media(max-width:900px){.more-cards{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.more-cards{grid-template-columns:1fr}}
+  .card{display:block;text-decoration:none;color:inherit}
+  .card img{width:100%;display:block}
+  .card-title{padding:8px 0 0}
+  .backbar{text-align:center;margin:28px 0}
+  .backbar a{color:inherit;text-decoration:none;border:1px solid var(--line);padding:10px 14px}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="../index.html"><img src="../assets/logo.PNG" alt=""></a>
+  <h1>Komkommer–edamame</h1>
+  <p class="muted">zero-fuss salade • 10–15 min</p>
+</header>
+
+<main>
+  <section class="spread">
+    <div class="left">
+      <figure class="hero"><img src="../assets/images/komkommer-edamame.png" alt=""></figure>
+      <section class="steps">
+        <h2 class="caps">Stappen</h2>
+        <ol class="step-list">
+          <li>Snij komkommer, ontdooi edamame.</li>
+          <li>Sojasaus toevoegen en mengen.</li>
+          <li>Afwerken met koriander, pinda, chili en uitjes.</li>
+        </ol>
+      </section>
+    </div>
+    <aside class="right ingredients">
+      <h2 class="caps">Ingrediënten</h2>
+      <div class="servings">
+        <button class="btn" data-action="dec">−</button>
+        <input id="s2a" type="number" value="2" min="1">
+        <button class="btn" data-action="inc">+</button>
+        <span class="caps">personen</span>
+      </div>
+      <ul class="ing-list" id="ing2a">
+        <li data-qty="150" data-unit="g"><span class="ing-qty"></span>komkommer</li>
+        <li data-qty="100" data-unit="g"><span class="ing-qty"></span>edamame</li>
+        <li data-qty="20" data-unit="g"><span class="ing-qty"></span>koriander</li>
+        <li data-qty="20" data-unit="g"><span class="ing-qty"></span>pinda’s</li>
+        <li data-qty="10" data-unit="g"><span class="ing-qty"></span>gefrituurde uitjes</li>
+        <li data-qty="0.25" data-unit="tl"><span class="ing-qty"></span>chilivlokken</li>
+        <li data-qty="1" data-unit="el"><span class="ing-qty"></span>sojasaus</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="more">
+    <h2 class="caps">Ook lekker</h2>
+    <div class="more-cards">
+      <a class="card" href="#"><img src="https://picsum.photos/600/400?ds1"><div class="card-title">Arrabbiata</div></a>
+      <a class="card" href="#"><img src="https://picsum.photos/600/401?ds2"><div class="card-title">Miso aubergine</div></a>
+      <a class="card" href="#"><img src="https://picsum.photos/600/402?ds3"><div class="card-title">Citrus tonijn</div></a>
+    </div>
+  </section>
+
+  <div class="backbar"><a href="../index.html">← terug naar overzicht</a></div>
+</main>
+
+<script>
+  const s2a=document.getElementById('s2a'); const items2a=[...document.querySelectorAll('#ing2a li')];
+  function fmt(n){const r=Math.round(n*4)/4,w=Math.floor(r),f=r-w,m={0:'',.25:'¼',.5:'½',.75:'¾'};return w?(m[f]?w+m[f]:r%1?r.toFixed(2):w):(m[f]||'0')}
+  function render2a(){const p=Math.max(1,parseInt(s2a.value||'2',10));items2a.forEach(li=>{const b=parseFloat(li.dataset.qty||'0'),u=li.dataset.unit||'';li.querySelector('.ing-qty').textContent=b?`${fmt(b*p)} ${u}`.trim():''})}
+  document.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{s2a.value=Math.max(1,(+s2a.value||2)+(b.dataset.action==='inc'?1:-1));render2a()})
+  s2a.addEventListener('input',render2a); render2a();
+</script>
+</body>
+</html>
