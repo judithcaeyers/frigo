@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recept — Komkommer-edamame (Minimaal)</title>
+<style>
+  :root{--bg:#ffffff;--text:#111;--muted:#777;--accent:#111;--maxw:980px}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text)}
+  body{font:15px/1.7 Inter,system-ui,Roboto,Arial,sans-serif}
+  .caps{font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+  header{max-width:var(--maxw);margin:38px auto 10px;padding:0 16px;text-align:center}
+  .logo{display:inline-flex;text-decoration:none;margin-bottom:10px}
+  .logo img{height:56px}
+  h1{font-size:28px;margin:0 0 4px;font-weight:600;letter-spacing:.01em}
+  .muted{color:var(--muted);margin:0}
+  .recipe{max-width:var(--maxw);margin:0 auto 64px;padding:0 16px}
+  .hero{text-align:center;margin:22px 0}
+  .hero img{display:inline-block;max-width:380px;width:100%;height:auto}
+  .layout{display:grid;grid-template-columns:300px 1fr;gap:28px}
+  @media (max-width:900px){.layout{grid-template-columns:1fr}}
+  .ingredients{background:#fff;padding:0}
+  .ingredients h2,.steps h2{margin:0 0 10px}
+  .servings{display:flex;gap:8px;align-items:center;margin:0 0 12px}
+  .btn{width:30px;height:30px;border:1px solid #ddd;background:#fff;cursor:pointer}
+  .servings input{width:52px;height:30px;border:1px solid #ddd;text-align:center}
+  .ing-list{list-style:none;margin:0;padding:0}
+  .ing-list li{display:grid;grid-template-columns:90px 1fr;gap:10px;padding:6px 0}
+  .ing-qty{font-variant-numeric:tabular-nums;color:#333}
+  .steps{padding-top:8px}
+  .step-list{margin:0;padding-left:26px}
+  .step-list li{margin:8px 0}
+  .step-list li::marker{color:#000}
+  .more{margin-top:28px}
+  .more h2{margin:0 0 12px}
+  .more-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  @media (max-width:900px){.more-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:560px){.more-cards{grid-template-columns:1fr}}
+  .card{display:block;text-decoration:none;color:inherit}
+  .card img{display:block;width:100%}
+  .card-title{padding:6px 0 0}
+  .backbar{display:flex;justify-content:center;margin:24px 0}
+  .link{color:inherit;text-decoration:none;border-bottom:1px solid #ddd}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="../index.html"><img src="../assets/logo.PNG" alt=""></a>
+  <h1>Komkommer-edamame salade</h1>
+  <p class="muted">10–15 min • 4 stappen</p>
+</header>
+
+<main class="recipe">
+  <figure class="hero"><img src="../assets/images/komkommer-edamame.png" alt=""></figure>
+
+  <div class="layout">
+    <aside class="ingredients">
+      <h2 class="caps">Ingrediënten</h2>
+      <div class="servings">
+        <button class="btn" data-action="dec">−</button>
+        <input id="s3" type="number" min="1" value="2">
+        <button class="btn" data-action="inc">+</button>
+        <span class="caps">personen</span>
+      </div>
+      <ul class="ing-list" id="ing3">
+        <li data-qty="150" data-unit="g"><span class="ing-qty"></span><span>komkommer</span></li>
+        <li data-qty="100" data-unit="g"><span class="ing-qty"></span><span>edamame</span></li>
+        <li data-qty="20" data-unit="g"><span class="ing-qty"></span><span>koriander</span></li>
+        <li data-qty="20" data-unit="g"><span class="ing-qty"></span><span>pinda’s</span></li>
+        <li data-qty="10" data-unit="g"><span class="ing-qty"></span><span>gefrituurde uitjes</span></li>
+        <li data-qty="0.25" data-unit="tl"><span class="ing-qty"></span><span>chilivlokken</span></li>
+        <li data-qty="1" data-unit="el"><span class="ing-qty"></span><span>sojasaus</span></li>
+      </ul>
+    </aside>
+
+    <section class="steps">
+      <h2 class="caps">Stappen</h2>
+      <ol class="step-list">
+        <li>Snij komkommer. Ontdooi edamame.</li>
+        <li>Meng met sojasaus.</li>
+        <li>Afwerken met koriander, chili, pinda’s, uitjes.</li>
+        <li>Serveren.</li>
+      </ol>
+
+      <section class="more">
+        <h2 class="caps">Aanraders</h2>
+        <div class="more-cards">
+          <a class="card" href="#"><img src="https://picsum.photos/600/390?m1"><div class="card-title"><span class="caps">Arrabbiata</span></div></a>
+          <a class="card" href="#"><img src="https://picsum.photos/600/391?m2"><div class="card-title"><span class="caps">Miso aubergine</span></div></a>
+          <a class="card" href="#"><img src="https://picsum.photos/600/392?m3"><div class="card-title"><span class="caps">Citrus tonijn</span></div></a>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <div class="backbar"><a class="link" href="../index.html">← terug naar overzicht</a></div>
+</main>
+
+<script>
+  const s3=document.getElementById('s3'); const items3=[...document.querySelectorAll('#ing3 li')];
+  function fmt(n){const r=Math.round(n*4)/4;const w=Math.floor(r);const f=r-w;const m={0:'',.25:'¼',.5:'½',.75:'¾'};return w?(m[f]?w+m[f]:r%1?r.toFixed(2):w):(m[f]||'0')}
+  function render3(){const p=Math.max(1,parseInt(s3.value||'2',10));items3.forEach(li=>{const b=parseFloat(li.dataset.qty||'0'),u=li.dataset.unit||'';li.querySelector('.ing-qty').textContent=b?`${fmt(b*p)} ${u}`.trim():''})}
+  document.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{s3.value=Math.max(1,(+s3.value||2)+(b.dataset.action==='inc'?1:-1));render3()})
+  s3.addEventListener('input',render3); render3();
+</script>
+</body>
+</html>
