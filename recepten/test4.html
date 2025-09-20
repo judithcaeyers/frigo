@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recept — Komkommer-edamame (Funky)</title>
+<style>
+  :root{--bg:#fffdf8;--text:#141414;--muted:#6a6a6a;--line:#ece2d9;--accent:#e3ff24;--pink:#ffd0e6;--blue:#cfe8ff;--maxw:1100px}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text)}
+  body{font:15.5px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif}
+  .caps{font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+  header{max-width:var(--maxw);margin:24px auto 6px;padding:0 18px;text-align:center}
+  .logo{display:inline-flex;margin-bottom:6px;text-decoration:none}
+  .logo img{height:56px}
+  h1{font-size:34px;margin:4px 0 2px}
+  .muted{color:var(--muted);margin:0}
+  .recipe{max-width:var(--maxw);margin:0 auto 64px;padding:0 18px}
+  .hero{text-align:center;margin:18px 0 26px;position:relative}
+  .blob{position:absolute;inset:auto 50% -12px auto;transform:translateX(-50%);width:220px;height:90px;background:radial-gradient(60% 60% at 50% 50%,var(--blue),transparent);filter:blur(20px);z-index:-1;opacity:.8}
+  .hero img{max-width:420px;width:100%;display:inline-block}
+  .layout{display:grid;grid-template-columns:360px 1fr;gap:22px}
+  @media (max-width:900px){.layout{grid-template-columns:1fr}}
+  .ingredients{background:#fff;border:2px solid var(--text);border-radius:16px;padding:14px 16px;box-shadow:6px 6px 0 #000}
+  .ingredients h2{margin:0 0 10px}
+  .servings{display:flex;align-items:center;gap:8px;margin:6px 0 10px}
+  .pill{display:inline-flex;gap:6px;border:1px dashed var(--text);border-radius:999px;padding:6px 8px;background:#fff}
+  .pill input{width:52px;text-align:center;border:1px solid var(--line);border-radius:8px}
+  .btn{width:30px;height:30px;border:1px solid var(--text);border-radius:8px;background:var(--accent);cursor:pointer}
+  .ing-list{list-style:none;margin:0;padding:0}
+  .ing-list li{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+  .ing-list li:last-child{border-bottom:none}
+  .ing-qty{min-width:86px;font-variant-numeric:tabular-nums}
+  .steps{background:#fff;border:2px solid #111;border-radius:16px;padding:16px 18px;box-shadow:6px 6px 0 #000}
+  .steps h2{margin:0 0 10px}
+  .step-list{margin:0;padding-left:26px}
+  .step-list li{margin:8px 0}
+  .step-list li::marker{color:#111;background:var(--accent)}
+  .more{margin-top:26px}
+  .more h2{margin:0 0 10px}
+  .more-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  @media (max-width:900px){.more-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:560px){.more-cards{grid-template-columns:1fr}}
+  .card{display:block;text-decoration:none;color:inherit;border-radius:14px;overflow:hidden;border:2px solid #111;box-shadow:4px 4px 0 #000;background:#fff}
+  .card img{display:block;width:100%;height:auto}
+  .card-title{padding:8px 10px;background:linear-gradient(90deg,var(--pink),var(--accent))}
+  .backbar{display:flex;justify-content:center;margin:26px 0}
+  .link{display:inline-block;padding:10px 14px;border:2px solid #111;border-radius:12px;background:var(--accent);text-decoration:none;color:#000;box-shadow:4px 4px 0 #000}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="../index.html"><img src="../assets/logo.PNG" alt=""></a>
+  <h1>Komkommer-edamame salade</h1>
+  <p class="muted">fris, luid en funky</p>
+</header>
+
+<main class="recipe">
+  <figure class="hero"><span class="blob"></span><img src="../assets/images/komkommer-edamame.png" alt=""></figure>
+
+  <div class="layout">
+    <aside class="ingredients">
+      <h2 class="caps">Ingrediënten</h2>
+      <div class="servings pill">
+        <button class="btn" data-action="dec">−</button>
+        <input id="s2" type="number" min="1" value="2" aria-label="Personen">
+        <button class="btn" data-action="inc">+</button>
+        <span class="caps">personen</span>
+      </div>
+      <ul class="ing-list" id="ing2">
+        <li data-qty="150" data-unit="g"><span class="ing-qty"></span><span>komkommer</span></li>
+        <li data-qty="100" data-unit="g"><span class="ing-qty"></span><span>edamame</span></li>
+        <li data-qty="20" data-unit="g"><span class="ing-qty"></span><span>koriander</span></li>
+        <li data-qty="20" data-unit="g"><span class="ing-qty"></span><span>pinda’s</span></li>
+        <li data-qty="10" data-unit="g"><span class="ing-qty"></span><span>gefrituurde uitjes</span></li>
+        <li data-qty="0.25" data-unit="tl"><span class="ing-qty"></span><span>chilivlokken</span></li>
+        <li data-qty="1" data-unit="el"><span class="ing-qty"></span><span>sojasaus</span></li>
+      </ul>
+    </aside>
+
+    <section class="steps">
+      <h2 class="caps">Stappen</h2>
+      <ol class="step-list">
+        <li>Snij & bereid.</li>
+        <li>Mengen met sojasaus.</li>
+        <li>Afwerken & serveren.</li>
+      </ol>
+
+      <section class="more">
+        <h2 class="caps">Nog meer</h2>
+        <div class="more-cards">
+          <a class="card" href="#"><img src="https://picsum.photos/600/400?funk1"><div class="card-title"><span class="caps">Noedelparty</span></div></a>
+          <a class="card" href="#"><img src="https://picsum.photos/600/401?funk2"><div class="card-title"><span class="caps">Knapperige tofu</span></div></a>
+          <a class="card" href="#"><img src="https://picsum.photos/600/402?funk3"><div class="card-title"><span class="caps">Miso soep</span></div></a>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <div class="backbar"><a class="link" href="../index.html">← terug naar overzicht</a></div>
+</main>
+
+<script>
+  const s2=document.getElementById('s2'); const items2=[...document.querySelectorAll('#ing2 li')];
+  function fmt(n){const r=Math.round(n*4)/4;const w=Math.floor(r);const f=r-w;const m={0:'',.25:'¼',.5:'½',.75:'¾'};return w?(m[f]?w+m[f]:r%1?r.toFixed(2):w):(m[f]||'0')}
+  function render2(){const p=Math.max(1,parseInt(s2.value||'2',10));items2.forEach(li=>{const b=parseFloat(li.dataset.qty||'0'),u=li.dataset.unit||'';li.querySelector('.ing-qty').textContent=b?`${fmt(b*p)} ${u}`.trim():''})}
+  document.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{s2.value=Math.max(1,(+s2.value||2)+(b.dataset.action==='inc'?1:-1));render2()})
+  s2.addEventListener('input',render2); render2();
+</script>
+</body>
+</html>
