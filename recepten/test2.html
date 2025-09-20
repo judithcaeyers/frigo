@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recept — Komkommer-edamame (Ottolenghi vibes)</title>
+<style>
+  :root{--bg:#fffef8;--text:#1a1a18;--muted:#6f6a62;--line:#e9e1d6;--accent:#e0c14b;--olive:#e9f1d9;--maxw:1020px}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text)}
+  body{font:16px/1.7 "EB Garamond", Georgia, serif}
+  .caps{font:700 12px/1.2 "Roboto",system-ui,sans-serif;letter-spacing:.15em;text-transform:uppercase}
+  header{max-width:var(--maxw);margin:36px auto 6px;padding:0 18px;text-align:center}
+  .logo{display:inline-flex;text-decoration:none;margin-bottom:10px}
+  .logo img{height:60px}
+  h1{font-size:38px;line-height:1.15;margin:0 0 4px;font-weight:500}
+  .muted{color:var(--muted);margin:0}
+  .recipe{max-width:var(--maxw);margin:0 auto 70px;padding:0 18px}
+  .hero{text-align:center;margin:24px 0}
+  .hero img{display:inline-block;max-width:440px;width:100%;height:auto;border:8px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,.06)}
+  .layout{display:grid;grid-template-columns:340px 1fr;gap:28px}
+  @media (max-width:900px){.layout{grid-template-columns:1fr}}
+  .ingredients{background:var(--olive);border:1px solid var(--line);padding:18px;border-radius:8px}
+  .ingredients h2{margin:0 0 10px}
+  .servings{display:flex;gap:8px;align-items:center;margin:0 0 12px}
+  .btn{width:32px;height:32px;border:1px solid var(--line);background:#fff;border-radius:6px;cursor:pointer}
+  .servings input{width:56px;height:32px;border:1px solid var(--line);border-radius:6px;text-align:center;font:inherit;background:#fff}
+  .ing-list{list-style:none;margin:0;padding:0}
+  .ing-list li{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed rgba(0,0,0,.08)}
+  .ing-list li:last-child{border-bottom:none}
+  .ing-qty{min-width:90px;font-variant-numeric:tabular-nums}
+  .steps{padding-top:8px}
+  .steps h2{margin:0 0 10px}
+  .step-list{margin:0;padding-left:24px}
+  .step-list li{margin:8px 0}
+  .step-list li::marker{color:#b48b00;font-weight:700}
+  .note{margin-top:10px;color:var(--muted);font-size:14px}
+  .more{margin-top:30px}
+  .more h2{margin:0 0 10px}
+  .more-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  @media (max-width:900px){.more-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:560px){.more-cards{grid-template-columns:1fr}}
+  .card{display:block;text-decoration:none;color:inherit;border-radius:8px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+  .card img{display:block;width:100%}
+  .card-title{padding:10px}
+  .backbar{display:flex;justify-content:center;margin:28px 0}
+  .link{display:inline-block;padding:10px 14px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:inherit;background:#fff}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="../index.html"><img src="../assets/logo.PNG" alt=""></a>
+  <h1>Komkommer-edamame salade</h1>
+  <p class="muted">met koriander, pinda, chili & sojasaus</p>
+</header>
+
+<main class="recipe">
+  <figure class="hero"><img src="../assets/images/komkommer-edamame.png" alt=""></figure>
+
+  <div class="layout">
+    <aside class="ingredients">
+      <h2 class="caps">Ingrediënten</h2>
+      <div class="servings">
+        <button class="btn" data-action="dec">−</button>
+        <input id="s4" type="number" min="1" value="2">
+        <button class="btn" data-action="inc">+</button>
+        <span class="caps">personen</span>
+      </div>
+      <ul class="ing-list" id="ing4">
+        <li data-qty="150" data-unit="g"><span class="ing-qty"></span><span>komkommer</span></li>
+        <li data-qty="100" data-unit="g"><span class="ing-qty"></span><span>edamame</span></li>
+        <li data-qty="20" data-unit="g"><span class="ing-qty"></span><span>koriander</span></li>
+        <li data-qty="20" data-unit="g"><span class="ing-qty"></span><span>pinda’s</span></li>
+        <li data-qty="10" data-unit="g"><span class="ing-qty"></span><span>gefrituurde uitjes</span></li>
+        <li data-qty="0.25" data-unit="tl"><span class="ing-qty"></span><span>chilivlokken</span></li>
+        <li data-qty="1" data-unit="el"><span class="ing-qty"></span><span>sojasaus</span></li>
+      </ul>
+      <div class="note">Tip: 1 tl rijstazijn per persoon voor extra fris.</div>
+    </aside>
+
+    <section class="steps">
+      <h2 class="caps">Stappen</h2>
+      <ol class="step-list">
+        <li>Snij & bereid.</li>
+        <li>Dressing & mengen.</li>
+        <li>Afwerken & serveren.</li>
+      </ol>
+
+      <section class="more">
+        <h2 class="caps">Deze ook</h2>
+        <div class="more-cards">
+          <a class="card" href="#"><img src="https://picsum.photos/600/388?o1"><div class="card-title"><span class="caps">Geroosterde bloemkool</span></div></a>
+          <a class="card" href="#"><img src="https://picsum.photos/600/389?o2"><div class="card-title"><span class="caps">Siciliaanse caponata</span></div></a>
+          <a class="card" href="#"><img src="https://picsum.photos/600/390?o3"><div class="card-title"><span class="caps">Citroenpasta</span></div></a>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <div class="backbar"><a class="link" href="../index.html">← terug naar overzicht</a></div>
+</main>
+
+<script>
+  const s4=document.getElementById('s4'); const items4=[...document.querySelectorAll('#ing4 li')];
+  function fmt(n){const r=Math.round(n*4)/4;const w=Math.floor(r);const f=r-w;const m={0:'',.25:'¼',.5:'½',.75:'¾'};return w?(m[f]?w+m[f]:r%1?r.toFixed(2):w):(m[f]||'0')}
+  function render4(){const p=Math.max(1,parseInt(s4.value||'2',10));items4.forEach(li=>{const b=parseFloat(li.dataset.qty||'0'),u=li.dataset.unit||'';li.querySelector('.ing-qty').textContent=b?`${fmt(b*p)} ${u}`.trim():''})}
+  document.querySelectorAll('.btn').forEach(b=>b.onclick=()=>{s4.value=Math.max(1,(+s4.value||2)+(b.dataset.action==='inc'?1:-1));render4()})
+  s4.addEventListener('input',render4); render4();
+</script>
+</body>
+</html>
