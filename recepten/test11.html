@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Komkommer–edamame — experimenteel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@600;900&family=Inter:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style-experimental.css">
+</head>
+<body class="page-bg" data-theme="combo"><!-- switch naar oase / swatch / collage / combo -->
+
+<header class="page band band--combo paint">
+  <a class="logo" href="../index.html" aria-label="Home" style="display:inline-flex;text-decoration:none"><img src="../assets/logo.PNG" alt="" height="62"></a>
+  <h1 class="display-xxl" style="margin:10px 0 0">Komkommer–edamame</h1>
+  <p class="caps" style="color:var(--brand-ink);margin:6px 0 0">fris • 10–15 min • vegan</p>
+</header>
+
+<main class="page" style="margin-top:28px">
+  <div style="display:grid;grid-template-columns:340px 1fr;gap:24px">
+    <!-- Ingrediëntenkaart met brush/paint look -->
+    <aside class="ingredients paint paint-grain">
+      <h2 class="caps">Ingrediënten</h2>
+      <div class="servings">
+        <button onclick="chg(-1)">−</button>
+        <input id="p" type="number" min="1" value="2" oninput="render()">
+        <button onclick="chg(1)">+</button>
+        <span class="caps" style="margin-left:6px">personen</span>
+      </div>
+      <ul class="ing-list" id="ing">
+        <li data-qty="150" data-unit="g"><span class="ing-qty"></span>komkommer</li>
+        <li data-qty="100" data-unit="g"><span class="ing-qty"></span>edamame</li>
+        <li data-qty="20" data-unit="g"><span class="ing-qty"></span>koriander</li>
+        <li data-qty="20" data-unit="g"><span class="ing-qty"></span>pinda’s</li>
+        <li data-qty="10" data-unit="g"><span class="ing-qty"></span>gefrituurde uitjes</li>
+        <li data-qty="0.25" data-unit="tl"><span class="ing-qty"></span>chilivlokken</li>
+        <li data-qty="1" data-unit="el"><span class="ing-qty"></span>sojasaus</li>
+      </ul>
+    </aside>
+
+    <!-- Stappen met nummercirkels -->
+    <section>
+      <h2 class="caps" style="color:var(--brand-ink)">Stappen</h2>
+      <div class="step"><div class="step-num">1</div><div>Snij komkommer in stroken en ontdooi edamame.</div></div>
+      <div class="step"><div class="step-num">2</div><div>Meng met sojasaus in een kom.</div></div>
+      <div class="step"><div class="step-num">3</div><div>Werk af met koriander, pinda’s, chili en uitjes.</div></div>
+    </section>
+  </div>
+
+  <!-- Suggesties als bubbels -->
+  <section class="band" style="margin-top:34px">
+    <div class="page">
+      <h2 class="caps" style="color:var(--brand-ink);margin:0 0 12px">Deze vind je misschien ook lekker</h2>
+      <div class="bubbles">
+        <a class="bubble bubble--pink" href="../recepten/arrabbiata.html">Arrabbiata met knoflookchips</a>
+        <a class="bubble bubble--blue" href="../recepten/miso-aubergine.html">Miso-aubergine met sesamrijst</a>
+        <a class="bubble bubble--sun" href="../recepten/citrus-tonijn.html">Citrus tonijntartaar</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- SVG grain filter (1x per site is genoeg) -->
+<svg width="0" height="0" style="position:absolute;left:-9999px;top:-9999px">
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="table" tableValues="0 0.02 0.05 0.08"/></feComponentTransfer>
+  </filter>
+</svg>
+
+<script>
+  const p=document.getElementById('p'); const items=[...document.querySelectorAll('#ing li')];
+  function frac(n){const r=Math.round(n*4)/4,w=Math.floor(r),f=r-w,m={0:'',.25:'¼',.5:'½',.75:'¾'};return w?(m[f]?w+m[f]:r%1?r.toFixed(2):w):(m[f]||'0')}
+  function render(){const mul=Math.max(1,parseInt(p.value||'2',10));items.forEach(li=>{const b=parseFloat(li.dataset.qty||0),u=li.dataset.unit||'';li.querySelector('.ing-qty').textContent=b?`${frac(b*mul)} ${u}`.trim():''})}
+  function chg(d){p.value=Math.max(1,(+p.value||2)+d);render()}
+  render();
+</script>
+</body>
+</html>
