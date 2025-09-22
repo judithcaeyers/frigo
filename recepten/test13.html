@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CHEF LIL J — Design Tokens Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@600;800;900&family=Inter:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ===================
+   1) JOUW DESIGN TOKENS
+   =================== */
+:root{
+  /* neutraal */
+  --bg:#fffef8; --ink:#121212; --muted:#6b6b6b; --line:#e9e9e9;
+  --maxw:1080px;
+
+  /* OASE cover */
+  --oase-mustard:#b69a2f;  /* papier-mosterd */
+  --oase-blue:#85b6e8;     /* typografisch blauw */
+
+  /* palet uit je swatches */
+  --downy:#e9dfcc;
+  --june:#f2cf5a;
+  --tassel:#d29a2e;
+  --lilac:#cda3c7;
+  --framboise:#8f2349;
+
+  /* collage/website vibes */
+  --olive:#bfcf73;
+  --sun:#ffa43d;
+  --petal:#ffd2dc;
+  --sky:#b8d5ff;
+
+  /* gevraagd combo */
+  --combo-green:#213810;
+  --combo-yellow:#ede362;
+  --combo-pale:#fffdb0;
+
+  /* defaults per pagina (kun je overschrijven met body[data-theme="…"]) */
+  --brand:var(--oase-mustard);
+  --brand-ink:var(--ink);
+}
+
+/* Thema’s (zet bv. <body data-theme="combo">) */
+body[data-theme="oase"]{ --brand:var(--oase-mustard); --brand-ink:var(--oase-blue); }
+body[data-theme="swatch"]{ --brand:var(--june); --brand-ink:var(--framboise); }
+body[data-theme="collage"]{ --brand:var(--sun); --brand-ink:var(--olive); }
+body[data-theme="combo"]{ --brand:var(--combo-yellow); --brand-ink:var(--combo-green); }
+
+/* Basics */
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+.page{ max-width:var(--maxw); margin:0 auto; padding:0 20px 60px; }
+.section{ margin:28px 0; }
+.section h3{ margin:0 0 10px; font:800 14px/1 "Roboto",sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--brand-ink); }
+.caps{ font-family:"Roboto",sans-serif; letter-spacing:.12em; text-transform:uppercase; font-weight:800; }
+
+/* 2) MEGA typografie in kleur */
+.display-xxl{
+  font-family:"Roboto",sans-serif;
+  font-weight:900;
+  letter-spacing:-.01em;
+  line-height:1;
+  font-size: clamp(44px, 10vw, 96px);
+  color: var(--brand-ink);
+}
+
+/* 3) Gekleurde achtergrond-bands (volledige breedte) */
+.band{ position:relative; padding:36px 0; margin:28px 0; }
+.band:before{
+  content:""; position:absolute; inset:0;
+  background: var(--brand);
+  z-index:-1;
+}
+/* varianten */
+.band--mint:before{ background:var(--downy); }
+.band--mustard:before{ background:var(--june); }
+.band--combo:before{ background:var(--combo-pale); }
+
+/* 4) Tekening als translucent pagina-achtergrond */
+.page-bg{ position:relative; }
+.page-bg:before{
+  content:""; position:fixed; inset:0; z-index:-1;
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,.75), rgba(255,255,255,.75)),
+    url("../assets/images/komkommer-edamame.png") center/contain no-repeat; /* vervang per recept */
+  filter:saturate(0.2) contrast(0.9);
+  pointer-events:none;
+  opacity: var(--bgimg-opacity, .6);
+}
+
+/* 5) Suggesties als poppende tekstballonnen */
+.bubbles{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+@media (max-width:900px){ .bubbles{ grid-template-columns:1fr 1fr; } }
+@media (max-width:560px){ .bubbles{ grid-template-columns:1fr; } }
+.bubble{
+  position:relative;
+  padding:14px 16px;
+  color:#fff;
+  font:700 14px/1.4 "Inter",system-ui,sans-serif;
+  border-radius:22px;
+  text-decoration:none;
+  display:block;
+  transform:translateZ(0);
+}
+.bubble:after{
+  content:"";
+  position:absolute; left:22px; bottom:-10px;
+  width:18px; height:18px; border-radius:50%;
+  background:inherit; filter:brightness(.98);
+}
+/* bubble-kleuren */
+.bubble--pink{ background: var(--framboise); }
+.bubble--blue{ background: var(--oase-blue); color:#0d1a2b; }
+.bubble--sun{ background: var(--sun); }
+.bubble--olive{ background: var(--combo-green); }
+
+/* 6) “Met stift/verf” effect voor vlakken (geen egaal vlak) */
+.paint{
+  background:
+    radial-gradient(120px 60px at 20% 30%, rgba(0,0,0,.06), transparent 60%),
+    radial-gradient(90px 40px at 70% 60%, rgba(0,0,0,.05), transparent 60%),
+    linear-gradient(0deg, rgba(255,255,255,.2), rgba(255,255,255,.2)),
+    var(--brand);
+}
+.paint-grain{
+  filter: url("#grain");
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,.05);
+}
+
+/* Ingrediëntenkaart + stappen (demo) */
+.ingredients{
+  background: var(--combo-pale);
+  border:2px solid var(--brand-ink);
+  padding:16px 18px; border-radius:8px;
+  max-width:380px;
+}
+.ingredients h2{ margin:0 0 10px; color:var(--brand-ink); }
+.servings{ display:flex; gap:8px; align-items:center; margin-bottom:10px; }
+.servings input, .servings button{
+  height:32px; border:2px solid var(--brand-ink); background:#fff; color:var(--brand-ink);
+}
+.ing-list{ list-style:none; margin:0; padding:0; }
+.ing-list li{ display:flex; gap:8px; padding:6px 0; border-bottom:1px dashed rgba(0,0,0,.12); }
+.ing-list li:last-child{ border-bottom:none; }
+.ing-qty{ min-width:86px; font-variant-numeric:tabular-nums; color:var(--brand-ink); font-weight:800; }
+
+.steps h2{ margin:0 0 10px; color:var(--brand-ink);}
+.step{ display:grid; grid-template-columns:34px 1fr; gap:10px; margin:10px 0; }
+.step-num{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--brand-ink);color:var(--brand);
+  display:grid;place-items:center;
+  font:800 13px/1 "Roboto",sans-serif;
+}
+
+/* — Showcase styling — */
+header{ padding:26px 20px 8px; text-align:center; }
+.controls{
+  display:flex; gap:10px; flex-wrap:wrap; justify-content:center; align-items:center;
+  margin:12px 0 4px;
+}
+.controls input[type="text"]{padding:8px 10px; border:1px solid var(--line); width:320px}
+.swatches{ display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; }
+.swatch{ border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+.swatch .chip{ height:64px; }
+.swatch .label{ padding:8px; font:12px/1.3 "Inter",system-ui,sans-serif }
+.kbd{ font:12px/1.2 "Inter"; background:#f3f3f3; border-radius:4px; padding:2px 6px; border:1px solid #ccc}
+code{ background:#f7f7f7; padding:2px 4px; border-radius:4px }
+</style>
+</head>
+<body class="page-bg" data-theme="combo">
+
+<header class="band band--combo paint">
+  <div class="page">
+    <h1 class="display-xxl" style="margin:0">Design Tokens Library</h1>
+    <div class="controls">
+      <span class="caps">Thema:</span>
+      <button class="kbd" data-theme="combo">combo</button>
+      <button class="kbd" data-theme="oase">oase</button>
+      <button class="kbd" data-theme="swatch">swatch</button>
+      <button class="kbd" data-theme="collage">collage</button>
+      <span style="margin-left:10px" class="caps">BG-tekening:</span>
+      <input id="bgUrl" type="text" value="../assets/images/komkommer-edamame.png" />
+      <span class="caps">Opacity</span>
+      <input id="bgOp" type="range" min="0" max="1" step="0.05" value="0.6">
+    </div>
+  </div>
+</header>
+
+<main class="page">
+  <!-- Kleuren -->
+  <section class="section">
+    <h3>Kleuren — swatches (variabelen)</h3>
+    <div class="swatches">
+      <!-- Neutraal -->
+      <div class="swatch"><div class="chip" style="background:var(--bg)"></div><div class="label">--bg</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--ink)"></div><div class="label">--ink</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--muted)"></div><div class="label">--muted</div></div>
+      <!-- OASE -->
+      <div class="swatch"><div class="chip" style="background:var(--oase-mustard)"></div><div class="label">--oase-mustard</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--oase-blue)"></div><div class="label">--oase-blue</div></div>
+      <!-- swatches -->
+      <div class="swatch"><div class="chip" style="background:var(--downy)"></div><div class="label">--downy</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--june)"></div><div class="label">--june</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--tassel)"></div><div class="label">--tassel</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--lilac)"></div><div class="label">--lilac</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--framboise)"></div><div class="label">--framboise</div></div>
+      <!-- collage -->
+      <div class="swatch"><div class="chip" style="background:var(--olive)"></div><div class="label">--olive</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--sun)"></div><div class="label">--sun</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--petal)"></div><div class="label">--petal</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--sky)"></div><div class="label">--sky</div></div>
+      <!-- combo -->
+      <div class="swatch"><div class="chip" style="background:var(--combo-green)"></div><div class="label">--combo-green</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--combo-yellow)"></div><div class="label">--combo-yellow</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--combo-pale)"></div><div class="label">--combo-pale</div></div>
+      <!-- actieve brand -->
+      <div class="swatch"><div class="chip" style="background:var(--brand)"></div><div class="label">--brand</div></div>
+      <div class="swatch"><div class="chip" style="background:var(--brand-ink)"></div><div class="label">--brand-ink</div></div>
+    </div>
+  </section>
+
+  <!-- Typografie -->
+  <section class="section">
+    <h3>Typografie — display & body</h3>
+    <div class="display-xxl">Grote Kop — Mega</div>
+    <p style="max-width:70ch">Body tekst in <em>EB Garamond</em>. Dit blok toont de leestoon, witruimte en contrast. Je kunt de kleur van de koppen wisselen via <code>--brand-ink</code> (thema’s hieronder).</p>
+  </section>
+
+  <!-- Bands -->
+  <section class="section">
+    <h3>Gekleurde Bands (volledige breedte)</h3>
+    <div class="band"><div class="page">Default band — gebruikt <code>--brand</code></div></div>
+    <div class="band band--mint"><div class="page">band--mint (downy)</div></div>
+    <div class="band band--mustard"><div class="page">band--mustard (june)</div></div>
+    <div class="band band--combo"><div class="page">band--combo (combo-pale)</div></div>
+  </section>
+
+  <!-- Paint / brush -->
+  <section class="section">
+    <h3>“Met stift/verf” effect</h3>
+    <div class="paint paint-grain" style="padding:18px;border-radius:18px">
+      Dit vlak gebruikt layered gradients + grain filter voor een papier/brush look. Kleur = <code>--brand</code>.
+    </div>
+  </section>
+
+  <!-- Ingrediëntenkaart + stappen -->
+  <section class="section" style="display:grid;grid-template-columns:360px 1fr;gap:24px">
+    <div class="ingredients paint-grain">
+      <h2 class="caps">Ingrediënten</h2>
+      <div class="servings">
+        <button onclick="chg(-1)">−</button>
+        <input id="p" type="number" min="1" value="2" oninput="render()">
+        <button onclick="chg(1)">+</button>
+        <span class="caps" style="margin-left:6px">personen</span>
+      </div>
+      <ul class="ing-list" id="ing">
+        <li data-qty="150" data-unit="g"><span class="ing-qty"></span>komkommer</li>
+        <li data-qty="100" data-unit="g"><span class="ing-qty"></span>edamame</li>
+        <li data-qty="20" data-unit="g"><span class="ing-qty"></span>koriander</li>
+        <li data-qty="20" data-unit="g"><span class="ing-qty"></span>pinda’s</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="caps" style="color:var(--brand-ink)">Stappen</h2>
+      <div class="step"><div class="step-num">1</div><div>Snij komkommer; ontdooi edamame.</div></div>
+      <div class="step"><div class="step-num">2</div><div>Meng met sojasaus in een kom.</div></div>
+      <div class="step"><div class="step-num">3</div><div>Afwerken met koriander en pinda’s.</div></div>
+    </div>
+  </section>
+
+  <!-- Bubbels -->
+  <section class="section">
+    <h3>Suggesties als bubbels</h3>
+    <div class="bubbles">
+      <a class="bubble bubble--pink"  href="#">Arrabbiata met knoflookchips</a>
+      <a class="bubble bubble--blue"  href="#">Citrus tonijntartaar</a>
+      <a class="bubble bubble--sun"   href="#">Miso-aubergine</a>
+      <a class="bubble bubble--olive" href="#">Sesam noodles</a>
+      <a class="bubble bubble--pink"  href="#">Courgette fritti</a>
+      <a class="bubble bubble--blue"  href="#">Aardbei & burrata</a>
+    </div>
+  </section>
+</main>
+
+<!-- SVG grain filter -->
+<svg width="0" height="0" style="position:absolute;left:-9999px;top:-9999px">
+  <filter id="grain">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="table" tableValues="0 0.02 0.05 0.08"/></feComponentTransfer>
+  </filter>
+</svg>
+
+<script>
+/* Thema switch */
+document.querySelectorAll('button[data-theme]').forEach(btn=>{
+  btn.addEventListener('click',()=>{ document.body.setAttribute('data-theme', btn.dataset.theme); });
+});
+
+/* BG image/opacity controls */
+const bgUrl = document.getElementById('bgUrl');
+const bgOp  = document.getElementById('bgOp');
+function updateBg(){
+  document.documentElement.style.setProperty('--bgimg-opacity', bgOp.value);
+  // update url in :before
+  const url = bgUrl.value.trim();
+  const styleEl = document.getElementById('bg-inline-css') || (()=> {
+    const s=document.createElement('style'); s.id='bg-inline-css'; document.head.appendChild(s); return s;
+  })();
+  styleEl.textContent = `.page-bg:before{background:
+    linear-gradient(to bottom, rgba(255,255,255,.75), rgba(255,255,255,.75)),
+    url("${url}") center/contain no-repeat;}`;
+}
+bgUrl.addEventListener('change', updateBg);
+bgOp.addEventListener('input', updateBg);
+updateBg();
+
+/* Ingrediënten demo scaling */
+const p=document.getElementById('p'); const items=[...document.querySelectorAll('#ing li')];
+function frac(n){const r=Math.round(n*4)/4,w=Math.floor(r),f=r-w,m={0:'',.25:'¼',.5:'½',.75:'¾'};return w?(m[f]?w+m[f]:r%1?r.toFixed(2):w):(m[f]||'0')}
+function render(){const mul=Math.max(1,parseInt(p.value||'2',10));items.forEach(li=>{const b=parseFloat(li.dataset.qty||0),u=li.dataset.unit||'';li.querySelector('.ing-qty').textContent=b?`${frac(b*mul)} ${u}`.trim():''})}
+function chg(d){p.value=Math.max(1,(+p.value||2)+d);render()}
+render();
+</script>
+</body>
+</html>
