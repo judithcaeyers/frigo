@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recept — Ultiem Licht & Strak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maxw:700px;
+  --ink:#141414;
+  --muted:#6a6a6a;
+
+  /* jouw kleuren */
+  --brand:#ede362;          /* geel (titel) */
+  --brand-ink:#213810;      /* donkergroen (subtitels & cijfers) */
+
+  /* hero */
+  --hero-url:url("assets/images/komkommer-edamame.PNG");
+}
+
+/* basis */
+html,body{margin:0}
+body{
+  color:var(--ink);
+  font:16px/1.7 "EB Garamond", serif;
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,.90), rgba(255,255,255,.92)),
+    var(--hero-url) center/720px auto no-repeat;
+}
+.container{max-width:var(--maxw); margin:0 auto; padding:26px 18px 40px}
+
+/* header */
+header{text-align:center;margin-bottom:8px}
+.logo{display:inline-flex}
+.logo img{height:60px;width:auto;display:block}
+
+/* titel (géél) */
+.title{
+  font:900 clamp(32px,7vw,72px)/1.02 "Roboto",sans-serif;
+  text-transform:uppercase; letter-spacing:.01em;
+  color:var(--brand);
+  text-align:center;
+  margin:10px 0 16px;
+}
+
+/* grid 2/5 + 3/5 */
+.main{
+  display:grid; grid-template-columns:2fr 3fr; gap:20px; align-items:start;
+}
+@media (max-width:720px){ .main{grid-template-columns:1fr} }
+
+/* sectietitels in kleur */
+.section-title{
+  font:900 13px/1 "Roboto",sans-serif; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--brand-ink);
+  margin:0 0 10px;
+}
+
+/* ingrediënten – ultra clean */
+.ingredients{
+  background:transparent; /* geen blokkleur voor extra lichtheid */
+  padding:0;
+}
+.ing-list{list-style:none;margin:0;padding:0}
+.ing-list li{
+  padding:6px 0;
+  display:flex; gap:8px; align-items:baseline;
+  /* geen lijnen, geen schaduw */
+}
+.ing-qty{
+  font-weight:700; min-width:72px;
+  color:var(--brand-ink); font-variant-numeric:tabular-nums;
+}
+
+/* stappen – cijfers zonder bolletjes */
+.steps{}
+.step-list{list-style:none;margin:0;padding:0;counter-reset:step}
+.step{
+  counter-increment:step;
+  display:grid; grid-template-columns: 42px 1fr; gap:12px;
+  align-items:flex-start; margin-bottom:10px;
+}
+.step::before{
+  content: counter(step);
+  font:900 28px/1 "Roboto",sans-serif;
+  color:var(--brand-ink);
+  /* geen cirkel, enkel groot cijfer */
+}
+.step p{margin:0}
+
+/* “Zin in meer?” */
+.more{margin-top:28px}
+.more h3{
+  text-align:center; margin:0 0 12px;
+  color:var(--brand-ink);
+  font:900 11px/1 "Roboto",sans-serif; letter-spacing:.14em; text-transform:uppercase;
+}
+.suggest-row{
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:10px;
+}
+@media (max-width:720px){ .suggest-row{grid-template-columns:repeat(2,1fr)} }
+
+.suggest-card{
+  text-decoration:none; color:inherit; display:block;
+  /* geen kader, geen radius */
+}
+.suggest-card .thumb{
+  aspect-ratio:1/1; background-size:cover; background-position:center;
+}
+.suggest-card .title{
+  margin-top:6px; text-align:center;
+  font:700 12px/1.2 "Roboto",sans-serif; text-transform:uppercase;
+}
+
+/* footer */
+.footer{
+  margin-top:32px; text-align:center; color:var(--muted); font-size:14px;
+}
+.footer a{color:var(--brand-ink);text-decoration:none;border-bottom:1px solid rgba(0,0,0,.2)}
+.footer a:hover{border-bottom-color:currentColor}
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- logo (home) -->
+    <header>
+      <a href="index.html" class="logo" aria-label="Terug naar home">
+        <img src="assets/logo.PNG" alt="Chef Lil J">
+      </a>
+    </header>
+
+    <!-- titel geel -->
+    <h1 class="title">Komkommer–Edamame Salade</h1>
+
+    <!-- grid inhoud -->
+    <section class="main">
+      <!-- ingrediënten 2/5 -->
+      <aside class="ingredients" aria-labelledby="ing-title">
+        <h2 id="ing-title" class="section-title">Ingrediënten</h2>
+        <ul class="ing-list">
+          <li><span class="ing-qty">150 g</span><span>komkommer (in stroken of maantjes)</span></li>
+          <li><span class="ing-qty">100 g</span><span>edamame (ontdooid)</span></li>
+          <li><span class="ing-qty">20 g</span><span>koriander, grof gehakt</span></li>
+          <li><span class="ing-qty">20 g</span><span>geroosterde pinda’s, grof gehakt</span></li>
+          <li><span class="ing-qty">10 g</span><span>gefrituurde uitjes</span></li>
+          <li><span class="ing-qty">¼ tl</span><span>chilivlokken (naar smaak)</span></li>
+          <li><span class="ing-qty">1 el</span><span>sojasaus</span></li>
+        </ul>
+      </aside>
+
+      <!-- stappen 3/5 -->
+      <section class="steps" aria-labelledby="steps-title">
+        <h2 id="steps-title" class="section-title">Stappen</h2>
+        <ol class="step-list">
+          <li class="step"><p><strong>Snij & bereid.</strong> Snij de komkommer; ontdooi de edamame.</p></li>
+          <li class="step"><p><strong>Mengen.</strong> Meng in een kom en voeg sojasaus toe.</p></li>
+          <li class="step"><p><strong>Afwerken.</strong> Werk af met koriander, pinda’s, chilivlokken en uitjes.</p></li>
+          <li class="step"><p><strong>Serveren.</strong> Meteen serveren voor maximale crunch.</p></li>
+        </ol>
+      </section>
+    </section>
+
+    <!-- meer -->
+    <section class="more" aria-labelledby="more-title">
+      <h3 id="more-title">Zin in meer?</h3>
+      <div class="suggest-row">
+        <a class="suggest-card" href="recepten/arrabbiata.html">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1523986371872-9d3ba2e2a389?q=80&w=900&auto=format&fit=crop')"></div>
+          <div class="title">Arrabbiata met knoflookchips</div>
+        </a>
+        <a class="suggest-card" href="recepten/citrus-tonijn.html">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=900&auto=format&fit=crop')"></div>
+          <div class="title">Citrus tonijntartaar</div>
+        </a>
+        <a class="suggest-card" href="recepten/miso-aubergine.html">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1540713434306-58505cf1b6fc?q=80&w=900&auto=format&fit=crop')"></div>
+          <div class="title">Miso-aubergine</div>
+        </a>
+        <a class="suggest-card" href="recepten/citroenpasta-zalm.html">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1458644267420-66bc8a5f21e4?q=80&w=900&auto=format&fit=crop')"></div>
+          <div class="title">Citroenpasta met zalm</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- credits -->
+    <footer class="footer">
+      Gemaakt met buitengewone precisie en een <span aria-hidden="true">🥒</span> die net van de catwalk kwam.  
+      Volg de chaos op <a href="https://instagram.com/cheflilj" target="_blank" rel="noopener">Instagram</a>.
+    </footer>
+  </div>
+</body>
+</html>
