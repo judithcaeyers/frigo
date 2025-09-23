@@ -28,9 +28,12 @@ function enhanceMultiSelect(selectEl, labelText){
   const chevron = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   chevron.setAttribute('viewBox','0 0 24 24');
   chevron.setAttribute('class','ms-chevron');
-  chevron.innerHTML = '<path d="M7 10l5 5 5-5" stroke="#555" stroke-width="2" fill="none" stroke-linecap="round"/>';
+  chevron.innerHTML = '<path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>';
   trigger.append(label, chevron);
 
+
+
+  
   // Panel
   const panel = document.createElement('div');
   panel.className = 'ms-panel';
