@@ -98,10 +98,15 @@ p.muted{color:var(--ink);opacity:.75;font-size:15px;margin:0}
 .ms-option span{flex:1}
 
 .ms-chevron {
-  width: 12px;       /* kleiner dan standaard */
+  width: 12px;
   height: 12px;
-  stroke: var(--yellow-badge);  /* geel i.p.v. grijs */
+  color: var(--yellow-badge);   /* geel */
   flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.ms.open .ms-chevron {
+  transform: rotate(180deg);    /* subtiele rotatie bij openklappen */
 }
 
 
