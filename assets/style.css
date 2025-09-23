@@ -78,10 +78,14 @@ p.muted{color:var(--ink);opacity:.75;font-size:15px;margin:0}
   padding:8px;
   z-index:30;
 
-  display:flex;
   flex-direction:column;   /* opties onder elkaar */
   align-items:flex-start;  /* links uitgelijnd */
 }
+
+.ms.open .ms-panel{
+  display:flex;            /* alleen tonen als open */
+}
+
 .ms.open .ms-panel{display:flex}
 .ms-option{
   display:flex;
