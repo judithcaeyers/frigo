@@ -1,14 +1,14 @@
 :root{
-  /* === Kleurenpalet === */
-  --green-dark:   #1B370A;   /* donkergroen */
-  --green-olive:  #938826;   /* olijfgroen / mosterd */
-  --yellow-badge: #FFF691;   /* zonnig geel voor badges */
-  --cream:        #FFFBCE;   /* crème voor body */
+  /* Palet */
+  --green-dark:   #1B370A;
+  --green-olive:  #938826;
+  --yellow-badge: #FFF691;
+  --cream:        #FFFBCE;
 
-  /* Afgeleiden (default thema) */
-  --bg:    var(--cream);       
-  --ink:   var(--green-olive); 
-  --hair:  rgba(147,136,38,.35);
+  /* Thema */
+  --bg:   var(--cream);
+  --ink:  var(--green-olive);
+  --hair: color-mix(in srgb, var(--green-olive) 25%, transparent);
 
   --radius: 14px;
   --maxw: 1100px;
@@ -34,19 +34,23 @@ h1.caps{
 }
 p.muted{color:var(--ink);opacity:.75;font-size:15px;margin:0}
 
-/* ===== Controls ===== */
+/* ===== Controls (zonder kader) ===== */
 .controls{
-  max-width:var(--maxw);margin:24px auto;padding:20px;
-  border:1px solid var(--ink);border-radius:var(--radius);
-  background:var(--bg);
-  display:flex;flex-wrap:wrap;gap:16px;justify-content:center;
+  max-width:var(--maxw);
+  margin:18px auto 8px;
+  padding:0 18px;
+  display:flex;flex-wrap:wrap;gap:12px;
+  justify-content:center;align-items:flex-start;
+  /* geen border, geen achtergrond */
 }
+
+/* Multiselect trigger */
 .ms{min-width:200px;position:relative}
 .ms-trigger{
   display:flex;justify-content:space-between;align-items:center;
-  padding:8px 12px;border:1px solid var(--ink);border-radius:999px;
-  background:transparent;cursor:pointer;font:600 13px/1 "Space Grotesk",sans-serif;
-  text-transform:uppercase;color:var(--ink);
+  padding:10px 14px;border:1px solid var(--ink);border-radius:999px;
+  background:transparent;cursor:pointer;
+  font:600 12px/1 "Space Grotesk",sans-serif;text-transform:uppercase;color:var(--ink);
 }
 .ms-panel{
   display:none;position:absolute;top:110%;left:0;right:0;
@@ -55,55 +59,71 @@ p.muted{color:var(--ink);opacity:.75;font-size:15px;margin:0}
 }
 .ms.open .ms-panel{display:block}
 .ms-option{padding:6px 4px;cursor:pointer}
-.ms-option:hover{background:rgba(147,136,38,.08)}
+.ms-option:hover{background:color-mix(in srgb, var(--green-olive) 10%, transparent)}
 
+/* Footer onder filters – gecentreerd (ook op gsm) */
 .filters-footer{
-  width:100%;display:flex;justify-content:center;gap:16px;margin-top:12px;flex-wrap:wrap
+  width:100%;
+  display:flex;flex-wrap:wrap;gap:12px;
+  justify-content:center;align-items:center;
+  margin-top:10px;
 }
+.search-wrap{display:flex;align-items:center;gap:10px}
+
+/* Minimalistische loep */
 .search-btn{
-  width:36px;height:36px;border:1px solid var(--ink);border-radius:50%;
-  background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink)
+  width:38px;height:38px;border:1px solid var(--ink);border-radius:50%;
+  background:transparent;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--ink)
 }
+.search-btn:hover{background:color-mix(in srgb, var(--green-olive) 10%, transparent)}
+
 .search-input{
-  display:none;width:240px;padding:8px 12px;border:1px solid var(--ink);border-radius:999px;
+  display:none;width:260px;max-width:68vw;
+  padding:10px 12px;border:1px solid var(--ink);border-radius:999px;
   font:15px/1.3 "IBM Plex Serif",serif;color:var(--ink);background:#fff
 }
 .search-input.show{display:inline-block}
+
 .btn{
   border:1px solid var(--ink);border-radius:9999px;background:transparent;
   color:var(--ink);padding:10px 16px;cursor:pointer;
   font:600 12px/1 "Space Grotesk",sans-serif;letter-spacing:.05em;text-transform:uppercase
 }
-.btn:hover,.search-btn:hover{background:rgba(147,136,38,.08)}
+.btn:hover{background:color-mix(in srgb, var(--green-olive) 10%, transparent)}
 
-/* ===== Grid ===== */
-.grid-wrap{max-width:var(--maxw);margin:0 auto 60px;padding:0 18px}
+/* Mobile stacking & centreren */
+@media (max-width:640px){
+  .controls{padding:0 14px;gap:10px}
+  .ms{min-width: min(100%, 440px); width:100%}
+  .ms-trigger{width:100%}
+  .filters-footer{gap:10px}
+}
+
+/* ===== Grid (receptkaarten zonder kader) ===== */
+.grid-wrap{max-width:var(--maxw);margin:10px auto 60px;padding:0 18px}
 .grid{column-count:3;column-gap:24px}
 @media(max-width:1000px){.grid{column-count:2}}
 @media(max-width:640px){.grid{column-count:1}}
+
 .card{
-  break-inside:avoid;display:block;margin:0 0 24px;
-  border:1px solid var(--ink);border-radius:var(--radius);
-  background:var(--bg);overflow:hidden;color:inherit
+  break-inside:avoid;display:block;margin:0 0 28px;
+  /* geen border, geen radius, geen achtergrond */
+  color:inherit
 }
-.card img{width:100%;display:block;border-bottom:1px solid var(--ink)}
-.card-title{padding:10px;text-align:center}
+.card img{
+  width:100%;display:block;
+  border-bottom: none; border-radius:0;
+}
+.card-title{
+  padding:8px 0 0;text-align:center;
+}
 .card-title .caps{
   font:700 13px/1.3 "Space Grotesk",sans-serif;
   text-transform:uppercase;letter-spacing:.08em
 }
-.card:hover{box-shadow:0 4px 0 0 var(--ink)}
-
-/* ===== Badges / Pills ===== */
-.pill{
-  display:inline-block;padding:4px 10px;
-  background:var(--yellow-badge);
-  border:1px solid var(--green-dark);
-  border-radius:999px;
-  font:700 11px/1 "Space Grotesk",sans-serif;
-  letter-spacing:.08em;text-transform:uppercase;
-  color:var(--green-dark);
-}
+/* Subtiel hover-effect alleen op titel (geen kader) */
+.card:hover .card-title .caps{ text-decoration: underline }
 
 /* ===== Empty state ===== */
 .empty{
