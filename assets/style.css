@@ -97,6 +97,14 @@ p.muted{color:var(--ink);opacity:.75;font-size:15px;margin:0}
 .ms-option input{flex-shrink:0}
 .ms-option span{flex:1}
 
+.ms-chevron {
+  width: 12px;       /* kleiner dan standaard */
+  height: 12px;
+  stroke: var(--yellow-badge);  /* geel i.p.v. grijs */
+  flex-shrink: 0;
+}
+
+
 /* Footer onder filters */
 .filters-footer{
   width:100%;
