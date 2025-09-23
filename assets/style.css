@@ -26,11 +26,19 @@ body{
 a{color:inherit;text-decoration:none}
 
 /* ===== Header ===== */
-header{max-width:var(--maxw);margin:0 auto;text-align:center;padding:28px 18px 20px}
+header{
+  max-width:var(--maxw);
+  margin:0 auto;
+  text-align:center;
+  padding:28px 18px 20px;
+}
 .logo img{height:64px;width:auto;display:block;margin:0 auto}
 h1.caps{
   font:700 clamp(28px,6vw,46px)/1.05 "Space Grotesk",sans-serif;
-  text-transform:uppercase;letter-spacing:.06em;margin:16px 0 6px;color:var(--ink)
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin:16px 0 6px;
+  color:var(--ink);
 }
 p.muted{color:var(--ink);opacity:.75;font-size:15px;margin:0}
 
@@ -39,77 +47,108 @@ p.muted{color:var(--ink);opacity:.75;font-size:15px;margin:0}
   max-width:var(--maxw);
   margin:18px auto 8px;
   padding:0 18px;
-  display:flex;flex-wrap:wrap;gap:12px;
-  justify-content:center;align-items:flex-start;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+  align-items:flex-start;
 }
 
 /* Multiselect */
-.ms{min-width:180px;position:relative}
+.ms{position:relative}
 .ms-trigger{
+  width:220px; /* alle pillen even groot */
   display:flex;justify-content:space-between;align-items:center;
-  padding:8px 12px;border:1px solid var(--ink);border-radius:999px;
-  background:transparent;cursor:pointer;
-  font:600 12px/1 "Space Grotesk",sans-serif;text-transform:uppercase;color:var(--ink);
+  padding:8px 12px;
+  border:1px solid var(--ink);
+  border-radius:999px;
+  background:transparent;
+  cursor:pointer;
+  font:600 12px/1 "Space Grotesk",sans-serif;
+  text-transform:uppercase;
+  color:var(--ink);
 }
 .ms-panel{
-  display:none;position:absolute;top:110%;left:0;right:0;
-  background:var(--bg);border:1px solid var(--ink);border-radius:var(--radius);
-  padding:8px;z-index:30;
+  display:none;
+  position:absolute;
+  top:110%; left:0; right:0;
+  background:var(--bg);
+  border:1px solid var(--ink);
+  border-radius:var(--radius);
+  padding:8px;
+  z-index:30;
+
+  display:flex;
+  flex-direction:column;   /* opties onder elkaar */
+  align-items:flex-start;  /* links uitgelijnd */
 }
-.ms.open .ms-panel{display:block}
-.ms-option{padding:6px 4px;cursor:pointer}
+.ms.open .ms-panel{display:flex}
+.ms-option{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 4px;
+  width:100%;
+  cursor:pointer;
+  text-align:left;
+  border-radius:6px;
+}
 .ms-option:hover{background:color-mix(in srgb, var(--green-olive) 10%, transparent)}
+.ms-option input{flex-shrink:0}
+.ms-option span{flex:1}
 
-/* Zorg dat alle filter-knoppen even groot zijn */
-.ms-trigger {
-  width: 220px;        /* breedte gelijk voor allemaal */
-  justify-content: space-between;
-}
-
-/* Op mobiel: laat ze gewoon meeschalen */
-@media (max-width:640px){
-  .ms-trigger {
-    width: 100%;       /* allemaal even breed in 1 kolom */
-  }
-}
-
-
-/* Footer onder filters – gecentreerd */
+/* Footer onder filters */
 .filters-footer{
   width:100%;
-  display:flex;flex-wrap:wrap;gap:12px;
-  justify-content:center;align-items:center;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  justify-content:center;
+  align-items:center;
   margin-top:10px;
 }
 .search-wrap{display:flex;align-items:center;gap:10px}
 
 /* Minimalistische loep */
 .search-btn{
-  width:38px;height:38px;border:1px solid var(--ink);border-radius:50%;
-  background:transparent;display:flex;align-items:center;justify-content:center;
+  width:38px;height:38px;
+  border:1px solid var(--ink);
+  border-radius:50%;
+  background:transparent;
+  display:flex;align-items:center;justify-content:center;
   cursor:pointer;color:var(--ink)
 }
 .search-btn:hover{background:color-mix(in srgb, var(--green-olive) 10%, transparent)}
 
 .search-input{
-  display:none;width:260px;max-width:68vw;
-  padding:10px 12px;border:1px solid var(--ink);border-radius:999px;
-  font:15px/1.3 "IBM Plex Serif",serif;color:var(--ink);background:#fff
+  display:none;
+  width:260px;max-width:68vw;
+  padding:10px 12px;
+  border:1px solid var(--ink);
+  border-radius:999px;
+  font:15px/1.3 "IBM Plex Serif",serif;
+  color:var(--ink);
+  background:#fff;
 }
 .search-input.show{display:inline-block}
 
 .btn{
-  border:1px solid var(--ink);border-radius:9999px;background:transparent;
-  color:var(--ink);padding:10px 16px;cursor:pointer;
-  font:600 12px/1 "Space Grotesk",sans-serif;letter-spacing:.05em;text-transform:uppercase
+  border:1px solid var(--ink);
+  border-radius:9999px;
+  background:transparent;
+  color:var(--ink);
+  padding:10px 16px;
+  cursor:pointer;
+  font:600 12px/1 "Space Grotesk",sans-serif;
+  letter-spacing:.05em;
+  text-transform:uppercase;
 }
 .btn:hover{background:color-mix(in srgb, var(--green-olive) 10%, transparent)}
 
 /* Mobile: filters compacter */
 @media (max-width:640px){
   .controls{flex-direction:column;align-items:center;gap:10px}
-  .ms{min-width:auto;width:auto}
-  .ms-trigger{font-size:11px;padding:6px 10px}
+  .ms-trigger{width:100%;font-size:11px;padding:6px 10px}
   .filters-footer{flex-direction:column;gap:8px}
   .search-input{width:100%;max-width:90%}
   .btn{font-size:11px;padding:8px 12px}
@@ -123,21 +162,28 @@ p.muted{color:var(--ink);opacity:.75;font-size:15px;margin:0}
 @media(max-width:400px){.grid{column-count:1}}
 
 .card{
-  break-inside:avoid;display:block;margin:0 0 28px;
-  /* geen border/achtergrond */
-  color:inherit
+  break-inside:avoid;
+  display:block;
+  margin:0 0 28px;
+  color:inherit;
 }
 .card img{width:100%;display:block;border:none;border-radius:0}
 .card-title{padding:8px 0 0;text-align:center}
 .card-title .caps{
   font:700 13px/1.3 "Space Grotesk",sans-serif;
-  text-transform:uppercase;letter-spacing:.08em
+  text-transform:uppercase;
+  letter-spacing:.08em;
 }
 .card:hover .card-title .caps{ text-decoration: underline }
 
 /* ===== Empty state ===== */
 .empty{
-  display:none;text-align:center;padding:30px;color:var(--ink);
-  opacity:.7;border:1px dashed var(--ink);border-radius:var(--radius)
+  display:none;
+  text-align:center;
+  padding:30px;
+  color:var(--ink);
+  opacity:.7;
+  border:1px dashed var(--ink);
+  border-radius:var(--radius);
 }
 .empty.show{display:block}
