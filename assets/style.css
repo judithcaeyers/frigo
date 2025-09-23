@@ -60,6 +60,20 @@ p.muted{color:var(--ink);opacity:.75;font-size:15px;margin:0}
 .ms-option{padding:6px 4px;cursor:pointer}
 .ms-option:hover{background:color-mix(in srgb, var(--green-olive) 10%, transparent)}
 
+/* Zorg dat alle filter-knoppen even groot zijn */
+.ms-trigger {
+  width: 220px;        /* breedte gelijk voor allemaal */
+  justify-content: space-between;
+}
+
+/* Op mobiel: laat ze gewoon meeschalen */
+@media (max-width:640px){
+  .ms-trigger {
+    width: 100%;       /* allemaal even breed in 1 kolom */
+  }
+}
+
+
 /* Footer onder filters – gecentreerd */
 .filters-footer{
   width:100%;
