@@ -1,9 +1,9 @@
 :root{
   /* Palet */
-  --green-dark:   #1B370A;   /* donkergroen */
-  --green-olive:  #938826;   /* olijfgroen / mosterd */
+  --green-dark:   #79853b;   /* donkergroen */
+  --green-olive:  #072116;   /* olijfgroen / mosterd */
   --yellow-badge: #FFF691;   /* zonnig geel voor badges */
-  --cream:        #FFFBCE;   /* crème voor body */
+  --cream:        #f1f4e1;   /* crème voor body */
 
   /* Thema */
   --bg:   var(--cream);
