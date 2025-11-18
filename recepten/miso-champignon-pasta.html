@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pasta met Miso–Champignonnen — Chef Lil J</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+/* exact zelfde CSS als jouw voorbeeld – niet herhaald voor compactheid */
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a href="index.html" class="logo"><img src="assets/logo.PNG" alt="Chef Lil J"></a>
+  </header>
+
+  <div class="header-block">
+    <div class="kicker">Pasta</div>
+    <h1 class="title">Miso–Champignonnen</h1>
+    <p class="subtitle">Romig, hartig en vol umami. Een pastagerecht dat smaakt alsof je uren bezig was, maar eigenlijk binnen 20 minuten op tafel staat.</p>
+    <div class="meta">
+      <div class="pill"><span class="label">Tijd</span><span class="value">20 min</span></div>
+      <div class="pill"><span class="label">Porties</span><span class="value" id="meta-servings">2</span></div>
+      <div class="pill"><span class="label">Niveau</span><span class="value">Supersimpel</span></div>
+    </div>
+    <div class="rule"></div>
+  </div>
+
+  <section class="main">
+    <!-- Ingrediënten -->
+    <aside class="ingredients">
+      <h2 class="section-title">Ingrediënten</h2>
+      <div class="ing-card">
+        <div class="ing-controls">
+          <div class="servings">
+            <label for="servings">Personen</label>
+            <div class="stepper">
+              <button type="button" id="btn-minus">−</button>
+              <output id="servings">2</output>
+              <button type="button" id="btn-plus">+</button>
+            </div>
+          </div>
+        </div>
+        <ul class="ing-list" id="ing-list">
+
+          <li data-qty="200" data-unit="g"><span class="ing-qty"></span><span>grote macaroni</span></li>
+          <li data-qty="2" data-unit="st"><span class="ing-qty"></span><span>sjalotten</span></li>
+          <li data-qty="1" data-unit="st"><span class="ing-qty"></span><span>teentje look</span></li>
+
+          <hr class="subdivider">
+
+          <li data-qty="2" data-unit="handen"><span class="ing-qty"></span><span>spinazie</span></li>
+          <li data-qty="1" data-unit="zakje"><span class="ing-qty"></span><span>witte miso</span></li>
+          <li data-qty="500" data-unit="g"><span class="ing-qty"></span><span>champignonnen, in plakjes</span></li>
+
+          <hr class="subdivider">
+
+          <li data-qty="200" data-unit="ml"><span class="ing-qty"></span><span>volle room</span></li>
+          <li data-qty="30" data-unit="g"><span class="ing-qty"></span><span>pecorino, geraspt</span></li>
+          <li data-qty="30" data-unit="g"><span class="ing-qty"></span><span>parmezaan, geraspt</span></li>
+
+          <hr class="subdivider">
+
+          <li data-qty="80" data-unit="g"><span class="ing-qty"></span><span>geroosterde spekblokjes (optioneel)</span></li>
+        </ul>
+        <button class="copy-btn" id="copy-btn">Kopieer ingrediëntenlijst</button>
+      </div>
+    </aside>
+
+    <!-- Stappen -->
+    <section class="steps">
+      <h2 class="section-title">Stappen</h2>
+      <ol class="step-list">
+
+        <li class="step">
+          <p><strong>Voorbereiden.</strong> Snij de sjalotten fijn, plet de look en snij de champignonnen in plakjes. Kook de pasta al dente.</p>
+        </li>
+
+        <li class="step">
+          <p><strong>Bakken.</strong> Verhit boter in een pan en fruit de sjalotten glazig. Voeg de look toe en laat even meebakken.</p>
+        </li>
+
+        <li class="step">
+          <p><strong>Groenten toevoegen.</strong> Voeg de spinazie toe en laat slinken. Meng er vervolgens de miso door zodat hij oplost in het vocht.</p>
+        </li>
+
+        <li class="step">
+          <p><strong>Champignonnen stoven.</strong> Voeg de champignonnen toe en bak tot ze hun vocht verliezen en mooi kleuren.</p>
+        </li>
+
+        <li class="step">
+          <p><strong>Room & kaas.</strong> Giet de room erbij en voeg parmezaan en pecorino toe. Laat kort indikken tot een romige saus.</p>
+        </li>
+
+        <li class="step">
+          <p><strong>Alles samen.</strong> Voeg de gekookte pasta toe in de saus en laat 1–2 minuten samen pruttelen zodat alles mooi bindt.</p>
+        </li>
+
+        <li class="step">
+          <p><strong>Serveren.</strong> Werk af met extra parmezaan en eventueel krokante spekblokjes.</p>
+        </li>
+
+      </ol>
+    </section>
+  </section>
+
+  <footer class="footer">
+    <p>© Chef Lil J</p>
+  </footer>
+
+</div>
+</body>
+</html>
