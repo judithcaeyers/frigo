@@ -1,18 +1,19 @@
 :root{
-  /* Palet */
-  --color-accent:   #fe5315;   /* oranje accent */
-  --color-ink:      #261416;   /* donkere tekstkleur */
-  --color-bg:       #fdf0e6;   /* crème achtergrond */
-  --color-surface:  #fff7f0;   /* lichte surface */
+  /* Nieuw minimalistisch palet */
+  --color-bg:       #ffffff;   /* wit */
+  --color-surface:  #fafafa;   /* zachte lichtgrijs */
+  --color-ink:      #000000;   /* zwart */
+  --color-accent:   #ff8a3d;   /* warm oranje */
 
-  /* Thema (aliases) */
+  /* Thema alias */
   --bg:   var(--color-bg);
   --ink:  var(--color-ink);
-  --hair: color-mix(in srgb, var(--color-ink) 25%, transparent);
+  --hair: color-mix(in srgb, var(--color-ink) 20%, transparent);
 
   --radius: 14px;
   --maxw: 1100px;
 }
+
 
 /* ===== Base ===== */
 * {
@@ -113,7 +114,7 @@ p.muted {
   padding: 8px;
   z-index: 30;
 
-  display: flex;
+  
   flex-direction: column;
   align-items: flex-start;
 }
