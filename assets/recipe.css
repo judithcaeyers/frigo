@@ -1,204 +1,197 @@
-/* =========================================
-   Receptpagina – strakkere typografie & layout
-   ========================================= */
-
 :root{
-  /* optioneel: subtielere schaduw voor heel de pagina */
-  --card-shadow: 0 1px 10px rgba(0,0,0,.04);
+  --maxw: 860px;
+  --gutter: 24px;
+
+  /* Palet */
+  --color-bg:       #ffffff;
+  --color-surface:  #fafafa;
+  --color-ink:      #000000;
+  --color-accent:   #ff8a3d;
+
+  --bg:   var(--color-bg);
+  --ink:  var(--color-ink);
+  --hair: color-mix(in srgb, var(--color-ink) 18%, transparent);
 }
 
-/* Pagina wrapper */
-.recipe{
-  max-width: var(--maxw);
-  margin: 0 auto 64px;
-  padding: 0 var(--space);
+/* Base */
+*{ box-sizing:border-box }
+html,body{ margin:0; padding:0 }
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font:16px/1.7 "IBM Plex Serif", serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{ color:inherit; text-decoration:none }
+.container{ max-width:var(--maxw); margin:0 auto; padding:28px var(--gutter) 64px }
+
+/* Header */
+header{text-align:center; margin-bottom:12px}
+.logo img{ height:60px; width:auto; display:block; margin:0 auto }
+
+/* Titelblok */
+.header-block{text-align:center; padding:4px 0 20px}
+.kicker{
+  font:700 12px/1 "Space Grotesk", sans-serif;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  opacity:.7;
+  margin-bottom:12px;
+}
+.title{
+  font:700 clamp(32px,6vw,64px)/1.04 "Space Grotesk", sans-serif;
+  letter-spacing:.015em;
+  text-transform:uppercase;
+  margin:0 0 8px;
+}
+.subtitle{
+  max-width:42ch;
+  margin:0 auto 18px;
+  opacity:.85;
+}
+.rule{
+  height:1px;
+  background:var(--hair);
+  margin:14px 0 20px;
 }
 
-/* Hero – illustratie compact, gecentreerd */
-.hero{
-  margin: 0 0 24px;
-  text-align: center;
+/* Meta pillen */
+.meta{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+  padding:4px 0 16px;
 }
-.hero img{
-  display: inline-block;
-  max-width: 420px;
-  width: 100%;
-  height: auto;
+.pill{
+  display:flex;
+  gap:6px;
+  align-items:baseline;
+  padding:4px 12px;
+  background:var(--color-surface);
+  border:1px solid var(--ink);
+  border-radius:9999px;
 }
-.hero figcaption{
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 8px;
+.pill .label{
+  font:700 10px/1 "Space Grotesk", sans-serif;
+  text-transform:uppercase;
+  opacity:.7;
+}
+.pill .value{
+  font-size:13px;
 }
 
 /* Layout */
-.layout{
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 28px;
+.main{
+  display:grid;
+  grid-template-columns:2fr 3fr;
+  gap:56px;
+  margin-top:16px;
 }
-@media (max-width: 900px){
-  .layout{ grid-template-columns: 1fr; gap: 24px; }
-}
-
-/* Kaart-basis (alleen gebruiken waar echt nodig) */
-.card{
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 0;
-  padding: 16px;
-  box-shadow: var(--card-shadow);
+@media(max-width:900px){
+  .main{ grid-template-columns:1fr; gap:28px }
 }
 
-/* -----------------------------------------
-   Kopstijlen (uniform voor secties)
-   ----------------------------------------- */
-.caps{ font-family:"Roboto", sans-serif; letter-spacing:.06em; text-transform:uppercase; }
-
-h2.caps{
-  font-size: 16px;          /* zelfde voor Ingrediënten & Stappen */
-  line-height: 1.2;
-  font-weight: 700;
-  margin: 0 0 12px;
+.section-title{
+  font:700 13px/1 "Space Grotesk", sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  margin:0 0 14px;
 }
 
-/* =========================================
-   Ingrediëntenkaart – citroengeel accent
-   ========================================= */
-.ingredients{
-  background: #fff9b0;   /* citroengeel */
-  border: none;
-  border-radius: 0;
-  padding: 16px 18px;
-  box-shadow: none;      /* vlak i.p.v. zwevend */
+/* Ingredients card */
+.ing-card{
+  padding:24px 22px 26px;
+  background:var(--color-surface);
+  border:1px solid var(--hair);
 }
 
-#ing-title{ margin-bottom: 10px; }
+.ing-controls{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
 
-.servings-ctrl{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+.servings label{
+  font:700 11px/1 "Space Grotesk",sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
 }
-.servings-btn{
-  width: 32px; height: 32px;
-  border: 1px solid var(--line);
-  background: #fff;
-  border-radius: 0;
-  cursor: pointer;
-}
-.servings-btn:hover{ background:#f9f9f9; }
-#servingsInput{
-  width: 56px; height: 32px;
-  border: 1px solid var(--line);
-  border-radius: 0;
-  padding: 0 8px;
-  font: inherit; text-align: center; background:#fff;
-}
-.servings-label{ color: var(--muted); font-size: 13px; }
 
-/* Ingrediëntenlijst – strak ritme */
-.ing-list{
-  list-style: none;
-  margin: 12px 0 4px;
-  padding: 0;
+.stepper{
+  display:inline-flex;
+  gap:8px;
+  border:1px solid var(--ink);
+  border-radius:9999px;
+  padding:2px 6px;
 }
+.stepper button{
+  font:700 16px/1 "Space Grotesk",sans-serif;
+  width:28px; height:28px;
+  border:0; background:transparent;
+  border-radius:50%;
+  cursor:pointer;
+}
+.stepper button:hover{
+  background:color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+
+.ing-list{ list-style:none; margin:0; padding:0 }
 .ing-list li{
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  padding: 6px 0;
-  border-bottom: none; /* geen lijnen standaard */
+  display:grid;
+  grid-template-columns:90px 1fr;
+  gap:10px;
+  padding:6px 0;
+}
+.subdivider{
+  border:0;
+  border-top:1px solid var(--hair);
+  margin:12px 0;
+}
+.ing-qty{ font-weight:700 }
+
+.copy-btn{
+  margin-top:20px;
+  width:100%;
+  padding:14px 18px;
+  background:transparent;
+  border:1px solid var(--ink);
+  border-radius:9999px;
+  text-transform:uppercase;
+  font:700 13px/1 "Space Grotesk",sans-serif;
+  cursor:pointer;
+}
+.copy-btn:hover{
+  background:color-mix(in srgb, var(--color-accent) 15%, transparent);
 }
 
-/* sectiekoppen (optioneel) */
-.ing-section{
-  font-weight: 600;
-  margin-top: 12px;
-  padding-top: 8px;
-  border-top: 1px solid var(--line); /* dunne volle lijn */
+/* Steps */
+.step-list{ list-style:none; margin:0; padding:0; counter-reset:step }
+.step{
+  counter-increment:step;
+  display:grid;
+  grid-template-columns:40px 1fr;
+  gap:12px;
+  padding:12px 0 14px;
+  border-bottom:1px solid var(--hair);
 }
-
-.ing-list li:last-child{ border-bottom: none; }
-
-.ing-qty{
-  font-variant-numeric: tabular-nums;
-  min-width: 86px;            /* iets ruimer voor rust */
-  display: inline-block;
+.step:first-child{ border-top:1px solid var(--hair) }
+.step::before{
+  content:counter(step);
+  font:700 20px/1 "Space Grotesk",sans-serif;
 }
-.ing-name{ flex: 1; }
-.ing-optional{ color: var(--muted); font-size: 12.5px; margin-left: 6px; }
+.step p{ margin:0 }
 
-.note{ margin-top: 10px; color: var(--muted); font-size: 14px; }
-
-/* =========================================
-   Stappen – clean, zonder kaders
-   ========================================= */
-.steps{
-  padding: 0;
-  border: none;
-  background: transparent;
-  box-shadow: none;
+/* Footer */
+.footer{
+  margin-top:50px;
+  text-align:center;
+  font-size:14px;
+  opacity:.9;
 }
-.steps h2{ /* h2.caps al gedefinieerd */ }
-.step-list{
-  margin: 0;
-  padding-left: 20px;  /* nette nummering */
+.footer a{
+  border-bottom:1px solid rgba(0,0,0,.35);
 }
-.step-list li{
-  margin: 10px 0;
-  line-height: 1.65;
-}
-
-/* Stappenlijst */
-.step-list{
-  margin: 0;
-  padding-right: 28px;       /* extra ruimte voor nummer */
-}
-
-.step-list li{
-  margin: 10px 0;
-  line-height: 1.65;
-}
-
-/* Kleur de cijfers (markers) */
-.step-list li::marker {
-  color: #213810;           /* donkergroen uit je project */
-  font-weight: 600;
-}
-
-
-/* =========================================
-   Aanraders – eenvoudige grid (geen masonry)
-   ========================================= */
-.more{ margin-top: 36px; }
-.more h2{ margin-bottom: 12px; }
-
-.more-cards{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 16px;
-}
-@media (max-width: 1000px){ .more-cards{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
-@media (max-width: 600px){  .more-cards{ grid-template-columns: 1fr; } }
-
-.more-cards .card{
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-  background: transparent;
-}
-.more-cards .card img{
-  display:block; width:100%; height:auto; border-radius:0;
-}
-.more-cards .card-title{ padding: 8px 0 0; text-align:left; }
-.more-cards .card-title .caps{ font-size:14px; font-weight:500; }
-
-/* Terugknop */
-.backbar{
-  display:flex; justify-content:center; margin-top: 28px;
+.footer a:hover{
+  border-bottom-color:var(--color-accent);
 }
