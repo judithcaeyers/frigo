@@ -1,75 +1,57 @@
-// ===== Helpers voor hoeveelheden schalen =====
-const servingsInput = document.getElementById('servingsInput');
-const ingList = document.getElementById('ingList');
+// Basisporties (pas je niet aan per recept)
+const baseServings = 2;
 
-// Format getal -> mooie string (1/2, 1/4, … waar zinvol)
-function formatQty(n){
-  if (!isFinite(n)) return '';
-  // afronden op kwartjes
-  const rounded = Math.round(n * 4) / 4;
-  const whole = Math.floor(rounded);
-  const frac = rounded - whole;
+// Elements
+const listEl = document.getElementById("ing-list");
+const servingsOut = document.getElementById("servings");
+const metaServings = document.getElementById("meta-servings");
 
-  const map = { 0: '', 0.25: '¼', 0.5: '½', 0.75: '¾' };
-  const fracStr = map[frac] ?? '';
-  if (whole === 0 && fracStr) return fracStr;
-  if (fracStr) return `${whole}${fracStr}`;
-  return String(rounded % 1 === 0 ? rounded : rounded.toFixed(2));
+function formatQty(q, unit){
+  const rounded = Math.round(q * 10) / 10;
+  const str = Number.isInteger(rounded) ? rounded : rounded.toString().replace(".", ",");
+  return unit ? `${str} ${unit}` : str;
 }
 
-function renderIngredients(){
-  const persons = Math.max(1, parseInt(servingsInput.value || '2', 10));
-  // bouw (of update) de zichtbare qty spans
-  ingList.querySelectorAll('li').forEach(li => {
-    const base = parseFloat(li.dataset.qty || '0');      // basis per 1 persoon
-    const unit = (li.dataset.unit || '').trim();         // bijv. g, el, tl
-    const optional = li.dataset.optional === 'true';
-
-    // maak wrappers indien nog niet aanwezig
-    if (!li.querySelector('.ing-qty')) {
-      const qtySpan = document.createElement('span');
-      qtySpan.className = 'ing-qty';
-      li.prepend(qtySpan);
-
-      const nameSpan = document.createElement('span');
-      nameSpan.className = 'ing-name';
-      nameSpan.textContent = li.textContent.trim();
-      // leeg li en rebuild
-      li.textContent = '';
-      li.append(qtySpan, nameSpan);
-      if (optional) {
-        const opt = document.createElement('span');
-        opt.className = 'ing-optional';
-        opt.textContent = '(optioneel)';
-        li.append(opt);
-      }
-    }
-
-    const qtySpan = li.querySelector('.ing-qty');
-
-    // schaal
-    const scaled = base * persons;
-    const out = base === 0 ? '' : `${formatQty(scaled)} ${unit}`.trim();
-
-    qtySpan.textContent = out;
+function renderQuantities(servings){
+  [...listEl.querySelectorAll("li[data-qty]")].forEach(li => {
+    const base = parseFloat(li.dataset.qty);
+    const unit = li.dataset.unit || "";
+    const scaled = base * (servings / baseServings);
+    li.querySelector(".ing-qty").textContent = formatQty(scaled, unit);
   });
 }
 
-function adjustServings(delta){
-  const current = Math.max(1, parseInt(servingsInput.value || '2', 10));
-  const next = Math.max(1, current + delta);
-  servingsInput.value = next;
-  renderIngredients();
+async function copyList(){
+  const lines = [...listEl.querySelectorAll("li[data-qty]")].map(li => {
+    const qty = li.querySelector(".ing-qty").textContent;
+    const name = li.querySelector("span:last-child").textContent.trim();
+    return `${qty} ${name}`;
+  });
+  await navigator.clipboard.writeText(lines.join("\n"));
+
+  const btn = document.getElementById("copy-btn");
+  const old = btn.textContent;
+  btn.textContent = "Gekopieerd!";
+  setTimeout(() => btn.textContent = old, 1500);
+}
+
+let currentServings = baseServings;
+
+function updateServings(n){
+  currentServings = Math.max(1, n);
+  servingsOut.textContent = currentServings;
+  metaServings.textContent = currentServings;
+  renderQuantities(currentServings);
 }
 
 // Event listeners
-document.querySelectorAll('.servings-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const action = btn.dataset.action;
-    adjustServings(action === 'inc' ? +1 : -1);
-  });
+document.getElementById("btn-minus").addEventListener("click", () => {
+  updateServings(currentServings - 1);
 });
-servingsInput.addEventListener('input', renderIngredients);
+document.getElementById("btn-plus").addEventListener("click", () => {
+  updateServings(currentServings + 1);
+});
+document.getElementById("copy-btn").addEventListener("click", copyList);
 
-// init
-renderIngredients();
+// Initial render
+renderQuantities(baseServings);
