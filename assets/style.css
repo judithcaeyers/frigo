@@ -1,9 +1,10 @@
 :root{
   /* Nieuw minimalistisch palet */
-  --color-bg:       #ffffff;   /* wit */
-  --color-surface:  #fafafa;   /* zachte lichtgrijs */
+  --color-bg:       #E6E4D8;   /* wit */
+  --color-surface:  #F5AB64;   /* zachte lichtoranje */
   --color-ink:      #000000;   /* zwart */
-  --color-accent:   #ff8a3d;   /* warm oranje */
+  --color-accent:   #C54B12;   /* warm oranje */
+  
 
   /* Thema alias */
   --bg:   var(--color-bg);
