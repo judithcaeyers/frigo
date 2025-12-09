@@ -1,9 +1,9 @@
 :root{
   /* Nieuw minimalistisch palet */
   --color-bg:       #f7f6f4;   /* wit */
-  --color-surface:  #fe5315;   /* zachte lichtoranje */
-  --color-ink:      #d0392e;   /* zwart */
-  --color-accent:   #2d4240;   /* warm oranje */
+  --color-surface:  #fe5315;   /* oranje */
+  --color-ink:      #d0392e;   /* rood */
+  --color-accent:   #2d4240;   /* donkergroen */
   
 
   /* Thema alias */
@@ -68,6 +68,37 @@ p.muted {
   font-size: 15px;
   margin: 0;
 }
+
+/* Body in strak sans-serif */
+body {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* Alle titels in Reenie Beanie */
+h1, h2, h3, h4, h5, h6,
+.card-title {
+  font-family: "Reenie Beanie", cursive !important;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Alleen H1 in ALL CAPS */
+h1 {
+  text-transform: uppercase;
+}
+
+/* Alle andere titels NIET in caps */
+.card-title,
+h2, h3, h4, h5, h6 {
+  text-transform: none !important;
+}
+
+/* Optioneel: .caps niet meer gebruiken voor titels */
+.caps {
+  text-transform: none;
+}
+
+
 
 /* ===== Controls (filters) ===== */
 .controls {
