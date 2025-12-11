@@ -1,1 +1,95 @@
+:root {
+  /* Palet (centraal) */
+  --color-bg:       #f7f6f4;   /* wit */
+  --color-surface:  #fe5315;   /* oranje */
+  --color-ink:      #d0392e;   /* rood */
+  --color-accent:   #2d4240;   /* donkergroen */
+
+  /* Thema alias */
+  --bg:   var(--color-bg);
+  --ink:  var(--color-ink);
+  --hair: color-mix(in srgb, var(--color-ink) 20%, transparent);
+
+  --radius: 14px;
+  --maxw: 1100px;
+}
+
+/* ===== Base reset ===== */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.6 "Space Grotesk", sans-serif; /* strak sans-serif overal */
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===== Header (algemeen) ===== */
+header {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  text-align: center;
+  padding: 28px 18px 20px;
+}
+
+.logo img {
+  height: 64px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+h1.caps {
+  font: 700 clamp(28px, 6vw, 46px)/1.05 "Space Grotesk", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 16px 0 6px;
+  color: var(--ink);
+}
+
+p.muted {
+  color: var(--ink);
+  opacity: 0.75;
+  font-size: 15px;
+  margin: 0;
+}
+
+/* ===== Typografie ===== */
+
+/* Alle titels in Reenie Beanie */
+h1, h2, h3, h4, h5, h6,
+.card-title {
+  font-family: "Reenie Beanie", cursive !important;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Alleen H1 in ALL CAPS */
+h1 {
+  text-transform: uppercase;
+}
+
+/* Andere titels NIET in caps */
+.card-title,
+h2, h3, h4, h5, h6 {
+  text-transform: none !important;
+}
+
+/* Utility: .caps niet meer voor titels */
+.caps {
+  text-transform: none;
+}
 
