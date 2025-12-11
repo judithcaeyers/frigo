@@ -205,7 +205,7 @@ header {
 }
 
 .step:first-child {
-  border-top: 1px solid var(--hair);
+  border-top: 2px solid var(--hair);
 }
 
 .step::before {
