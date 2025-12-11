@@ -70,7 +70,7 @@ header {
   gap: 6px;
   align-items: baseline;
   padding: 4px 12px;
-  background: var(--color-surface);
+  background: var(--bg);
   border: 1px solid var(--ink);
   border-radius: 9999px;
 }
@@ -110,7 +110,7 @@ header {
 /* Ingredients card */
 .ing-card {
   padding: 24px 22px 26px;
-  background: var(--color-surface);
+  background: var(--bg);
   border: 1px solid var(--hair);
 }
 
