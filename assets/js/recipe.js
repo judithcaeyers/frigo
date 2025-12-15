@@ -189,3 +189,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderRecipe(recipe);
 });
+
+function renderMoreRecipes(currentRecipe) {
+  const container = document.getElementById("more-grid");
+  if (!container) return;
+
+  // simpele score: gedeelde sfeer + gedeelde ingrediënten
+  function score(a, b) {
+    let s = 0;
+
+    if (a.sfeer && b.sfeer) {
+      s += a.sfeer.filter(x => b.sfeer.includes(x)).length * 2;
+    }
+
+    if (a.ingredientsFilter && b.ingredientsFilter) {
+      s += a.ingredientsFilter.filter(x =>
+        b.ingredientsFilter.includes(x)
+      ).length;
+    }
+
+    return s;
+  }
+
+  const suggestions = RECIPES
+    .filter(r => r.slug !== currentRecipe.slug)
+    .map(r => ({ recipe: r, score: score(currentRecipe, r) }))
+    .filter(x => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4)
+    .map(x => x.recipe);
+
+  container.innerHTML = "";
+
+  suggestions.forEach(r => {
+    const a = document.createElement("a");
+    a.className = "more-card";
+    a.href = `recept.html?slug=${r.slug}`;
+
+    const img = document.createElement("img");
+    img.src = `../${r.image}`;
+    img.alt = r.title;
+
+    const title = document.createElement("div");
+    title.className = "more-card-title";
+    title.textContent = r.title;
+
+    a.appendChild(img);
+    a.appendChild(title);
+    container.appendChild(a);
+  });
+}
