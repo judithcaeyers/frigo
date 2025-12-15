@@ -139,6 +139,76 @@ window.RECIPES = [
       "Meng miso met room en voeg toe.",
       "Meng de pasta door de saus en serveer."
     ]
-  }
+  },
+
+  {
+  slug: "pizza-basisdeeg",
+  kicker: "Pizza",
+  title: "Pizza (luchtig basisdeeg)",
+  description: "Eenvoudig pizzadeeg met veel smaak. Door het deeg regelmatig te overplooien ontstaat een extra luchtige textuur.",
+  time: "± 15 min bakken",
+  prep: 15,
+  servings: 3,
+  level: "Basis",
+  sfeer: ["comfort", "feest"],
+  dieet: ["vegetarisch"],
+  ingredientsFilter: ["bloem","gist","olijfolie","honing","zout"],
+  image: "assets/images/pizza-basisdeeg.PNG",
+  ingredients: [
+    { qty: 500, unit: "g", label: "bloem" },
+    { qty: 300, unit: "ml", label: "lauwwarm water" },
+    { qty: 7, unit: "g", label: "droge gist" },
+    { qty: 12, unit: "g", label: "zout" },
+    { qty: 10, unit: "g", label: "olijfolie" },
+    { qty: 10, unit: "g", label: "honing" }
+  ],
+  steps: [
+    "Meng alle ingrediënten tot een samenhangend deeg. Het deeg mag wat plakkerig zijn.",
+    "Laat het deeg rusten en plooi het elke 30 minuten even over zichzelf om gluten op te bouwen.",
+    "Verwarm de oven voor op 275 °C (of zo heet mogelijk).",
+    "Vorm pizza’s en beleg naar smaak.",
+    "Bak ongeveer 15 minuten en hou goed in de gaten: baktijd hangt sterk af van je oven."
+  ]
+},
+
+  {
+  slug: "courgette-habanero-look",
+  kicker: "Groenten",
+  title: "Courgette–Habanero–Look",
+  description: "Zachte, langzaam geroosterde courgette met een warme, huisgemaakte chili–knoflookolie. Intens, sticky en perfect als bijgerecht of topping.",
+  time: "70 min",
+  prep: 70,
+  servings: 4,
+  level: "Supersimpel",
+  sfeer: ["spicy", "comfort"],
+  dieet: ["vegan"],
+  ingredientsFilter: ["courgette","habanero","look","olijfolie","zout"],
+  image: "assets/images/courgette-habanero-look.PNG",
+
+  ingredients: [
+    { qty: 300, unit: "ml", label: "olijfolie" },
+    { qty: 3, unit: "st", label: "teentjes look" },
+    { qty: 2, unit: "st", label: "habanero’s" },
+
+    { type: "divider" },
+
+    { qty: 3, unit: "st", label: "courgettes" },
+    { qty: 1, unit: "snuf", label: "grof zout" }
+  ],
+
+  steps: [
+    "Maak de chili–knoflookolie. Maak de teentjes look schoon en snijd grof. Halveer de habanero’s en voeg samen met de look toe aan een kookpotje. Voeg de olijfolie toe en verwarm 20–25 minuten op een laag vuur. Laat niet frituren, enkel zacht trekken.",
+    "Snijd de courgettes in plakken van ongeveer 3–5 mm dik.",
+    "Vet een ovenschaal in met de chili–knoflookolie en strooi er een snuf grof zout over.",
+    "Leg de courgetteplakken in de ovenschaal en bak in een voorverwarmde oven op 180 °C. Draai ze om na 15–20 minuten en bak nog ongeveer 45 minuten tot ze goudbruin en zacht zijn."
+  ]
+}
+
+
+
+
+
+  
 ];
+
 
