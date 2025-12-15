@@ -17,7 +17,9 @@
 </head>
 <body>
   <header>
-    <div class="logo"><img src="assets/logo.PNG" alt="Chef Lil J logo" width="64" height="64" decoding="async"></div>
+    <div class="logo">
+      <img src="assets/logo.PNG" alt="Chef Lil J logo" width="64" height="64" decoding="async">
+    </div>
     <h1 class="caps">Mijn recepten</h1>
     <p class="muted">Filter of zoek door de recepten</p>
   </header>
@@ -97,135 +99,14 @@
     </div>
   </section>
 
-  <!-- Recepten grid -->
+  <!-- Recepten grid (wordt gevuld door JS) -->
   <section class="grid-wrap">
     <div id="emptyState" class="empty">Geen recepten gevonden. Pas je filters aan of wis de zoekopdracht.</div>
-    <div id="grid" class="grid" aria-live="polite">
-
-      <!-- Komkommer–edamame salade -->
-      <a class="card" href="recepten/komkommer-edamame.html"
-         data-ingredients='["komkommer","edamame","koriander","pinda","ui","chili","soyasaus"]'
-         data-sfeer="fris"
-         data-dieet="vegan"
-         data-prep="15"
-         data-title="Komkommer–edamame salade">
-        <img src="assets/images/komkommer-edamame.PNG"
-             alt="Komkommer–edamame salade met koriander, pinda’s en sojasaus">
-        <div class="card-title"><div class="caps">Komkommer–edamame salade</div></div>
-      </a>
-
-      <!-- Pasta ragù -->
-      <a class="card" href="recepten/pasta-ragu.html"
-         data-ingredients='["pasta","rundsvlees","tomaat","ui","look","wortel","selder","parmezaan"]'
-         data-sfeer="comfort"
-         data-dieet="omnivoor"
-         data-prep="120"
-         data-title="Pasta ragù">
-        <img src="assets/images/pasta-ragu.PNG"
-             alt="Pasta met langzaam gegaarde ragù en Parmezaan">
-        <div class="card-title"><div class="caps">Pasta ragù</div></div>
-      </a>
-
-      <!-- Pitta kip met pindasaus -->
-      <a class="card" href="recepten/pitta-kip-pindasaus.html"
-         data-ingredients='["pitta","kip","pinda","komkommer","ui","limoen","look","sriracha","soyasaus","yoghurt"]'
-         data-sfeer="weeknight"
-         data-dieet="omnivoor"
-         data-prep="30"
-         data-title="Pitta kip met pindasaus">
-        <img src="assets/images/pitta-kip-pindasaus.PNG"
-             alt="Pitta gevuld met kip, frisse groenten en romige pindasaus">
-        <div class="card-title"><div class="caps">Pitta kip met pindasaus</div></div>
-      </a>
-
-      <!-- Tomaat–perzik salade -->
-      <a class="card" href="recepten/tomaat-perzik.html"
-         data-ingredients='["tomaat","perzik","basilicum","olijfolie","ui"]'
-         data-sfeer="fris"
-         data-dieet="vegetarisch"
-         data-prep="15"
-         data-title="Tomaat–perzik salade">
-        <img src="assets/images/tomaat-perzik.PNG"
-             alt="Frisse salade van tomaat en perzik met basilicum">
-        <div class="card-title"><div class="caps">Tomaat–perzik salade</div></div>
-      </a>
-
-      <!-- Courgette–habanero–look -->
-      <a class="card" href="recepten/courgette-habanero-look.html"
-         data-ingredients='["courgette","habanero","look","olijfolie","citroen"]'
-         data-sfeer="spicy"
-         data-dieet="vegan"
-         data-prep="25"
-         data-title="Courgette–habanero–look">
-        <img src="assets/images/courgette-habanero-look.PNG"
-             alt="Courgette met pittige habanero en look">
-        <div class="card-title"><div class="caps">Courgette–habanero–look</div></div>
-      </a>
-
-      <!-- Miso–champignon pasta -->
-      <a class="card" href="recepten/miso-champignon-pasta.html"
-         data-ingredients='["pasta","champignon","miso","look","olijfolie","soyasaus","room"]'
-         data-sfeer="comfort"
-         data-dieet="vegetarisch"
-         data-prep="25"
-         data-title="Miso–champignon pasta">
-        <img src="assets/images/miso-champignon-pasta.PNG"
-             alt="Romige pasta met miso en champignons">
-        <div class="card-title"><div class="caps">Miso–champignon pasta</div></div>
-      </a>
-
-      <!-- Rode biet tonato -->
-      <a class="card" href="recepten/rode-biet-tonato.html"
-         data-ingredients='["rode biet","tonijn","mayonaise","kappertjes","citroen","olijfolie"]'
-         data-sfeer="feest"
-         data-dieet="pescetarisch"
-         data-prep="20"
-         data-title="Rode biet tonato">
-        <img src="assets/images/bietello-tonato.PNG"
-             alt="Rode biet met romige tonato-saus en kappertjes">
-        <div class="card-title"><div class="caps">Rode biet tonato</div></div>
-      </a>
-
-      <!-- Scampi’s in kerstomaten–puntpaprikasaus -->
-      <a class="card" href="recepten/scampis-kerstomaten-puntpaprikasaus.html"
-         data-ingredients='["scampi","kerstomaten","puntpaprika","look","olijfolie","citroen"]'
-         data-sfeer="weeknight"
-         data-dieet="pescetarisch"
-         data-prep="30"
-         data-title="Scampi’s in kerstomaten–puntpaprikasaus">
-        <img src="assets/images/scampis-kerstomaten-puntpaprikasaus.PNG"
-             alt="Scampi's in saus van kerstomaten en gegrilde puntpaprika">
-        <div class="card-title"><div class="caps">Scampi’s in kerstomaten–puntpaprikasaus</div></div>
-      </a>
-
-      <!-- Bladerdeeg–limoen–rode vruchten -->
-      <a class="card" href="recepten/bladerdeeg-limoen-rode-vruchten.html"
-         data-ingredients='["bladerdeeg","limoen","roomkaas","suiker","rode vruchten","vanille"]'
-         data-sfeer="feest"
-         data-dieet="vegetarisch"
-         data-prep="30"
-         data-title="Bladerdeegtaartje met limoencheesecake & rode vruchten">
-        <img src="assets/images/bladerdeeg-limoen-rode-vruchten.PNG"
-             alt="Knapperig bladerdeegtaartje met frisse limoencheesecake en rode vruchten">
-        <div class="card-title"><div class="caps">Bladerdeegtaartje met limoencheesecake & rode vruchten</div></div>
-      </a>
-
-      <!-- Fillo–kokos–soya pastries -->
-      <a class="card" href="recepten/filo-soya-kokosmelk.html"
-         data-ingredients='["fillo","kokosmelk","soyasaus","look","limoen","chili"]'
-         data-sfeer="weeknight"
-         data-dieet="vegan"
-         data-prep="25"
-         data-title="Gevulde filopastries met kokosmelk & sojasaus">
-        <img src="assets/images/filo-soya-kokosmelk.PNG"
-             alt="Krokante filodeegrolletjes gevuld met kokosmelk, sojasaus en chili">
-        <div class="card-title"><div class="caps">Gevulde filopastries met kokosmelk & sojasaus</div></div>
-      </a>
-
-    </div>
+    <div id="grid" class="grid" aria-live="polite"></div>
   </section>
 
-  <!-- JS -->
-  <script src="assets/app.js"></script>
+  <!-- Data eerst, dan app.js -->
+  <script src="assets/data/recipes.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
