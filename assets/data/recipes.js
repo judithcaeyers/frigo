@@ -202,3 +202,5 @@ window.RECIPES = [
     ]
   }
 ];
+
+renderMoreRecipes(recipe);
