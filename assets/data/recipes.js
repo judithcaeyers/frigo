@@ -203,4 +203,3 @@ window.RECIPES = [
   }
 ];
 
-renderMoreRecipes(recipe);
