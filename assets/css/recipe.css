@@ -217,6 +217,53 @@ header {
   margin: 0;
 }
 
+/* =========================
+   Meer recepten (inverted)
+========================= */
+
+.more-recipes {
+  background: var(--ink);
+  color: var(--bg);
+  margin-top: 80px;
+}
+
+.more-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 56px 18px 64px;
+}
+
+.more-title {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 32px;
+  margin: 0 0 28px;
+}
+
+.more-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 24px;
+}
+
+.more-card {
+  display: block;
+  color: inherit;
+}
+
+.more-card img {
+  width: 100%;
+  display: block;
+  border-radius: 0;
+  filter: grayscale(100%) contrast(1.05);
+}
+
+.more-card-title {
+  margin-top: 8px;
+  text-align: center;
+  font-family: "Reenie Beanie", cursive;
+  font-size: 20px;
+}
+
 /* Footer */
 .footer {
   margin-top: 50px;
