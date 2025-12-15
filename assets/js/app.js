@@ -1,18 +1,23 @@
 // assets/js/app.js
-// Bouwt de receptenkaarten + filters + zoek op basis van window.RECIPES
+// Bouwt recepten-grid + filters op basis van window.RECIPES
 
 const gridEl = document.getElementById("grid");
 const emptyStateEl = document.getElementById("emptyState");
 
-/* -------------------------
+/* =========================
    Helpers
--------------------------- */
+========================= */
 
-function normalize(str) {
-  return (str || "")
+function normalize(str = "") {
+  return str
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
+}
+
+function getSelectedValues(id) {
+  const el = document.getElementById(id);
+  return el ? Array.from(el.selectedOptions).map(o => o.value) : [];
 }
 
 function matchesPrep(recipePrep, selectedPrep) {
@@ -20,55 +25,71 @@ function matchesPrep(recipePrep, selectedPrep) {
   return selectedPrep.some(max => recipePrep <= Number(max));
 }
 
-/* -------------------------
-   Filters ophalen
--------------------------- */
+/* =========================
+   Build ingredient filter
+========================= */
 
-function getSelectedValues(selectId) {
-  const select = document.getElementById(selectId);
-  return select ? Array.from(select.selectedOptions).map(o => o.value) : [];
+function buildIngredientOptions() {
+  const select = document.getElementById("f-ingredient");
+  if (!select) return;
+
+  const set = new Set();
+
+  RECIPES.forEach(recipe => {
+    (recipe.ingredientsFilter || []).forEach(i => {
+      if (i) set.add(i.trim());
+    });
+  });
+
+  const sorted = Array.from(set).sort((a, b) =>
+    a.localeCompare(b, "nl", { sensitivity: "base" })
+  );
+
+  select.innerHTML = "";
+  sorted.forEach(name => {
+    const opt = document.createElement("option");
+    opt.value = name;
+    opt.textContent = name;
+    select.appendChild(opt);
+  });
 }
 
-function getSearchValue() {
-  const input = document.getElementById("searchInput");
-  return input ? normalize(input.value.trim()) : "";
-}
-
-/* -------------------------
-   Recept matchen
--------------------------- */
+/* =========================
+   Filtering logic
+========================= */
 
 function recipeMatchesFilters(recipe) {
   const selIngredients = getSelectedValues("f-ingredient");
   const selSfeer = getSelectedValues("f-sfeer");
   const selDieet = getSelectedValues("f-dieet");
   const selPrep = getSelectedValues("f-prep");
-  const search = getSearchValue();
+  const search = normalize(
+    document.getElementById("searchInput")?.value || ""
+  );
 
-  // Ingrediënten
+  // Ingrediënten (AND)
   if (selIngredients.length) {
-    if (!recipe.ingredientsFilter) return false;
-    const recipeIngs = recipe.ingredientsFilter.map(normalize);
-    if (!selIngredients.every(i => recipeIngs.includes(normalize(i)))) {
+    const rIngs = (recipe.ingredientsFilter || []).map(normalize);
+    if (!selIngredients.every(i => rIngs.includes(normalize(i)))) {
       return false;
     }
   }
 
-  // Sfeer
+  // Sfeer (OR)
   if (selSfeer.length) {
     if (!recipe.sfeer || !selSfeer.some(s => recipe.sfeer.includes(s))) {
       return false;
     }
   }
 
-  // Dieet
+  // Dieet (OR)
   if (selDieet.length) {
     if (!recipe.dieet || !selDieet.some(d => recipe.dieet.includes(d))) {
       return false;
     }
   }
 
-  // Prep-tijd
+  // Prep tijd
   if (!matchesPrep(recipe.prep ?? Infinity, selPrep)) {
     return false;
   }
@@ -88,9 +109,9 @@ function recipeMatchesFilters(recipe) {
   return true;
 }
 
-/* -------------------------
-   Kaarten renderen
--------------------------- */
+/* =========================
+   Rendering
+========================= */
 
 function createCard(recipe) {
   const a = document.createElement("a");
@@ -126,17 +147,14 @@ function renderGrid() {
   }
 
   emptyStateEl.classList.remove("show");
-
-  matches.forEach(recipe => {
-    gridEl.appendChild(createCard(recipe));
-  });
+  matches.forEach(r => gridEl.appendChild(createCard(r)));
 }
 
-/* -------------------------
+/* =========================
    Events
--------------------------- */
+========================= */
 
-function bindFilters() {
+function bindEvents() {
   ["f-ingredient", "f-sfeer", "f-dieet", "f-prep"].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.addEventListener("change", renderGrid);
@@ -147,6 +165,14 @@ function bindFilters() {
     searchInput.addEventListener("input", renderGrid);
   }
 
+  const toggleBtn = document.getElementById("searchToggle");
+  if (toggleBtn && searchInput) {
+    toggleBtn.addEventListener("click", () => {
+      searchInput.classList.toggle("show");
+      if (searchInput.classList.contains("show")) searchInput.focus();
+    });
+  }
+
   const clearBtn = document.getElementById("clearFilters");
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
@@ -154,35 +180,23 @@ function bindFilters() {
         const el = document.getElementById(id);
         if (el) el.selectedIndex = -1;
       });
-
-      const input = document.getElementById("searchInput");
-      if (input) input.value = "";
-
+      if (searchInput) searchInput.value = "";
       renderGrid();
-    });
-  }
-
-  const toggleBtn = document.getElementById("searchToggle");
-  if (toggleBtn) {
-    toggleBtn.addEventListener("click", () => {
-      const input = document.getElementById("searchInput");
-      if (!input) return;
-      input.classList.toggle("show");
-      if (input.classList.contains("show")) input.focus();
     });
   }
 }
 
-/* -------------------------
+/* =========================
    Init
--------------------------- */
+========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
   if (!window.RECIPES || !Array.isArray(window.RECIPES)) {
-    console.error("RECIPES is niet geladen of geen array.");
+    console.error("RECIPES niet geladen.");
     return;
   }
 
-  bindFilters();
+  buildIngredientOptions();
+  bindEvents();
   renderGrid();
 });
