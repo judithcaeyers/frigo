@@ -1,209 +1,188 @@
-// ====== Elements ======
-const selects = {
-  ingredient: document.getElementById('f-ingredient'),
-  sfeer: document.getElementById('f-sfeer'),
-  dieet: document.getElementById('f-dieet'),
-  prep: document.getElementById('f-prep')
-};
-const grid = document.getElementById('grid');
-const cards = grid ? Array.from(grid.querySelectorAll('.card')) : [];
-const emptyState = document.getElementById('emptyState');
-const searchToggle = document.getElementById('searchToggle');
-const searchInput = document.getElementById('searchInput');
-const clearBtn = document.getElementById('clearFilters');
+// assets/js/app.js
+// Bouwt de receptenkaarten + filters + zoek op basis van window.RECIPES
 
-// ====== Custom Multiselect (enhance all <select.ms multiple>) ======
-function enhanceMultiSelect(selectEl, labelText){
-  // Wrapper
-  const wrap = document.createElement('div');
-  wrap.className = 'ms';
+const gridEl = document.getElementById("grid");
+const emptyStateEl = document.getElementById("emptyState");
 
-  // Trigger button
-  const trigger = document.createElement('button');
-  trigger.type = 'button';
-  trigger.className = 'ms-trigger';
-  const label = document.createElement('span');
-  label.className = 'ms-label';
-  label.textContent = labelText || selectEl.getAttribute('aria-label') || 'Kies...';
-  const chevron = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  chevron.setAttribute('viewBox','0 0 24 24');
-  chevron.setAttribute('class','ms-chevron');
-  chevron.innerHTML = '<path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>';
-  trigger.append(label, chevron);
+/* -------------------------
+   Helpers
+-------------------------- */
 
+function normalize(str) {
+  return (str || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
 
+function matchesPrep(recipePrep, selectedPrep) {
+  if (!selectedPrep.length) return true;
+  return selectedPrep.some(max => recipePrep <= Number(max));
+}
 
-  
-  // Panel
-  const panel = document.createElement('div');
-  panel.className = 'ms-panel';
-  Array.from(selectEl.options).forEach((opt, idx) => {
-    const row = document.createElement('label');
-    row.className = 'ms-option';
-    const cb = document.createElement('input');
-    cb.type = 'checkbox';
-    cb.value = opt.value;
-    cb.checked = opt.selected;
-    cb.setAttribute('data-index', idx.toString());
-    const txt = document.createElement('span');
-    txt.textContent = opt.textContent;
-    row.append(cb, txt);
-    panel.append(row);
+/* -------------------------
+   Filters ophalen
+-------------------------- */
 
-    cb.addEventListener('change', () => {
-      opt.selected = cb.checked;
-      updateLabel();
-      applyFilters(); // trigger filtering live
+function getSelectedValues(selectId) {
+  const select = document.getElementById(selectId);
+  return select ? Array.from(select.selectedOptions).map(o => o.value) : [];
+}
+
+function getSearchValue() {
+  const input = document.getElementById("searchInput");
+  return input ? normalize(input.value.trim()) : "";
+}
+
+/* -------------------------
+   Recept matchen
+-------------------------- */
+
+function recipeMatchesFilters(recipe) {
+  const selIngredients = getSelectedValues("f-ingredient");
+  const selSfeer = getSelectedValues("f-sfeer");
+  const selDieet = getSelectedValues("f-dieet");
+  const selPrep = getSelectedValues("f-prep");
+  const search = getSearchValue();
+
+  // Ingrediënten
+  if (selIngredients.length) {
+    if (!recipe.ingredientsFilter) return false;
+    const recipeIngs = recipe.ingredientsFilter.map(normalize);
+    if (!selIngredients.every(i => recipeIngs.includes(normalize(i)))) {
+      return false;
+    }
+  }
+
+  // Sfeer
+  if (selSfeer.length) {
+    if (!recipe.sfeer || !selSfeer.some(s => recipe.sfeer.includes(s))) {
+      return false;
+    }
+  }
+
+  // Dieet
+  if (selDieet.length) {
+    if (!recipe.dieet || !selDieet.some(d => recipe.dieet.includes(d))) {
+      return false;
+    }
+  }
+
+  // Prep-tijd
+  if (!matchesPrep(recipe.prep ?? Infinity, selPrep)) {
+    return false;
+  }
+
+  // Vrije zoek
+  if (search) {
+    const haystack = normalize(
+      [
+        recipe.title,
+        recipe.description,
+        ...(recipe.ingredientsFilter || [])
+      ].join(" ")
+    );
+    if (!haystack.includes(search)) return false;
+  }
+
+  return true;
+}
+
+/* -------------------------
+   Kaarten renderen
+-------------------------- */
+
+function createCard(recipe) {
+  const a = document.createElement("a");
+  a.className = "card";
+  a.href = `pages/recept.html?slug=${recipe.slug}`;
+
+  const img = document.createElement("img");
+  img.src = recipe.image;
+  img.alt = recipe.title;
+
+  const titleWrap = document.createElement("div");
+  titleWrap.className = "card-title";
+
+  const title = document.createElement("div");
+  title.className = "caps";
+  title.textContent = recipe.title;
+
+  titleWrap.appendChild(title);
+  a.appendChild(img);
+  a.appendChild(titleWrap);
+
+  return a;
+}
+
+function renderGrid() {
+  gridEl.innerHTML = "";
+
+  const matches = RECIPES.filter(recipeMatchesFilters);
+
+  if (!matches.length) {
+    emptyStateEl.classList.add("show");
+    return;
+  }
+
+  emptyStateEl.classList.remove("show");
+
+  matches.forEach(recipe => {
+    gridEl.appendChild(createCard(recipe));
+  });
+}
+
+/* -------------------------
+   Events
+-------------------------- */
+
+function bindFilters() {
+  ["f-ingredient", "f-sfeer", "f-dieet", "f-prep"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener("change", renderGrid);
+  });
+
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput) {
+    searchInput.addEventListener("input", renderGrid);
+  }
+
+  const clearBtn = document.getElementById("clearFilters");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      ["f-ingredient", "f-sfeer", "f-dieet", "f-prep"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.selectedIndex = -1;
+      });
+
+      const input = document.getElementById("searchInput");
+      if (input) input.value = "";
+
+      renderGrid();
     });
-  });
+  }
 
-  // Put together
-  selectEl.after(wrap);
-  wrap.appendChild(trigger);
-  wrap.appendChild(panel);
-  selectEl.style.display = 'none'; // keep for a11y/values
-
-  // Toggle open/close
-  function closeAllOthers(){
-    document.querySelectorAll('.ms.open').forEach(el => {
-      if (el !== wrap) el.classList.remove('open');
+  const toggleBtn = document.getElementById("searchToggle");
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      const input = document.getElementById("searchInput");
+      if (!input) return;
+      input.classList.toggle("show");
+      if (input.classList.contains("show")) input.focus();
     });
   }
-  trigger.addEventListener('click', () => {
-    const willOpen = !wrap.classList.contains('open');
-    closeAllOthers();
-    wrap.classList.toggle('open', willOpen);
-    if (willOpen) {
-      // focus first checkbox for keyboard
-      const firstCb = panel.querySelector('input[type="checkbox"]');
-      if (firstCb) firstCb.focus({preventScroll:true});
-    }
-  });
-  document.addEventListener('click', (e) => {
-    if (!wrap.contains(e.target)) wrap.classList.remove('open');
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') wrap.classList.remove('open');
-  });
+}
 
-  // Label updater
-  function updateLabel(){
-    const selected = Array.from(selectEl.selectedOptions).map(o => o.textContent);
-    if (selected.length === 0) {
-      label.textContent = labelText || selectEl.getAttribute('aria-label') || 'Kies...';
-    } else if (selected.length <= 2) {
-      label.textContent = selected.join(', ');
-    } else {
-      label.textContent = `${selected.length} geselecteerd`;
-    }
+/* -------------------------
+   Init
+-------------------------- */
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (!window.RECIPES || !Array.isArray(window.RECIPES)) {
+    console.error("RECIPES is niet geladen of geen array.");
+    return;
   }
-  updateLabel();
-}
 
-// Enhance all
-document.querySelectorAll('select.ms[multiple]').forEach(sel => {
-  const niceLabel = sel.id === 'f-ingredient' ? 'Ingrediënten (alles)'
-                   : sel.id === 'f-sfeer'      ? 'Sfeer (alles)'
-                   : sel.id === 'f-dieet'      ? 'Dieet (alles)'
-                   : sel.id === 'f-prep'       ? 'Prep tijd (alles)'
-                   : null;
-  enhanceMultiSelect(sel, niceLabel);
+  bindFilters();
+  renderGrid();
 });
-
-// ====== Filtering logic ======
-function getSelectedValues(selectEl){
-  // works off the hidden native <select>
-  return Array.from(selectEl.selectedOptions)
-    .map(o => (o.value || '').toLowerCase().trim())
-    .filter(Boolean);
-}
-
-function matchesFilters(card){
-  const ingSelected = getSelectedValues(selects.ingredient); // AND
-  const sfeerSelected = getSelectedValues(selects.sfeer);    // OR
-  const dieetSelected = getSelectedValues(selects.dieet);    // OR
-  const prepSelected  = getSelectedValues(selects.prep)
-                        .map(n => Number(n)).filter(n => !Number.isNaN(n));
-  const q = (searchInput?.value || '').trim().toLowerCase();
-
-  const ingredients = JSON.parse(card.dataset.ingredients || '[]').map(s => (s || '').toLowerCase());
-  const sfeer = (card.dataset.sfeer || '').toLowerCase();
-  const dieet = (card.dataset.dieet || '').toLowerCase();
-  const prep = Number(card.dataset.prep || 0);
-  const title = (card.dataset.title || '').toLowerCase();
-
-  const ingOK = ingSelected.length === 0 || ingSelected.every(v => ingredients.includes(v));
-  const sfeerOK = sfeerSelected.length === 0 || sfeerSelected.includes(sfeer);
-  const dieetOK = dieetSelected.length === 0 || dieetSelected.includes(dieet);
-  const prepOK = prepSelected.length === 0 || prepSelected.some(max => prep && prep <= max);
-
-  const haystack = [title, ...ingredients, sfeer, dieet, String(prep)];
-  const searchOK = !q || haystack.some(s => (s || '').includes(q));
-
-  return ingOK && sfeerOK && dieetOK && prepOK && searchOK;
-}
-
-function applyFilters(){
-  if (!cards.length) return;
-  let visible = 0;
-  cards.forEach(card => {
-    if (matchesFilters(card)) {
-      card.style.display = '';
-      visible++;
-    } else {
-      card.style.display = 'none';
-    }
-  });
-  emptyState?.classList.toggle('show', visible === 0);
-}
-
-// ====== Search + Clear ======
-searchInput?.addEventListener('input', applyFilters);
-
-searchToggle?.addEventListener('click', () => {
-  const show = !searchInput.classList.contains('show');
-  searchInput.classList.toggle('show', show);
-  if (show) {
-    searchInput.focus();
-  } else {
-    searchInput.value = '';
-    applyFilters();
-  }
-});
-
-clearBtn?.addEventListener('click', () => {
-  // clear native selects (so custom UI reflects after)
-  Object.values(selects).forEach(sel => {
-    Array.from(sel.options).forEach(opt => opt.selected = false);
-  });
-  // update custom labels
-  document.querySelectorAll('.ms').forEach(ms => {
-    ms.classList.remove('open');
-  });
-  // Recompute labels
-  document.querySelectorAll('select.ms[multiple]').forEach(sel => {
-    // quick re-enhance label: trigger change by dispatching event on first option
-    const evt = new Event('change');
-    sel.dispatchEvent(evt);
-  });
-  searchInput.value = '';
-  applyFilters();
-
-  // Also ensure labels visually update:
-  document.querySelectorAll('.ms').forEach(ms => {
-    const select = ms.previousElementSibling?.matches?.('select.ms') ? ms.previousElementSibling : null;
-    const label = ms.querySelector('.ms-label');
-    if (select && label){
-      const id = select.id;
-      label.textContent =
-        id === 'f-ingredient' ? 'Ingrediënten (alles)' :
-        id === 'f-sfeer'      ? 'Sfeer (alles)' :
-        id === 'f-dieet'      ? 'Dieet (alles)' :
-        id === 'f-prep'       ? 'Prep tijd (alles)' :
-        'Kies...';
-    }
-  });
-});
-
-// Initial filter
-applyFilters();
