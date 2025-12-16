@@ -259,6 +259,58 @@ window.RECIPES = [
     "Werk af met gecrushte pinda’s, fried onions, lente-ui en koriander."
   ]
 }
+
+{
+  slug: "peertjes-met-halloumi",
+  kicker: "Oven",
+  title: "Peertjes met halloumi",
+  description: "Zachte, gekaramelliseerde peren met honing en kruiden, afgewerkt met zoutige halloumi. Comfortfood dat eruitziet alsof je moeite deed. Spoiler: valt mee.",
+  time: "45–90 min",
+  prep: 90,
+  servings: 3,
+  level: "Supersimpel",
+  sfeer: ["comfort", "feest"],
+  dieet: ["vegetarisch"],
+  ingredientsFilter: [
+    "peer",
+    "halloumi",
+    "rode ui",
+    "look",
+    "honing",
+    "olijfolie",
+    "chili",
+    "paprikapoeder",
+    "oregano"
+  ],
+  image: "assets/images/peertjes-halloumi.PNG",
+
+  ingredients: [
+    { qty: null, unit: "", label: "peren" },
+    { qty: null, unit: "", label: "halloumi" },
+    { qty: 1, unit: "st", label: "rode ui (per ± 500 g peren)" },
+    { qty: 2, unit: "st", label: "teentjes look (per ± 500 g peren)" },
+    { qty: null, unit: "", label: "olijfolie" },
+    { qty: null, unit: "", label: "honing" },
+    { qty: null, unit: "", label: "chili poeder" },
+    { qty: null, unit: "", label: "paprikapoeder (klein beetje)" },
+    { qty: null, unit: "", label: "oregano" },
+
+    { type: "divider" },
+
+    { qty: null, unit: "", label: "boter" },
+    { qty: null, unit: "", label: "verse kruiden (optioneel)" }
+  ],
+
+  steps: [
+    "Verwarm de oven voor op 165 °C (of 200 °C als je sneller wil). Strijk een ovenschaal in met olijfolie, zout, chili poeder, een klein beetje paprikapoeder en oregano. Drizzle er honing over.",
+    "Snij de peren in vieren en leg ze in de ovenschaal met voldoende ruimte ertussen.",
+    "Snij de rode ui in halve maantjes en verdeel tussen de peren. Plet de lookteentjes en leg ze er ook tussen.",
+    "Meng 2/3 olijfolie met 1/3 honing en strijk het geheel nog eens royaal in.",
+    "Bak 1,5 uur op 165 °C of ± 45 minuten op 200 °C tot de peren zacht en gekaramelliseerd zijn.",
+    "Bak de halloumi in een hete pan met boter en kruiden tot goudbruin en krokant. Of: leg de halloumi de laatste 10 minuten gewoon bij de peren in de oven.",
+    "Haal de peren uit de oven en dresseer de halloumi erover. Klaar."
+  ]
+}
   
 ];
 
