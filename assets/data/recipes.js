@@ -395,6 +395,74 @@ window.RECIPES = [
     "Laat het beslag 20 minuten rusten op een warme, tochtvrije plek.",
     "Bak de wafels in een heet wafelijzer tot goudbruin."
   ]
+},
+
+{
+  slug: "hawaiiaanse-zalmburger",
+  kicker: "Burger",
+  title: "Hawaïaanse zalmburger",
+  description: "Zoet, zout, fris en een beetje messy. Sappige zalmburger, warme ananas, gesmolten cheddar en twee sauzen waar je te veel van maakt.",
+  time: "35–45 min",
+  prep: 45,
+  servings: 4,
+  level: "Makkelijk",
+  sfeer: ["comfort", "feest"],
+  dieet: ["lactosevrij"], // zonder cheddar = volledig lactosevrij
+  ingredientsFilter: [
+    "zalm",
+    "ananas",
+    "sojasaus",
+    "sriracha",
+    "limoen",
+    "koriander",
+    "avocado",
+    "cheddar",
+    "mayonaise"
+  ],
+  image: "assets/images/hawaiiaanse-zalmburger.PNG",
+
+  ingredients: [
+    { qty: 500, unit: "g", label: "verse zalmfilet" },
+    { qty: 2, unit: "el", label: "zoete sojasaus" },
+    { qty: 1, unit: "tl", label: "zout" },
+    { qty: 1, unit: "tl", label: "sriracha" },
+    { qty: 1, unit: "el", label: "limoensap" },
+    { qty: 0.25, unit: "kopje", label: "koriander, fijngehakt" },
+
+    { type: "divider" },
+
+    { qty: 4, unit: "plakjes", label: "ananas" },
+    { qty: 1, unit: "el", label: "boter" },
+    { qty: 4, unit: "st", label: "hamburgerbroodjes" },
+    { qty: 4, unit: "plakjes", label: "cheddar" },
+    { qty: 1, unit: "st", label: "avocado" },
+    { qty: null, unit: "", label: "sla" },
+
+    { type: "divider" },
+
+    { qty: 0.5, unit: "kopje", label: "ananaspuree" },
+    { qty: 1, unit: "el", label: "bieslook, fijngehakt" },
+    { qty: 1, unit: "el", label: "koriander, fijngehakt" },
+    { qty: 1, unit: "tl", label: "BBQ-kruiden" },
+    { qty: 2, unit: "el", label: "olijfolie" },
+
+    { type: "divider" },
+
+    { qty: 0.5, unit: "kopje", label: "mayonaise" },
+    { qty: 1, unit: "st", label: "teentje look, fijngehakt" },
+    { qty: 1, unit: "el", label: "bieslook, fijngehakt" },
+    { qty: 2, unit: "el", label: "olijfolie" }
+  ],
+
+  steps: [
+    "Snijd de zalm in blokjes en meng met sojasaus, zout, sriracha, limoensap en koriander. Zet even apart.",
+    "Maak beide sauzen door alle ingrediënten per saus te blenden tot een glad geheel.",
+    "Bak de ananasplakjes in boter tot licht gekaramelliseerd en zet opzij.",
+    "Vorm zalmburgers en bak ze in dezelfde pan met wat extra boter. Laat de binnenkant naar wens rosé.",
+    "Verwarm de broodjes in de oven en laat de cheddar erop smelten.",
+    "Bouw de burger: saus 1 onderaan, saus 2 bovenaan. Voeg sla, zalmburger, avocado en ananas toe.",
+    "Serveer warm en geniet."
+  ]
 }
 
 
