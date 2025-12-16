@@ -310,7 +310,45 @@ window.RECIPES = [
     "Bak de halloumi in een hete pan met boter en kruiden tot goudbruin en krokant. Of: leg de halloumi de laatste 10 minuten gewoon bij de peren in de oven.",
     "Haal de peren uit de oven en dresseer de halloumi erover. Klaar."
   ]
+},
+
+  {
+  slug: "focaccia",
+  kicker: "Brood",
+  title: "Focaccia",
+  description: "Focaccia voor mensen die niet willen kneden maar wel willen scoren. Tijd doet het werk, olijfolie de rest.",
+  time: "overnight + 20 min",
+  prep: 720,
+  servings: 6,
+  level: "Geduldig",
+  sfeer: ["comfort", "feest"],
+  dieet: ["vegetarisch", "lactosevrij"],
+  ingredientsFilter: [
+    "broodmeel",
+    "gist",
+    "olijfolie",
+    "zout"
+  ],
+  image: "assets/images/focaccia.PNG",
+
+  ingredients: [
+    { qty: 470, unit: "g", label: "warm water" },
+    { qty: 2, unit: "tl", label: "zout" },
+    { qty: 1, unit: "el", label: "extra vierge olijfolie (+ extra voor de schaal)" },
+    { qty: 7, unit: "g", label: "droge gist" },
+    { qty: 560, unit: "g", label: "broodmeel" },
+    { qty: 10, unit: "g", label: "extra proteïne in de bloem (optioneel)" }
+  ],
+
+  steps: [
+    "Meng water, gist, zout, olijfolie en bloem tot een nat, plakkerig deeg. Niet kneden.",
+    "Vouw het deeg 4 keer, telkens met 30 minuten ertussen.",
+    "Dek af en laat het deeg een nacht rusten.",
+    "Vet een ovenschotel royaal in met olijfolie. Leg het deeg erin, maak kuiltjes en sprenkel olijfolie over het deeg. Laat nog 1 uur rusten.",
+    "Dimpel het deeg opnieuw, voeg een laatste beetje olijfolie toe en bak op 200 °C gedurende ongeveer 20 minuten tot goudbruin."
+  ]
 }
+
   
 ];
 
