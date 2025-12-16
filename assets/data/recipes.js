@@ -200,7 +200,7 @@ window.RECIPES = [
       "Vet een ovenschaal in met de chili–knoflookolie en strooi er een snuf grof zout over.",
       "Leg de courgetteplakken in de ovenschaal en bak in een voorverwarmde oven op 180 °C. Draai ze om na 15–20 minuten en bak nog ongeveer 45 minuten tot ze goudbruin en zacht zijn."
     ]
-  }
+  },
   
   {
   slug: "pad-thai-kip",
@@ -258,7 +258,7 @@ window.RECIPES = [
     "Voeg een kletsje noedelwater toe en laat alles samen glanzen en binden.",
     "Werk af met gecrushte pinda’s, fried onions, lente-ui en koriander."
   ]
-}
+},
 
 {
   slug: "peertjes-met-halloumi",
