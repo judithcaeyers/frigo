@@ -242,15 +242,19 @@
 .card-title .caps {
   font-family: "Reenie Beanie", cursive !important;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 1.2;
-  text-transform: none;
-  letter-spacing: 0.5px;
+  font-size: clamp(26px, 3vw, 32px); 
+  line-height: 1.1;
+  text-transform: uppercase;        
+  letter-spacing: 0.08em;            
 }
+
 
 .card:hover .card-title .caps {
   text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
+
 
 /* ===== Empty state ===== */
 .empty {
