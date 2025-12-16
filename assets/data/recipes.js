@@ -347,7 +347,56 @@ window.RECIPES = [
     "Vet een ovenschotel royaal in met olijfolie. Leg het deeg erin, maak kuiltjes en sprenkel olijfolie over het deeg. Laat nog 1 uur rusten.",
     "Dimpel het deeg opnieuw, voeg een laatste beetje olijfolie toe en bak op 200 °C gedurende ongeveer 20 minuten tot goudbruin."
   ]
+},
+
+  {
+  slug: "wafels",
+  kicker: "Zoet",
+  title: "Wafels",
+  description: "Luchtige, klassieke wafels die ruiken naar zondag en vakantie. Afwegen is geen detail, het ís het recept.",
+  time: "± 45 min",
+  prep: 45,
+  servings: 12,
+  level: "Klassieker",
+  sfeer: ["feest", "comfort"],
+  dieet: ["vegetarisch"],
+  ingredientsFilter: [
+    "eieren",
+    "melk",
+    "gist",
+    "bloem",
+    "boter",
+    "vanille"
+  ],
+  image: "assets/images/wafels.PNG",
+
+  ingredients: [
+    { qty: 3, unit: "st", label: "eieren" },
+    { qty: 375, unit: "g", label: "melk" },
+    { qty: 20, unit: "g", label: "verse gist" },
+    { qty: 375, unit: "g", label: "lauw water" },
+    { qty: 450, unit: "g", label: "zelfrijzende bloem" },
+    { qty: 150, unit: "g", label: "boter, gesmolten" },
+    { qty: 1, unit: "snuf", label: "zout" },
+    { qty: null, unit: "", label: "vanillesuiker (naar smaak)" }
+  ],
+
+  steps: [
+    "Weeg alle ingrediënten zorgvuldig af.",
+    "Scheid de eieren: dooiers in een grote kom, eiwitten apart.",
+    "Klop de dooiers los met een klopper.",
+    "Voeg melk en gist toe en klop tot de gist volledig is opgelost.",
+    "Schenk het lauwe water erbij en meng rustig.",
+    "Zeef de bloem in het beslag en roer tot een glad geheel zonder klonters.",
+    "Smelt de boter en meng ze voorzichtig onder het beslag.",
+    "Klop de eiwitten stijf in een vetvrije kom.",
+    "Spatel de eiwitten voorzichtig onder het beslag om lucht te behouden.",
+    "Voeg een snufje zout en wat vanillesuiker toe.",
+    "Laat het beslag 20 minuten rusten op een warme, tochtvrije plek.",
+    "Bak de wafels in een heet wafelijzer tot goudbruin."
+  ]
 }
+
 
   
 ];
