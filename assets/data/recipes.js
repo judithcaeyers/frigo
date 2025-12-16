@@ -463,7 +463,145 @@ window.RECIPES = [
     "Bouw de burger: saus 1 onderaan, saus 2 bovenaan. Voeg sla, zalmburger, avocado en ananas toe.",
     "Serveer warm en geniet."
   ]
+},
+  {
+  slug: "filo-soya-kokosmelk",
+  kicker: "Weeknight",
+  title: "Gevulde filopastries met kokosmelk & sojasaus",
+  description: "Krokant filodeeg met een romige, zoute kokosvulling. Snel, crispy en gevaarlijk snackbaar.",
+  time: "25–35 min",
+  prep: 35,
+  servings: 3,
+  level: "Makkelijk",
+  sfeer: ["weeknight", "comfort"],
+  dieet: ["vegan", "lactosevrij"],
+  ingredientsFilter: ["filo","kokosmelk","sojasaus","look","limoen","chili"],
+  image: "assets/images/filo-soya-kokosmelk.PNG",
+
+  ingredients: [
+    { qty: null, unit: "", label: "filodeeg (vellen)" },
+    { qty: 200, unit: "ml", label: "kokosmelk" },
+    { qty: 2, unit: "el", label: "sojasaus" },
+    { qty: 1, unit: "st", label: "teentje look" },
+    { qty: 0.5, unit: "st", label: "limoen (sap)" },
+    { qty: 1, unit: "snuf", label: "chilivlokken of verse chili" },
+    { qty: null, unit: "", label: "olie om te bestrijken" }
+  ],
+
+  steps: [
+    "Verwarm de oven voor op 200 °C.",
+    "Meng kokosmelk met sojasaus, geperste look, limoensap en chili.",
+    "Leg een vel filodeeg open, bestrijk licht met olie en leg er een tweede vel op (voor extra crunch).",
+    "Schep een lepel vulling op het onderste deel en vouw op tot een rolletje of driehoek.",
+    "Leg op een bakplaat en bestrijk de buitenkant licht met olie.",
+    "Bak 15–20 min tot goudbruin en krokant. Hou het in de gaten: filodeeg gaat snel.",
+    "Serveer warm, eventueel met extra limoensap of chili erbovenop."
+  ]
+},
+
+  {
+  slug: "scampis-kerstomaten-puntpaprikasaus",
+  kicker: "Pasta / pan",
+  title: "Scampi’s in kerstomaten–puntpaprikasaus",
+  description: "Zoet van tomaat, rokerig van puntpaprika, veel look. Scampi’s erin en klaar: één pan, grote voldoening.",
+  time: "25–35 min",
+  prep: 35,
+  servings: 2,
+  level: "Supersimpel",
+  sfeer: ["weeknight", "comfort"],
+  dieet: ["lactosevrij", "glutenvrij"],
+  ingredientsFilter: ["scampi","kerstomaten","puntpaprika","look","olijfolie","citroen"],
+  image: "assets/images/scampis-kerstomaten-puntpaprikasaus.PNG",
+
+  ingredients: [
+    { qty: 300, unit: "g", label: "scampi’s (gepeld)" },
+    { qty: 250, unit: "g", label: "kerstomaten" },
+    { qty: 2, unit: "st", label: "puntpaprika" },
+    { qty: 2, unit: "st", label: "teentjes look" },
+    { qty: 2, unit: "el", label: "olijfolie" },
+    { qty: 0.5, unit: "st", label: "citroen (sap)" },
+    { qty: 1, unit: "snuf", label: "zout" },
+    { qty: 1, unit: "snuf", label: "chilivlokken (optioneel)" }
+  ],
+
+  steps: [
+    "Rooster of bak de puntpaprika’s tot ze zacht zijn (pan/oven). Snij in stukjes.",
+    "Verhit olijfolie en bak de look kort (niet bruin laten worden).",
+    "Voeg kerstomaten toe en laat ze openbarsten tot een sausachtige basis.",
+    "Voeg de puntpaprika toe en laat 5 min meepruttelen.",
+    "Doe de scampi’s erbij en laat 2–4 min garen tot ze net roze zijn.",
+    "Kruid met zout, citroensap en eventueel chilivlokken.",
+    "Serveer zo, of over pasta/rijst met extra citroen."
+  ]
+},
+
+  {
+  slug: "tomaat-perzik",
+  kicker: "Salade",
+  title: "Tomaat–perzik salade",
+  description: "Zomer op een bord: sappige tomaat, zoete perzik, basilicum en veel olijfolie. Simpel = sexy.",
+  time: "10–15 min",
+  prep: 15,
+  servings: 2,
+  level: "Supersimpel",
+  sfeer: ["fris", "brunch"],
+  dieet: ["vegan", "lactosevrij", "glutenvrij"],
+  ingredientsFilter: ["tomaat","perzik","basilicum","olijfolie","ui"],
+  image: "assets/images/tomaat-perzik.PNG",
+
+  ingredients: [
+    { qty: 2, unit: "st", label: "rijpe tomaten" },
+    { qty: 2, unit: "st", label: "perziken" },
+    { qty: 0.5, unit: "st", label: "rode ui (optioneel)" },
+    { qty: 1, unit: "handvol", label: "basilicum" },
+    { qty: 2, unit: "el", label: "olijfolie" },
+    { qty: 1, unit: "snuf", label: "zout" }
+  ],
+
+  steps: [
+    "Snij tomaten en perzik in partjes.",
+    "Snij rode ui in flinterdunne halve maantjes (optioneel).",
+    "Meng alles met olijfolie en een goeie snuf zout.",
+    "Werk af met basilicum en serveer meteen."
+  ]
+},
+
+  {
+  slug: "bladerdeeg-limoen-rode-vruchten",
+  kicker: "Dessert",
+  title: "Bladerdeegtaartje met limoencheesecake & rode vruchten",
+  description: "Knapperig bladerdeeg, frisse limoencheesecake-achtige topping en sappige rode vruchten. Ziet eruit als moeite. Was het niet.",
+  time: "25–35 min",
+  prep: 35,
+  servings: 4,
+  level: "Makkelijk",
+  sfeer: ["feest", "brunch"],
+  dieet: ["vegetarisch"],
+  ingredientsFilter: ["bladerdeeg","limoen","roomkaas","suiker","rode vruchten","vanille"],
+  image: "assets/images/bladerdeeg-limoen-rode-vruchten.PNG",
+
+  ingredients: [
+    { qty: 1, unit: "rol", label: "bladerdeeg" },
+    { qty: 200, unit: "g", label: "roomkaas" },
+    { qty: 2, unit: "el", label: "suiker" },
+    { qty: 1, unit: "st", label: "limoen (zest + sap)" },
+    { qty: 1, unit: "tl", label: "vanille (suiker/extract)" },
+    { qty: 200, unit: "g", label: "rode vruchten (vers of diepvries)" }
+  ],
+
+  steps: [
+    "Verwarm de oven voor op 200 °C.",
+    "Snij bladerdeeg in vierkantjes of rechthoeken en prik lichtjes in het midden (rand vrijhouden).",
+    "Bak 12–15 min tot goudbruin en luchtig. Laat even afkoelen.",
+    "Meng roomkaas met suiker, vanille en limoen(zest + sap) tot een frisse crème.",
+    "Lepel de crème op het bladerdeeg en werk af met rode vruchten.",
+    "Serveer meteen (dan blijft het bladerdeeg het krokantst)."
+  ]
 }
+
+
+
+
 
 
   
