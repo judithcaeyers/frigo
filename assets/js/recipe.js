@@ -170,6 +170,9 @@ function renderRecipe(recipe) {
 
   // Initial quantities
   renderQuantities(baseServings);
+
+renderMoreRecipes(recipe);
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {
