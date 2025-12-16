@@ -1,9 +1,9 @@
 :root {
   /* Palet (centraal) */
-  --color-bg:       #f7f6f4;   /* wit */
-  --color-surface:  #fe5315;   /* oranje */
-  --color-ink:      #d0392e;   /* rood */
-  --color-accent:   #2d4240;   /* donkergroen */
+  --color-bg:       #fffce2;   /* wit */
+  --color-surface:  #f6ab64;   /* oranje */
+  --color-ink:      #691825;   /* rood */
+  --color-accent:   #6c6e42;   /* donkergroen */
 
   /* Thema alias */
   --bg:   var(--color-bg);
