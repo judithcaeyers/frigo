@@ -201,5 +201,64 @@ window.RECIPES = [
       "Leg de courgetteplakken in de ovenschaal en bak in een voorverwarmde oven op 180 °C. Draai ze om na 15–20 minuten en bak nog ongeveer 45 minuten tot ze goudbruin en zacht zijn."
     ]
   }
+  
+  {
+  slug: "pad-thai-kip",
+  kicker: "Noedels",
+  title: "Pad Thai",
+  description: "Dit is zo’n gerecht waarvan je denkt: “ik doe dat snel even”, en dat dan toch wat uitloopt. Maar: sticky, zout-zuur-zoet, alles in één pan, en absoluut de moeite.",
+  time: "45–60 min",
+  prep: 60,
+  servings: 3,
+  level: "Makkelijk",
+  sfeer: ["weeknight", "comfort"],
+  dieet: [],
+  ingredientsFilter: [
+    "noedels",
+    "kip",
+    "tamarinde",
+    "sojasaus",
+    "vissaus",
+    "rijstazijn",
+    "look",
+    "koriander",
+    "lente-ui",
+    "chili",
+    "pinda"
+  ],
+  image: "assets/images/pad-thai.PNG",
+
+  ingredients: [
+    { qty: 1, unit: "el", label: "tamarinde" },
+    { qty: 2, unit: "el", label: "donkerbruine suiker" },
+    { qty: 5, unit: "cl", label: "sojasaus" },
+    { qty: 3, unit: "cl", label: "vissaus" },
+    { qty: 2, unit: "el", label: "rijstazijn" },
+    { qty: 2, unit: "st", label: "teentjes look" },
+    { qty: 1, unit: "handvol", label: "koriander" },
+    { qty: 1, unit: "handvol", label: "lente-ui" },
+    { qty: 1, unit: "naar smaak", label: "chili" },
+    { qty: 5, unit: "cl", label: "water" },
+
+    { type: "divider" },
+
+    { qty: null, unit: "", label: "noedels" },
+    { qty: null, unit: "", label: "kip" },
+    { qty: null, unit: "", label: "groenten naar keuze (bv. sugarsnaps, ui, lente-ui)" }
+  ],
+
+  steps: [
+    "Kook de noedels gaar. Giet af maar hou het kookwater bij (dit is belangrijk, echt).",
+    "Bak de kip goudbruin in een hete pan en zet even apart.",
+    "Meng tamarinde, suiker, sojasaus, vissaus, rijstazijn, look, koriander, lente-ui en chili. Leng aan met water.",
+    "Bak de groenten in dezelfde pan tot ze beetgaar zijn.",
+    "Voeg de kip opnieuw toe aan de pan.",
+    "Voeg een deel van de saus toe, gevolgd door een deel van de noedels.",
+    "Voeg de rest van de noedels en saus toe.",
+    "Voeg een kletsje noedelwater toe en laat alles samen glanzen en binden.",
+    "Werk af met gecrushte pinda’s, fried onions, lente-ui en koriander."
+  ]
+}
+  
 ];
 
