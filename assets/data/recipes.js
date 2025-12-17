@@ -141,13 +141,13 @@ window.RECIPES = [
   image: "assets/images/miso-champignon-pasta.PNG",
   ingredients: [
     { qty: 200, unit: "g", label: "pasta" },
-    { qty: 400, unit: "g", label: "champignons, in plakjes" },
+    { qty: 350, unit: "g", label: "champignons, in plakjes" },
     { qty: 1, unit: "st", label: "ui, fijngehakt" },
     { qty: 1, unit: "teentje", label: "look, fijngehakt" },
     { qty: 2, unit: "handen", label: "verse spinazie" },
     { qty: 1, unit: "zakje", label: "miso soup (bouillon)" },
     { qty: 200, unit: "ml", label: "room" },
-    { qty: 40, unit: "g", label: "Parmezaan & pecorino (half/half), vers geraspt" }
+    { qty: 60, unit: "g", label: "Parmezaan & pecorino (half/half), vers geraspt" }
   ],
   steps: [
     "Snipper de ui fijn en bak glazig in olijfolie.",
