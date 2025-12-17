@@ -115,31 +115,52 @@ window.RECIPES = [
     ]
   },
 
-  {
-    slug: "miso-champignon-pasta",
-    kicker: "Pasta",
-    title: "Miso–champignon pasta",
-    description: "Romig, hartig en boordevol umami.",
-    time: "25 min",
-    prep: 25,
-    servings: 2,
-    level: "Comfort",
-    sfeer: ["comfort"],
-    dieet: ["vegetarisch"],
-    ingredientsFilter: ["pasta","champignon","miso","look","olijfolie","soyasaus","room"],
-    image: "assets/images/miso-champignon-pasta.PNG",
-    ingredients: [
-      { qty: 200, unit: "g", label: "pasta" },
-      { qty: 500, unit: "g", label: "champignons" },
-      { qty: 1, unit: "el", label: "witte miso" },
-      { qty: 200, unit: "ml", label: "room" }
-    ],
-    steps: [
-      "Bak champignons goudbruin.",
-      "Meng miso met room en voeg toe.",
-      "Meng de pasta door de saus en serveer."
-    ]
-  },
+{
+  slug: "miso-champignon-pasta",
+  kicker: "Pasta",
+  title: "Miso–champignon pasta",
+  description: "Romig, hartig en diep umami – met miso, spinazie en een snuifje lef.",
+  time: "30 min",
+  prep: 30,
+  servings: 2,
+  level: "Comfort",
+  sfeer: ["comfort"],
+  dieet: ["vegetarisch"],
+  ingredientsFilter: [
+    "pasta",
+    "champignon",
+    "miso",
+    "spinazie",
+    "ui",
+    "look",
+    "room",
+    "soyasaus",
+    "pecorino",
+    "parmezaan"
+  ],
+  image: "assets/images/miso-champignon-pasta.PNG",
+  ingredients: [
+    { qty: 200, unit: "g", label: "pasta" },
+    { qty: 400, unit: "g", label: "champignons, in plakjes" },
+    { qty: 1, unit: "st", label: "ui, fijngehakt" },
+    { qty: 1, unit: "teentje", label: "look, fijngehakt" },
+    { qty: 2, unit: "handen", label: "verse spinazie" },
+    { qty: 1, unit: "zakje", label: "miso soup (bouillon)" },
+    { qty: 200, unit: "ml", label: "room" },
+    { qty: 40, unit: "g", label: "Parmezaan & pecorino (half/half), vers geraspt" }
+  ],
+  steps: [
+    "Snipper de ui fijn en bak glazig in olijfolie.",
+    "Voeg de spinazie toe en laat slinken. Doe de look erbij en bak kort mee.",
+    "Snijd de champignons in plakjes en bak mee tot ze goudbruin en sappig zijn.",
+    "Voeg de room en het zakje miso soup toe en laat zachtjes stoven.",
+    "Meng de helft van de geraspte Parmezaan/pecorino door de saus.",
+    "Kook de pasta al dente en meng alles goed onder elkaar.",
+    "Proef en stuur bij: eventueel extra look, een scheutje sojasaus of een snuifje chili.",
+    "Werk af met extra vers geraspte Parmezaan/pecorino en eventueel gebakken spekblokjes."
+  ],
+  notes: "Dit gerecht leeft van proeven en bijsturen. Umami is geen exacte wetenschap."
+},
 
   {
     slug: "pizza-basisdeeg",
