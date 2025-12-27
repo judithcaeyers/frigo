@@ -174,7 +174,7 @@ window.RECIPES = [
     sfeer: ["comfort", "feest"],
     dieet: ["vegetarisch"],
     ingredientsFilter: ["bloem","gist","olijfolie","honing","zout"],
-    image: "assets/images/pizza-basisdeeg.PNG",
+    image: "assets/images/pizza.PNG",
     ingredients: [
       { qty: 500, unit: "g", label: "bloem" },
       { qty: 300, unit: "ml", label: "lauwwarm water" },
@@ -303,7 +303,7 @@ window.RECIPES = [
     "paprikapoeder",
     "oregano"
   ],
-  image: "assets/images/peertjes-halloumi.PNG",
+  image: "assets/images/peer-halloumi.PNG",
 
   ingredients: [
     { qty: null, unit: "", label: "peren" },
