@@ -32,6 +32,85 @@ window.RECIPES = [
     ]
   },
 
+{
+  slug: "vietnamese-spring-rolls",
+  kicker: "Street food",
+  title: "Vietnamese spring rolls",
+  description: "Fris, knapperig en licht, met warme vullingen, kruiden en crunch. Zelf rollen, zelf kiezen.",
+  time: "40 min",
+  prep: 40,
+  servings: 2,
+  level: "Sociaal",
+  sfeer: ["fris", "delen"],
+  dieet: ["flexibel"],
+  ingredientsFilter: [
+    "rijstpapier",
+    "scampi",
+    "kip",
+    "champignon",
+    "tofu",
+    "vermicelli",
+    "komkommer",
+    "wortel",
+    "avocado",
+    "radijs",
+    "koriander",
+    "lente-ui",
+    "fried onions",
+    "vissaus"
+  ],
+  image: "assets/images/vietnamese-spring-rolls.PNG",
+  ingredients: [
+    { qty: 8, unit: "vellen", label: "rijstpapier" },
+    { qty: 100, unit: "g", label: "vermicelli glasnoedels" },
+
+    { qty: 200, unit: "g", label: "scampi’s" },
+    { qty: 1, unit: "el", label: "sesamolie" },
+    { qty: 1, unit: "teentje", label: "look, fijngehakt" },
+    { qty: 1, unit: "el", label: "zoete sojasaus" },
+    { qty: 1, unit: "el", label: "vissaus" },
+
+    { qty: 150, unit: "g", label: "kip, fijngesneden" },
+    { qty: 150, unit: "g", label: "champignons, fijngesneden" },
+    { qty: 1, unit: "el", label: "sojasaus" },
+    { qty: 1, unit: "tl", label: "sriracha" },
+    { qty: 1, unit: "el", label: "sesamolie" },
+
+    { qty: 2, unit: "st", label: "wortels, julienne" },
+    { qty: 1, unit: "st", label: "komkommer, in linten" },
+    { qty: 1, unit: "st", label: "avocado, in plakjes" },
+    { qty: 1, unit: "st", label: "rode ui, fijn gesneden" },
+    { qty: 2, unit: "st", label: "lente-ui, fijn" },
+    { qty: 1, unit: "hand", label: "verse koriander" },
+    { qty: 1, unit: "hand", label: "fried onions" },
+
+    { qty: 6, unit: "st", label: "radijsjes, gepikkeld (rijstazijn & suiker)" }
+  ],
+  steps: [
+    "Marineer de scampi’s met sesamolie, look, zoete sojasaus en vissaus. Bak kort en heet.",
+    "Marineer kip en champignons met sojasaus, sriracha en sesamolie. Bak goudbruin.",
+    "Kook de vermicelli volgens de verpakking en spoel koud.",
+    "Snijd alle rauwe groenten en zet alles apart klaar op tafel.",
+    "Meng voor de saus: vissaus, citroensap (of limoen), look, chilivlokken en witte suiker. Proef en balanceer.",
+    "Week een vel rijstpapier kort in warm water.",
+    "Beleg met noedels, groenten, kruiden en een warme vulling naar keuze.",
+    "Werk af met koriander en fried onions voor crunch.",
+    "Rol strak op en serveer meteen."
+  ],
+  options: [
+    "Zoetzure saus als extra dip",
+    "Hoisin",
+    "Sriracha-mayo",
+    "Wasabi-mayo"
+  ],
+  variations: [
+    "Vervang kip en scampi’s door gebakken tofu voor een vegetarische versie",
+    "Extra kruiden: munt of Thaise basilicum"
+  ],
+  notes: "Spring rolls draaien om balans: warm/koud, zacht/krokant, zuur/zout. Proeven blijft de basis."
+},
+
+  
   {
     slug: "pasta-ragu",
     kicker: "Pasta",
