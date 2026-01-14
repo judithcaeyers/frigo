@@ -225,13 +225,18 @@ header {
   background: var(--ink);
   color: var(--bg);
   margin-top: 80px;
+
+  /* full-bleed trick */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
 }
 
 .more-inner {
-  max-width: var(--maxw);
+  max-width: 860px; /* of var(--maxw) */
   margin: 0 auto;
-  padding: 56px 18px 64px;
+  padding: 56px 24px 64px;
 }
+
 
 .more-title {
   font-family: "Reenie Beanie", cursive;
