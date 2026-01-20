@@ -519,7 +519,7 @@ window.RECIPES = [
     "cheddar",
     "mayonaise"
   ],
-  image: "assets/images/hawaiiaanse-zalmburger.PNG",
+  image: "assets/images/hawaiaanse-zalmburger.PNG",
 
   ingredients: [
     { qty: 500, unit: "g", label: "verse zalmfilet" },
