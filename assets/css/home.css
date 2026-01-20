@@ -210,6 +210,44 @@
   outline-offset: 3px;
 }
 
+/* Filters: 4 op een rij gecentreerd op laptop */
+.controls{
+  max-width: var(--maxw);
+  margin: 18px auto 8px;
+  padding: 0 18px;
+
+ display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 220px));
+  gap: 12px;
+  justify-content: center;
+  align-items: start;
+}
+
+/* Zorg dat de footer (zoek + wis knop) onder de 4 filters staat */
+.filters-footer{
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+}
+
+/* Responsive: onder elkaar gecentreerd op mobiel */
+@media (max-width: 640px){
+  .controls{
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .ms{
+    width: 100%;
+    max-width: 420px; /* optioneel: zodat het niet té breed is op grotere mobielen */
+  }
+
+  .filters-footer{
+    width: 100%;
+  }
+}
+
+
 /* ===== Mobile ===== */
 @media (max-width: 640px) {
   .ms{
