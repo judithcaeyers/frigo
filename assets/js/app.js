@@ -15,27 +15,103 @@ function normalize(str = "") {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function getSelectedValues(id) {
-  const el = document.getElementById(id);
-  return el ? Array.from(el.selectedOptions).map(o => o.value) : [];
-}
-
 function matchesPrep(recipePrep, selectedPrep) {
   if (!selectedPrep.length) return true;
-  return selectedPrep.some(max => recipePrep <= Number(max));
+  const rp = recipePrep ?? Infinity;
+  return selectedPrep.some(max => rp <= Number(max));
 }
 
 /* =========================
-   Build ingredient filter
+   Multiselect (pill dropdown)
 ========================= */
 
-function buildIngredientOptions() {
-  const select = document.getElementById("f-ingredient");
-  if (!select) return;
+function escapeHtml(str = "") {
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
+function createMultiSelect(el, options) {
+  const label = el.dataset.label || "Filter";
+
+  el.innerHTML = `
+    <button type="button" class="ms-btn" aria-haspopup="listbox" aria-expanded="false">
+      <span class="ms-label">${escapeHtml(label)}</span>
+      <span class="ms-caret" aria-hidden="true"></span>
+    </button>
+    <div class="ms-panel" role="listbox" aria-label="${escapeHtml(label)}"></div>
+  `;
+
+  const btn = el.querySelector(".ms-btn");
+  const lbl = el.querySelector(".ms-label");
+  const panel = el.querySelector(".ms-panel");
+
+  panel.innerHTML = options
+    .map(opt => {
+      const v = escapeHtml(opt.value);
+      const t = escapeHtml(opt.text);
+      return `
+        <label class="ms-item">
+          <input type="checkbox" value="${v}">
+          <span>${t}</span>
+        </label>
+      `;
+    })
+    .join("");
+
+  function updateLabel() {
+    const checked = panel.querySelectorAll("input:checked").length;
+    lbl.textContent = checked ? `${label} (${checked})` : label;
+  }
+
+  function open() {
+    el.classList.add("is-open");
+    btn.setAttribute("aria-expanded", "true");
+  }
+
+  function close() {
+    el.classList.remove("is-open");
+    btn.setAttribute("aria-expanded", "false");
+  }
+
+  btn.addEventListener("click", () => {
+    el.classList.contains("is-open") ? close() : open();
+  });
+
+  // close when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!el.contains(e.target)) close();
+  });
+
+  // update on check/uncheck
+  panel.addEventListener("change", () => {
+    updateLabel();
+    el.dispatchEvent(new CustomEvent("ms:change"));
+  });
+
+  updateLabel();
+
+  return {
+    getValues: () => [...panel.querySelectorAll("input:checked")].map(i => i.value),
+    clear: () => {
+      panel.querySelectorAll("input").forEach(i => (i.checked = false));
+      updateLabel();
+      el.dispatchEvent(new CustomEvent("ms:change"));
+    }
+  };
+}
+
+/* =========================
+   Build filter options from RECIPES
+========================= */
+
+function buildIngredientOptionsFromRecipes(recipes) {
   const set = new Set();
 
-  RECIPES.forEach(recipe => {
+  recipes.forEach(recipe => {
     (recipe.ingredientsFilter || []).forEach(i => {
       if (i) set.add(i.trim());
     });
@@ -45,27 +121,15 @@ function buildIngredientOptions() {
     a.localeCompare(b, "nl", { sensitivity: "base" })
   );
 
-  select.innerHTML = "";
-  sorted.forEach(name => {
-    const opt = document.createElement("option");
-    opt.value = name;
-    opt.textContent = name;
-    select.appendChild(opt);
-  });
+  return sorted.map(name => ({ value: name, text: name }));
 }
 
 /* =========================
    Filtering logic
 ========================= */
 
-function recipeMatchesFilters(recipe) {
-  const selIngredients = getSelectedValues("f-ingredient");
-  const selSfeer = getSelectedValues("f-sfeer");
-  const selDieet = getSelectedValues("f-dieet");
-  const selPrep = getSelectedValues("f-prep");
-  const search = normalize(
-    document.getElementById("searchInput")?.value || ""
-  );
+function recipeMatchesFilters(recipe, state) {
+  const { selIngredients, selSfeer, selDieet, selPrep, search } = state;
 
   // Ingrediënten (AND)
   if (selIngredients.length) {
@@ -90,7 +154,7 @@ function recipeMatchesFilters(recipe) {
   }
 
   // Prep tijd
-  if (!matchesPrep(recipe.prep ?? Infinity, selPrep)) {
+  if (!matchesPrep(recipe.prep, selPrep)) {
     return false;
   }
 
@@ -136,10 +200,10 @@ function createCard(recipe) {
   return a;
 }
 
-function renderGrid() {
+function renderGrid(recipes, state) {
   gridEl.innerHTML = "";
 
-  const matches = RECIPES.filter(recipeMatchesFilters);
+  const matches = recipes.filter(r => recipeMatchesFilters(r, state));
 
   if (!matches.length) {
     emptyStateEl.classList.add("show");
@@ -151,43 +215,7 @@ function renderGrid() {
 }
 
 /* =========================
-   Events
-========================= */
-
-function bindEvents() {
-  ["f-ingredient", "f-sfeer", "f-dieet", "f-prep"].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener("change", renderGrid);
-  });
-
-  const searchInput = document.getElementById("searchInput");
-  if (searchInput) {
-    searchInput.addEventListener("input", renderGrid);
-  }
-
-  const toggleBtn = document.getElementById("searchToggle");
-  if (toggleBtn && searchInput) {
-    toggleBtn.addEventListener("click", () => {
-      searchInput.classList.toggle("show");
-      if (searchInput.classList.contains("show")) searchInput.focus();
-    });
-  }
-
-  const clearBtn = document.getElementById("clearFilters");
-  if (clearBtn) {
-    clearBtn.addEventListener("click", () => {
-      ["f-ingredient", "f-sfeer", "f-dieet", "f-prep"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.selectedIndex = -1;
-      });
-      if (searchInput) searchInput.value = "";
-      renderGrid();
-    });
-  }
-}
-
-/* =========================
-   Init
+   Init + Events
 ========================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -196,7 +224,88 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  buildIngredientOptions();
-  bindEvents();
-  renderGrid();
+  const recipes = window.RECIPES;
+
+  // elements
+  const elIng = document.getElementById("f-ingredient");
+  const elSfeer = document.getElementById("f-sfeer");
+  const elDieet = document.getElementById("f-dieet");
+  const elPrep = document.getElementById("f-prep");
+
+  const searchInput = document.getElementById("searchInput");
+  const toggleBtn = document.getElementById("searchToggle");
+  const clearBtn = document.getElementById("clearFilters");
+
+  // build multiselects
+  const ingMS = createMultiSelect(elIng, buildIngredientOptionsFromRecipes(recipes));
+
+  const sfeerMS = createMultiSelect(elSfeer, [
+    { value: "fris", text: "fris" },
+    { value: "comfort", text: "comfort" },
+    { value: "weeknight", text: "weeknight" },
+    { value: "spicy", text: "spicy" },
+    { value: "feest", text: "feest" },
+    { value: "brunch", text: "brunch" }
+  ]);
+
+  const dieetMS = createMultiSelect(elDieet, [
+    { value: "vegan", text: "vegan" },
+    { value: "vegetarisch", text: "vegetarisch" },
+    { value: "glutenvrij", text: "glutenvrij" },
+    { value: "lactosevrij", text: "lactosevrij" }
+  ]);
+
+  const prepMS = createMultiSelect(elPrep, [
+    { value: "15", text: "≤ 15 min" },
+    { value: "30", text: "≤ 30 min" },
+    { value: "45", text: "≤ 45 min" },
+    { value: "60", text: "≤ 60 min" },
+    { value: "120", text: "≤ 120 min" }
+  ]);
+
+  function getState() {
+    return {
+      selIngredients: ingMS.getValues(),
+      selSfeer: sfeerMS.getValues(),
+      selDieet: dieetMS.getValues(),
+      selPrep: prepMS.getValues(),
+      search: normalize(searchInput?.value || "")
+    };
+  }
+
+  function rerender() {
+    renderGrid(recipes, getState());
+  }
+
+  // bind multiselect events
+  [elIng, elSfeer, elDieet, elPrep].forEach(el => {
+    if (el) el.addEventListener("ms:change", rerender);
+  });
+
+  // search events
+  if (searchInput) {
+    searchInput.addEventListener("input", rerender);
+  }
+
+  if (toggleBtn && searchInput) {
+    toggleBtn.addEventListener("click", () => {
+      searchInput.classList.toggle("show");
+      if (searchInput.classList.contains("show")) searchInput.focus();
+    });
+  }
+
+  // clear
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      ingMS.clear();
+      sfeerMS.clear();
+      dieetMS.clear();
+      prepMS.clear();
+      if (searchInput) searchInput.value = "";
+      rerender();
+    });
+  }
+
+  // first render
+  rerender();
 });
