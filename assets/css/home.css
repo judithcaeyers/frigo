@@ -1,64 +1,101 @@
 /* =========================
-   FILTERS / CONTROLS (works with your JS)
-   IDs/classes preserved:
-   .controls, .filters-footer, #searchToggle (.search-btn), #searchInput (.search-input), #clearFilters (.btn)
-   selects: #f-ingredient #f-sfeer #f-dieet #f-prep
+   MULTISELECT PILL DROPDOWNS (.ms)
 ========================= */
 
-.controls {
-  max-width: var(--maxw);
-  margin: 18px auto 8px;
-  padding: 0 18px;
-
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.controls * { box-sizing: border-box; }
-
-/* “Pill” styling for native <select> */
-.controls select {
+.ms{
+  position: relative;
   width: 220px;
   max-width: 90vw;
+}
 
+.ms-btn{
+  width: 100%;
+  height: 38px;
   padding: 10px 14px;
   border: 1px solid var(--ink);
   border-radius: 999px;
   background: transparent;
   color: var(--ink);
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
   font: 700 12px/1 "Space Grotesk", sans-serif;
   letter-spacing: .08em;
   text-transform: uppercase;
 
   cursor: pointer;
-  transition: background .15s ease, border-color .15s ease, transform .05s ease;
+  transition: background .15s ease, transform .05s ease, border-color .15s ease;
 }
 
-/* Hover/focus like your pills */
-.controls select:hover {
+.ms-btn:hover{
   background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  border-color: var(--color-accent);
 }
 
-.controls select:active {
-  transform: translateY(1px);
-}
+.ms-btn:active{ transform: translateY(1px); }
 
-.controls select:focus-visible {
+.ms-btn:focus-visible{
   outline: 2px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
   outline-offset: 3px;
 }
 
-/* Make multi-select usable when opened (still “pretty”) */
-.controls select[multiple] {
-  border-radius: 18px;
-  padding: 10px 14px;
+.ms-label{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-  /* When a multi-select is open, it needs height */
-  min-height: 44px;
+.ms-caret{
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
+.ms-panel{
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+
+  border: 1px solid var(--ink);
+  border-radius: 16px;
+  background: #fff;
+  padding: 10px;
+
+  display: none;
+  max-height: 260px;
+  overflow: auto;
+}
+
+.ms.is-open .ms-panel{ display: block; }
+
+.ms-item{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+
+  font: 15px/1.2 "IBM Plex Serif", serif;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.ms-item:hover{
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+}
+
+.ms-item input{
+  width: 16px;
+  height: 16px;
 }
 
 /* Option typography (browser-dependent support; harmless if ignored) */
@@ -175,11 +212,11 @@
 
 /* ===== Mobile ===== */
 @media (max-width: 640px) {
-  .controls {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  .ms{
+    width: 100%;
   }
+}
+
 
   .controls select {
     width: 100%;
