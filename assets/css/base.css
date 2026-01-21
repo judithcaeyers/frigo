@@ -70,11 +70,6 @@ p.muted {
 
 /* ===== Typografie ===== */
 
-/* Default tekst */
-body {
-  font-family: "Inter", system-ui, sans-serif;
-}
-
 /* Hoofdtitel (hero / page title) */
 h1 {
   font-family: "Space Grotesk", sans-serif;
@@ -88,6 +83,11 @@ h2, h3, h4, h5, h6 {
   font-family: "Inter", sans-serif;
   font-weight: 600;
   letter-spacing: 0.01em;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 400;
 }
 
 /* Reenie Beanie alleen als accent, expliciet */
