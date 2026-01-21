@@ -1,8 +1,8 @@
 :root {
   /* Palet (centraal) */
-  --color-bg:       #fffce2;   /* wit */
-  --color-surface:  #f6ab64;   /* oranje */
-  --color-ink:      #691825;   /* rood */
+  --color-bg:       #fbfce2;   /* wit */
+  --color-surface:  #f6a264;   /* oranje */
+  --color-ink:      #601825;   /* rood */
   --color-accent:   #6c6e42;   /* donkergroen */
 
   /* Thema alias */
