@@ -98,15 +98,23 @@
   height: 16px;
 }
 
-/* Option typography (browser-dependent support; harmless if ignored) */
-.controls select option {
-  font: 15px/1.2 "IBM Plex Serif", serif;
-  text-transform: none;
-  letter-spacing: 0;
+/* =========================
+   FILTERS LAYOUT
+========================= */
+
+.controls{
+  max-width: var(--maxw);
+  margin: 18px auto 8px;
+  padding: 0 18px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 220px);
+  gap: 12px;
+  justify-content: center;
+  align-items: start;
 }
 
-/* Footer row under filters */
-.filters-footer {
+.filters-footer{
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -114,15 +122,18 @@
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+
+  grid-column: 1 / -1;
+  justify-self: center;
 }
 
+/* Search button */
 .search-wrap {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* Search button */
 .search-btn {
   width: 38px;
   height: 38px;
@@ -210,73 +221,35 @@
   outline-offset: 3px;
 }
 
-/* Filters: 4 op een rij gecentreerd op laptop */
-.controls{
-  max-width: var(--maxw);
-  margin: 18px auto 8px;
-  padding: 0 18px;
-
- display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 220px));
-  gap: 12px;
-  justify-content: center;
-  align-items: start;
-}
-
-/* Zorg dat de footer (zoek + wis knop) onder de 4 filters staat */
-.filters-footer{
-  grid-column: 1 / -1;
-  justify-self: center;
-  width: 100%;
-}
-
-/* Responsive: onder elkaar gecentreerd op mobiel */
+/* ===== Mobile ===== */
 @media (max-width: 640px){
   .controls{
     grid-template-columns: 1fr;
     justify-items: center;
+    gap: 10px;
   }
 
   .ms{
     width: 100%;
-    max-width: 420px; /* optioneel: zodat het niet té breed is op grotere mobielen */
+    max-width: 420px;
   }
 
   .filters-footer{
-    width: 100%;
-  }
-}
-
-
-/* ===== Mobile ===== */
-@media (max-width: 640px) {
-  .ms{
-    width: 100%;
-  }
-}
-
-
-  .controls select {
-    width: 100%;
-    font-size: 11px;
-    padding: 9px 12px;
-  }
-
-  .filters-footer {
     flex-direction: column;
     gap: 8px;
   }
 
-  .search-input {
+  .search-input{
     width: 100%;
     max-width: 90%;
   }
 
-  .btn {
+  .btn{
     font-size: 11px;
     padding: 9px 12px;
   }
 }
+
 
 
 /* =========================
