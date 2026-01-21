@@ -2,7 +2,7 @@
   /* Palet (centraal) */
   --color-bg:       #fbfce2;   /* wit */
   --color-surface:  #f6a264;   /* oranje */
-  --color-ink:      #601825;   /* rood */
+  --color-ink:      #621825;   /* rood */
   --color-accent:   #6c6e42;   /* donkergroen */
 
   /* Thema alias */
@@ -28,9 +28,10 @@ body {
 body {
   background: var(--bg);
   color: var(--ink);
-  font: 16px/1.6 "Space Grotesk", sans-serif; /* strak sans-serif overal */
+  font: 16px/1.6 "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
 
 a {
   color: inherit;
@@ -69,27 +70,29 @@ p.muted {
 
 /* ===== Typografie ===== */
 
-/* Alle titels in Reenie Beanie */
-h1, h2, h3, h4, h5, h6,
-.card-title {
-  font-family: "Reenie Beanie", cursive !important;
-  font-weight: 400;
-  letter-spacing: 0.5px;
+/* Default tekst */
+body {
+  font-family: "Inter", system-ui, sans-serif;
 }
 
-/* Alleen H1 in ALL CAPS */
+/* Hoofdtitel (hero / page title) */
 h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
-/* Andere titels NIET in caps */
-.card-title,
+/* Andere titels (rustig, geen handschrift) */
 h2, h3, h4, h5, h6 {
-  text-transform: none !important;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
-/* Utility: .caps niet meer voor titels */
-.caps {
-  text-transform: none;
+/* Reenie Beanie alleen als accent, expliciet */
+.handwritten {
+  font-family: "Reenie Beanie", cursive;
+  font-weight: 400;
 }
 
