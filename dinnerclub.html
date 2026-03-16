@@ -1,855 +1,189 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chef Lil J — Dinner Clubs</title>
-  <meta
-    name="description"
-    content="Boek je plek aan tafel voor een Chef Lil J dinner club. Bekijk de agenda, schrijf je in en ontvang als eerste nieuwe data via de nieuwsbrief."
-  />
-  <style>
-    :root{
-      --bg:#0f0f0d;
-      --bg-soft:#171714;
-      --card:#1d1d19;
-      --line:rgba(255,255,255,0.12);
-      --text:#f5f1e8;
-      --muted:rgba(245,241,232,0.68);
-      --accent:#f3c96a;
-      --accent-soft:rgba(243,201,106,0.14);
-      --max:1180px;
-      --radius:26px;
-      --shadow:0 20px 60px rgba(0,0,0,0.28);
-    }
-
-    *{
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      margin:0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(243,201,106,0.10), transparent 26%),
-        radial-gradient(circle at 85% 12%, rgba(255,255,255,0.06), transparent 18%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.5;
-    }
-
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
-
-    img{
-      max-width:100%;
-      display:block;
-    }
-
-    .container{
-      width:min(var(--max), calc(100% - 40px));
-      margin:0 auto;
-    }
-
-    .site-header{
-      position:sticky;
-      top:0;
-      z-index:20;
-      backdrop-filter:blur(18px);
-      background:rgba(15,15,13,0.72);
-      border-bottom:1px solid rgba(255,255,255,0.06);
-    }
-
-    .nav{
-      min-height:78px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:24px;
-    }
-
-    .brand{
-      font-size:0.95rem;
-      text-transform:uppercase;
-      letter-spacing:0.18em;
-      color:var(--muted);
-      white-space:nowrap;
-    }
-
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .nav-links a{
-      padding:10px 14px;
-      border-radius:999px;
-      color:var(--muted);
-      transition:0.25s ease;
-    }
-
-    .nav-links a:hover{
-      color:var(--text);
-      background:rgba(255,255,255,0.05);
-    }
-
-    .nav-links .button-link{
-      background:var(--text);
-      color:#111;
-      font-weight:600;
-    }
-
-    .nav-links .button-link:hover{
-      background:var(--accent);
-      color:#111;
-    }
-
-    .hero{
-      padding:92px 0 52px;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.15fr 0.85fr;
-      gap:28px;
-      align-items:stretch;
-    }
-
-    .hero-copy,
-    .hero-side{
-      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border:1px solid var(--line);
-      border-radius:calc(var(--radius) + 6px);
-      box-shadow:var(--shadow);
-    }
-
-    .hero-copy{
-      padding:42px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      min-height:520px;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      width:max-content;
-      padding:10px 14px;
-      border-radius:999px;
-      background:var(--accent-soft);
-      border:1px solid rgba(243,201,106,0.18);
-      color:var(--accent);
-      font-size:0.8rem;
-      text-transform:uppercase;
-      letter-spacing:0.14em;
-      margin-bottom:24px;
-    }
-
-    h1,h2,h3,p{
-      margin:0;
-    }
-
-    h1{
-      font-size:clamp(2.6rem, 7vw, 5.6rem);
-      line-height:0.95;
-      letter-spacing:-0.04em;
-      max-width:9ch;
-    }
-
-    .hero-copy .lead{
-      margin-top:24px;
-      font-size:1.15rem;
-      color:var(--muted);
-      max-width:52ch;
-    }
-
-    .hero-actions{
-      margin-top:34px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:54px;
-      padding:0 20px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      transition:0.25s ease;
-      font-weight:600;
-    }
-
-    .btn-primary{
-      background:var(--text);
-      color:#111;
-      border-color:var(--text);
-    }
-
-    .btn-primary:hover{
-      background:var(--accent);
-      border-color:var(--accent);
-      transform:translateY(-1px);
-    }
-
-    .btn-secondary{
-      color:var(--text);
-      background:transparent;
-    }
-
-    .btn-secondary:hover{
-      background:rgba(255,255,255,0.05);
-      transform:translateY(-1px);
-    }
-
-    .hero-meta{
-      margin-top:42px;
-      padding-top:22px;
-      border-top:1px solid var(--line);
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:18px;
-    }
-
-    .meta-item span{
-      display:block;
-    }
-
-    .meta-item .label{
-      color:var(--muted);
-      font-size:0.78rem;
-      text-transform:uppercase;
-      letter-spacing:0.14em;
-      margin-bottom:8px;
-    }
-
-    .meta-item .value{
-      font-size:1rem;
-    }
-
-    .hero-side{
-      padding:28px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:22px;
-      min-height:520px;
-      background:
-        linear-gradient(180deg, rgba(243,201,106,0.08), rgba(255,255,255,0.01)),
-        var(--bg-soft);
-    }
-
-    .side-top{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-    }
-
-    .side-label{
-      color:var(--muted);
-      font-size:0.82rem;
-      text-transform:uppercase;
-      letter-spacing:0.16em;
-    }
-
-    .next-dinner-card{
-      background:rgba(255,255,255,0.04);
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:24px;
-    }
-
-    .next-dinner-card h2{
-      font-size:1.7rem;
-      letter-spacing:-0.03em;
-      margin-bottom:14px;
-    }
-
-    .info-list{
-      display:grid;
-      gap:10px;
-      margin-bottom:18px;
-    }
-
-    .info-row{
-      display:flex;
-      justify-content:space-between;
-      gap:18px;
-      padding-bottom:10px;
-      border-bottom:1px solid rgba(255,255,255,0.08);
-    }
-
-    .info-row span:first-child{
-      color:var(--muted);
-    }
-
-    .side-note{
-      color:var(--muted);
-      font-size:0.98rem;
-      max-width:34ch;
-    }
-
-    .section{
-      padding:34px 0;
-    }
-
-    .section-head{
-      display:flex;
-      justify-content:space-between;
-      gap:18px;
-      align-items:end;
-      margin-bottom:22px;
-    }
-
-    .section-head h2{
-      font-size:clamp(1.9rem, 4vw, 3rem);
-      letter-spacing:-0.04em;
-    }
-
-    .section-head p{
-      color:var(--muted);
-      max-width:42ch;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:1.08fr 0.92fr;
-      gap:28px;
-    }
-
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:28px;
-      box-shadow:var(--shadow);
-    }
-
-    .card h3{
-      font-size:1.4rem;
-      letter-spacing:-0.03em;
-      margin-bottom:8px;
-    }
-
-    .card-intro{
-      color:var(--muted);
-      margin-bottom:24px;
-    }
-
-    .booking-form{
-      display:grid;
-      gap:16px;
-    }
-
-    .field{
-      display:grid;
-      gap:8px;
-    }
-
-    label{
-      font-size:0.92rem;
-      color:var(--muted);
-    }
-
-    input,
-    select,
-    textarea{
-      width:100%;
-      min-height:54px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,0.10);
-      background:rgba(255,255,255,0.03);
-      color:var(--text);
-      padding:14px 16px;
-      font:inherit;
-      transition:0.25s ease;
-    }
-
-    textarea{
-      min-height:126px;
-      resize:vertical;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus{
-      outline:none;
-      border-color:rgba(243,201,106,0.55);
-      background:rgba(255,255,255,0.05);
-    }
-
-    input::placeholder,
-    textarea::placeholder{
-      color:rgba(245,241,232,0.38);
-    }
-
-    .form-row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-    }
-
-    .form-note{
-      color:var(--muted);
-      font-size:0.92rem;
-    }
-
-    .agenda-list{
-      display:grid;
-      gap:14px;
-    }
-
-    .agenda-item{
-      padding:20px;
-      border-radius:22px;
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.08);
-      display:grid;
-      gap:14px;
-    }
-
-    .agenda-top{
-      display:flex;
-      justify-content:space-between;
-      gap:18px;
-      align-items:start;
-    }
-
-    .agenda-date{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:92px;
-      padding:10px 14px;
-      border-radius:18px;
-      background:var(--accent-soft);
-      color:var(--accent);
-      text-align:center;
-      font-weight:700;
-      line-height:1.15;
-    }
-
-    .agenda-date small{
-      display:block;
-      font-size:0.78rem;
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      margin-bottom:5px;
-    }
-
-    .agenda-item h4{
-      margin:0 0 6px;
-      font-size:1.25rem;
-      letter-spacing:-0.03em;
-    }
-
-    .agenda-meta{
-      color:var(--muted);
-      font-size:0.96rem;
-    }
-
-    .agenda-copy{
-      color:var(--muted);
-    }
-
-    .agenda-status{
-      align-self:start;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.10);
-      font-size:0.82rem;
-      color:var(--text);
-      white-space:nowrap;
-    }
-
-    .newsletter{
-      margin-top:28px;
-      background:
-        linear-gradient(135deg, rgba(243,201,106,0.10), rgba(255,255,255,0.02)),
-        var(--bg-soft);
-      border:1px solid var(--line);
-      border-radius:calc(var(--radius) + 8px);
-      padding:32px;
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:20px;
-      align-items:center;
-    }
-
-    .newsletter p{
-      color:var(--muted);
-      max-width:56ch;
-      margin-top:10px;
-    }
-
-    .mini-links{
-      margin-top:16px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .mini-links a{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.08);
-      color:var(--muted);
-      transition:0.25s ease;
-    }
-
-    .mini-links a:hover{
-      color:var(--text);
-      background:rgba(255,255,255,0.04);
-    }
-
-    .footer{
-      padding:26px 0 48px;
-      color:var(--muted);
-      font-size:0.92rem;
-    }
-
-    .footer-inner{
-      display:flex;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-      border-top:1px solid rgba(255,255,255,0.08);
-      padding-top:22px;
-    }
-
-    @media (max-width: 980px){
-      .hero-grid,
-      .grid,
-      .newsletter{
-        grid-template-columns:1fr;
-      }
-
-      .hero-copy,
-      .hero-side{
-        min-height:auto;
-      }
-    }
-
-    @media (max-width: 720px){
-      .nav{
-        align-items:flex-start;
-        padding:14px 0;
-        flex-direction:column;
-      }
-
-      .hero{
-        padding-top:56px;
-      }
-
-      .hero-copy,
-      .hero-side,
-      .card,
-      .newsletter{
-        padding:22px;
-      }
-
-      .hero-meta,
-      .form-row{
-        grid-template-columns:1fr;
-      }
-
-      .section-head,
-      .agenda-top,
-      .footer-inner{
-        display:grid;
-      }
-
-      .agenda-date{
-        min-width:84px;
-        width:max-content;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chef Lil J Dinner Club</title>
+
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Reenie+Beanie&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+background:#e7e2d7;
+font-family:'EB Garamond', serif;
+color:#1d1d1d;
+}
+
+.container{
+max-width:650px;
+margin:auto;
+padding:80px 40px;
+text-align:center;
+}
+
+h1{
+font-family:'Reenie Beanie', cursive;
+font-size:56px;
+margin-bottom:10px;
+}
+
+.date{
+font-size:14px;
+letter-spacing:2px;
+margin-bottom:80px;
+}
+
+.section-title{
+font-family:'Reenie Beanie', cursive;
+font-size:36px;
+margin-top:60px;
+margin-bottom:25px;
+}
+
+.menu-item{
+font-size:16px;
+letter-spacing:1px;
+line-height:1.8;
+max-width:420px;
+margin:auto;
+}
+
+.divider{
+margin:80px auto;
+width:60px;
+height:1px;
+background:#000;
+opacity:0.2;
+}
+
+.agenda{
+margin-top:120px;
+}
+
+.event{
+margin-bottom:60px;
+}
+
+.event-date{
+font-family:'Reenie Beanie', cursive;
+font-size:30px;
+}
+
+.event-info{
+font-size:15px;
+letter-spacing:1px;
+margin-top:10px;
+}
+
+.button{
+display:inline-block;
+margin-top:25px;
+padding:12px 30px;
+border:1px solid #000;
+text-decoration:none;
+color:#000;
+font-size:14px;
+letter-spacing:2px;
+transition:0.2s;
+}
+
+.button:hover{
+background:#000;
+color:#fff;
+}
+
+.newsletter{
+margin-top:120px;
+font-size:14px;
+}
+
+.newsletter a{
+border-bottom:1px solid #000;
+text-decoration:none;
+color:#000;
+}
+
+</style>
 </head>
+
+
 <body>
 
-  <header class="site-header">
-    <div class="container nav">
-      <a class="brand" href="#">Chef Lil J</a>
+<div class="container">
 
-      <nav class="nav-links">
-        <a href="#agenda">Agenda</a>
-        <a href="#boek">Boeken</a>
-        <a href="#nieuwsbrief">Nieuwsbrief</a>
-        <a class="button-link" href="#boek">Reserveer je plek</a>
-      </nav>
-    </div>
-  </header>
+<h1>Chef Lil J</h1>
+<div class="date">Dinner Club</div>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div>
-            <div class="eyebrow">Dinner clubs by Chef Lil J</div>
-            <h1>Diners voor mensen die graag echt aan tafel zitten.</h1>
-            <p class="lead">
-              Intieme avonden met goed eten, een lange tafel, onverwachte smaken en een fijne mix van mensen.
-              Geen restaurant. Geen haast. Gewoon een avond die je wil rekken.
-            </p>
 
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#boek">Schrijf je in</a>
-              <a class="btn btn-secondary" href="#agenda">Bekijk de agenda</a>
-            </div>
-          </div>
+<div class="section-title">To start</div>
 
-          <div class="hero-meta">
-            <div class="meta-item">
-              <span class="label">Format</span>
-              <span class="value">Shared table dinners</span>
-            </div>
-            <div class="meta-item">
-              <span class="label">Locatie</span>
-              <span class="value">Leuven + pop-up plekken</span>
-            </div>
-            <div class="meta-item">
-              <span class="label">Sfeer</span>
-              <span class="value">Warm, speels, een tikje vreemd</span>
-            </div>
-          </div>
-        </div>
+<div class="menu-item">
+Heritage tomato salad, burrata<br>
+and garden herb gremolata
+</div>
 
-        <aside class="hero-side">
-          <div class="side-top">
-            <div class="side-label">Volgende dinner club</div>
 
-            <div class="next-dinner-card">
-              <h2>Late Spring Table</h2>
+<div class="section-title">Main course</div>
 
-              <div class="info-list">
-                <div class="info-row">
-                  <span>Datum</span>
-                  <span>24 april 2026</span>
-                </div>
-                <div class="info-row">
-                  <span>Uur</span>
-                  <span>19:00 — 23:00</span>
-                </div>
-                <div class="info-row">
-                  <span>Prijs</span>
-                  <span>€85 p.p.</span>
-                </div>
-                <div class="info-row">
-                  <span>Status</span>
-                  <span>Nog 7 plaatsen</span>
-                </div>
-              </div>
+<div class="menu-item">
+Lincolnshire potato, oak smoked cheddar,<br>
+bbq spring onions and baby gem lettuce,<br>
+lovage velouté
+</div>
 
-              <a class="btn btn-primary" href="#boek">Ik wil erbij zijn</a>
-            </div>
-          </div>
 
-          <p class="side-note">
-            Elke dinner club heeft een eigen menu, sfeer en setting. Soms elegant, soms rommelig op de juiste manier,
-            altijd gemaakt om mensen rond tafel met elkaar te laten landen.
-          </p>
-        </aside>
-      </div>
-    </section>
+<div class="section-title">Dessert</div>
 
-    <section class="section" id="boek">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Boek je plek</h2>
-          </div>
-          <p>
-            Vul hieronder je gegevens in. Je reservatie is pas definitief na bevestiging per mail.
-            Je kan hier ook allergieën of dieetwensen doorgeven.
-          </p>
-        </div>
+<div class="menu-item">
+Sticky toffee pudding,<br>
+vanilla ice cream
+</div>
 
-        <div class="grid">
-          <div class="card">
-            <h3>Inschrijfformulier</h3>
-            <p class="card-intro">
-              Vervang dit formulier later eventueel door een koppeling met Formspree, Tally, Typeform of je eigen backend.
-            </p>
 
-            <form class="booking-form" action="#" method="post">
-              <div class="form-row">
-                <div class="field">
-                  <label for="name">Naam</label>
-                  <input type="text" id="name" name="name" placeholder="Je naam" required />
-                </div>
+<div class="divider"></div>
 
-                <div class="field">
-                  <label for="email">E-mailadres</label>
-                  <input type="email" id="email" name="email" placeholder="jij@email.com" required />
-                </div>
-              </div>
 
-              <div class="form-row">
-                <div class="field">
-                  <label for="phone">Telefoonnummer</label>
-                  <input type="tel" id="phone" name="phone" placeholder="+32 ..." />
-                </div>
+<div class="agenda">
 
-                <div class="field">
-                  <label for="guests">Aantal personen</label>
-                  <select id="guests" name="guests" required>
-                    <option value="">Kies</option>
-                    <option>1 persoon</option>
-                    <option>2 personen</option>
-                    <option>3 personen</option>
-                    <option>4 personen</option>
-                    <option>5+ personen</option>
-                  </select>
-                </div>
-              </div>
+<h1>Upcoming dinners</h1>
 
-              <div class="field">
-                <label for="event">Voor welke dinner club?</label>
-                <select id="event" name="event" required>
-                  <option value="">Kies een dinner club</option>
-                  <option>24 april 2026 — Late Spring Table</option>
-                  <option>15 mei 2026 — Red Sauce, Long Night</option>
-                  <option>12 juni 2026 — Summer Starts Early</option>
-                  <option>Wachtlijst / hou me op de hoogte</option>
-                </select>
-              </div>
+<div class="event">
+<div class="event-date">24 April</div>
+<div class="event-info">
+Leuven · 19:00<br>
+4 courses · €85
+</div>
 
-              <div class="field">
-                <label for="notes">Allergieën, dieetwensen of iets anders?</label>
-                <textarea id="notes" name="notes" placeholder="Vegetarisch, geen noten, ik kom met een vriend, ..."></textarea>
-              </div>
+<a class="button" href="#">Reserve seat</a>
+</div>
 
-              <button class="btn btn-primary" type="submit">Verstuur inschrijving</button>
-              <p class="form-note">
-                Door in te schrijven ga je akkoord dat je gecontacteerd mag worden over je reservatie.
-              </p>
-            </form>
-          </div>
 
-          <div class="card" id="agenda">
-            <h3>Agenda</h3>
-            <p class="card-intro">
-              Een overzicht van de komende avonden. Je kan hier dummy-data laten staan tot je eerste echte data vastliggen.
-            </p>
+<div class="event">
+<div class="event-date">15 May</div>
+<div class="event-info">
+Leuven · 19:30<br>
+Seasonal dinner · €85
+</div>
 
-            <div class="agenda-list">
+<a class="button" href="#">Reserve seat</a>
+</div>
 
-              <article class="agenda-item">
-                <div class="agenda-top">
-                  <div class="agenda-date">
-                    <div>
-                      <small>APR</small>
-                      24
-                    </div>
-                  </div>
+</div>
 
-                  <div style="flex:1;">
-                    <h4>Late Spring Table</h4>
-                    <div class="agenda-meta">Leuven · 19:00 — 23:00 · €85 p.p.</div>
-                  </div>
 
-                  <div class="agenda-status">Nog 7 plaatsen</div>
-                </div>
+<div class="newsletter">
 
-                <p class="agenda-copy">
-                  Een avond rond frisse lenteborden, zachte kleuren, tafelgesprekken en gerechten die net een klein beetje afwijken van wat je verwacht.
-                </p>
-              </article>
+Want early access to new dinners?<br><br>
 
-              <article class="agenda-item">
-                <div class="agenda-top">
-                  <div class="agenda-date">
-                    <div>
-                      <small>MEI</small>
-                      15
-                    </div>
-                  </div>
+<a href="#">Join the newsletter</a>
 
-                  <div style="flex:1;">
-                    <h4>Red Sauce, Long Night</h4>
-                    <div class="agenda-meta">Leuven · 19:30 — 23:30 · €78 p.p.</div>
-                  </div>
+</div>
 
-                  <div class="agenda-status">Open voor boekingen</div>
-                </div>
 
-                <p class="agenda-copy">
-                  Comfort food met karakter. Een lossere avond met delen, morsen, brood op tafel en veel te veel reden om nog een glas te nemen.
-                </p>
-              </article>
-
-              <article class="agenda-item">
-                <div class="agenda-top">
-                  <div class="agenda-date">
-                    <div>
-                      <small>JUN</small>
-                      12
-                    </div>
-                  </div>
-
-                  <div style="flex:1;">
-                    <h4>Summer Starts Early</h4>
-                    <div class="agenda-meta">Pop-up locatie · 19:00 — 23:00 · €92 p.p.</div>
-                  </div>
-
-                  <div class="agenda-status">Wachtlijst open</div>
-                </div>
-
-                <p class="agenda-copy">
-                  Een iets feestelijkere tafel, lichte gerechten, zomerse energie en een locatie die je pas na reservatie volledig te weten komt.
-                </p>
-              </article>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="nieuwsbrief">
-      <div class="container">
-        <div class="newsletter">
-          <div>
-            <h2>Nieuwsbrief</h2>
-            <p>
-              Krijg nieuwe data, menu’s, pop-up locaties en wachtlijstopeningen als eerste binnen.
-              Handig voor mensen die meestal net te laat zijn.
-            </p>
-
-            <div class="mini-links">
-              <a href="https://example.com" target="_blank" rel="noopener noreferrer">Schrijf je in op de nieuwsbrief</a>
-              <a href="mailto:hello@cheflilj.com">Mail me rechtstreeks</a>
-            </div>
-          </div>
-
-          <a class="btn btn-primary" href="https://example.com" target="_blank" rel="noopener noreferrer">
-            Naar de nieuwsbrief
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span>Chef Lil J — dinner clubs, pop-ups en lange tafels.</span>
-      <span>Vervang links, data en formulieractie door je echte gegevens.</span>
-    </div>
-  </footer>
+</div>
 
 </body>
 </html>
