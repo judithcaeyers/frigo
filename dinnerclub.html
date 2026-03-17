@@ -30,10 +30,10 @@ font-size:56px;
 margin-bottom:10px;
 }
 
-.date{
+.subtitle{
 font-size:14px;
 letter-spacing:2px;
-margin-bottom:80px;
+margin-bottom:60px;
 }
 
 .section-title{
@@ -63,8 +63,14 @@ opacity:0.2;
 margin-top:120px;
 }
 
-.event{
+.agenda h2{
+font-family:'Reenie Beanie', cursive;
+font-size:42px;
 margin-bottom:60px;
+}
+
+.event{
+margin-bottom:70px;
 }
 
 .event-date{
@@ -76,6 +82,19 @@ font-size:30px;
 font-size:15px;
 letter-spacing:1px;
 margin-top:10px;
+line-height:1.7;
+}
+
+.small{
+font-size:13px;
+opacity:0.7;
+}
+
+.seats{
+margin-top:10px;
+font-size:13px;
+letter-spacing:1px;
+opacity:0.6;
 }
 
 .button{
@@ -106,6 +125,18 @@ text-decoration:none;
 color:#000;
 }
 
+.kitchen{
+margin-top:40px;
+font-size:14px;
+opacity:0.8;
+}
+
+.kitchen a{
+border-bottom:1px solid #000;
+text-decoration:none;
+color:#000;
+}
+
 </style>
 </head>
 
@@ -115,7 +146,7 @@ color:#000;
 <div class="container">
 
 <h1>Chef Lil J</h1>
-<div class="date">Dinner Club</div>
+<div class="subtitle">Dinner Club · Seasonal dinners in Leuven</div>
 
 
 <div class="section-title">To start</div>
@@ -148,27 +179,45 @@ vanilla ice cream
 
 <div class="agenda">
 
-<h1>Upcoming dinners</h1>
+<h2>Upcoming dinners</h2>
 
 <div class="event">
+
 <div class="event-date">20 June</div>
+
 <div class="event-info">
 Leuven · 19:00<br>
-4 courses · €67
+4 courses · €67<br>
+<span class="small">water & aperitif included · wine available</span><br>
+<span class="small">20 seats at the table</span>
 </div>
 
-<a class="button" href="#">Reserve seat</a>
+<a class="button" href="#">Reserve your seat</a>
+
+<div class="seats">
+12 seats remaining
+</div>
+
 </div>
 
 
 <div class="event">
-<div class="event-date"> 15 August</div>
+
+<div class="event-date">15 August</div>
+
 <div class="event-info">
 Leuven · 19:00<br>
-Seasonal dinner · €67
+Seasonal dinner · €67<br>
+<span class="small">water & aperitif included · wine available</span><br>
+<span class="small">20 seats at the table</span>
 </div>
 
-<a class="button" href="#">Reserve seat</a>
+<a class="button" href="#">Reserve your seat</a>
+
+<div class="seats">
+Seats available
+</div>
+
 </div>
 
 </div>
@@ -179,6 +228,14 @@ Seasonal dinner · €67
 Want early access to new dinners?<br><br>
 
 <a href="#">Join the newsletter</a>
+
+</div>
+
+
+<div class="kitchen">
+
+Cooking between dinners:<br>
+<a href="#">Recipes & notes from my kitchen</a>
 
 </div>
 
