@@ -2,37 +2,44 @@
   /* =========================
      KLEUREN
   ========================= */
-  --color-bg:      #f8f8ee;
-  --color-surface: #f8f8ee;
-  --color-ink:     #020202;
-  --color-accent:  #020202;
+  --color-bg: #e7e2d7;
+  --color-surface: #e7e2d7;
+  --color-ink: #1d1d1d;
+  --color-accent: #1d1d1d;
 
-  /* Thema alias */
-  --bg:   var(--color-bg);
+  --bg: var(--color-bg);
   --surface: var(--color-surface);
-  --ink:  var(--color-ink);
-  --hair: color-mix(in srgb, var(--color-ink) 20%, transparent);
+  --ink: var(--color-ink);
+  --hair: rgba(29, 29, 29, 0.18);
 
-  /* Layout */
-  --radius: 14px;
+  /* =========================
+     LAYOUT
+  ========================= */
   --maxw: 1100px;
+  --maxw-narrow: 700px;
   --gutter: 24px;
+  --radius: 0;
 
-  /* Typografie */
+  /* =========================
+     TYPOGRAFIE
+  ========================= */
   --font-body: "EB Garamond", Georgia, serif;
   --font-ui: "Space Grotesk", "Inter", system-ui, sans-serif;
   --font-accent: "Reenie Beanie", cursive;
 
-  /* Ritme */
+  /* =========================
+     SPACING
+  ========================= */
   --space-xs: 8px;
   --space-sm: 14px;
   --space-md: 24px;
   --space-lg: 40px;
   --space-xl: 64px;
+  --space-2xl: 100px;
 }
 
 /* =========================
-   BASE RESET
+   RESET
 ========================= */
 
 *,
@@ -54,7 +61,9 @@ html {
 body {
   background: var(--bg);
   color: var(--ink);
-  font: 400 20px/1.65 var(--font-body);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -89,27 +98,27 @@ textarea {
 }
 
 .narrow {
-  max-width: 720px;
+  max-width: var(--maxw-narrow);
   margin-left: auto;
   margin-right: auto;
 }
 
 .rule {
+  width: 60px;
   height: 1px;
-  background: var(--hair);
+  margin: 0 auto;
+  background: var(--ink);
+  opacity: 0.2;
   border: 0;
-  margin: 24px 0;
 }
 
 /* =========================
    HEADER
 ========================= */
 
-header {
-  max-width: var(--maxw);
-  margin: 0 auto;
+header.site-header {
   text-align: center;
-  padding: 28px 18px 20px;
+  padding: 32px 18px 24px;
 }
 
 .logo img {
@@ -123,36 +132,54 @@ header {
    TYPOGRAFIE
 ========================= */
 
-h1, h2, h3, h4, h5, h6,
-p, ul, ol, figure, blockquote {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+figure,
+blockquote {
   margin-top: 0;
 }
 
 h1 {
-  font-family: var(--font-ui);
-  font-weight: 700;
-  font-size: clamp(34px, 6vw, 64px);
-  line-height: 1.04;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-family: var(--font-accent);
+  font-weight: 400;
+  font-size: clamp(48px, 8vw, 72px);
+  line-height: 0.95;
+  letter-spacing: 0;
   margin-bottom: 12px;
 }
 
 h2 {
-  font-family: var(--font-ui);
-  font-weight: 700;
-  font-size: clamp(13px, 2vw, 15px);
-  line-height: 1.1;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
+  font-family: var(--font-accent);
+  font-weight: 400;
+  font-size: clamp(34px, 5vw, 48px);
+  line-height: 1;
+  letter-spacing: 0;
+  margin-bottom: 20px;
 }
 
-h3, h4, h5, h6 {
+h3 {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+h4,
+h5,
+h6 {
   font-family: var(--font-body);
   font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.01em;
+  line-height: 1.25;
   margin-bottom: 10px;
 }
 
@@ -161,7 +188,7 @@ p {
 }
 
 small {
-  font-size: 0.75em;
+  font-size: 0.8em;
 }
 
 strong {
@@ -176,58 +203,50 @@ em {
    TYPE UTILITIES
 ========================= */
 
+.kicker,
 .caps {
   font-family: var(--font-ui);
   font-weight: 700;
+  font-size: 12px;
+  line-height: 1.1;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
 }
 
 .kicker {
-  font: 700 12px/1 var(--font-ui);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
   opacity: 0.72;
 }
 
 .muted {
-  opacity: 0.75;
+  opacity: 0.72;
 }
 
-.handwritten {
-  font-family: var(--font-accent);
-  font-weight: 400;
-  line-height: 1;
-}
-
+.handwritten,
+.handwritten-md,
 .handwritten-lg {
   font-family: var(--font-accent);
   font-weight: 400;
-  font-size: clamp(28px, 4vw, 42px);
   line-height: 1;
 }
 
 .handwritten-md {
-  font-family: var(--font-accent);
-  font-weight: 400;
-  font-size: clamp(22px, 3vw, 32px);
-  line-height: 1;
+  font-size: clamp(28px, 4vw, 38px);
+}
+
+.handwritten-lg {
+  font-size: clamp(38px, 6vw, 56px);
 }
 
 .lead {
-  font-size: clamp(22px, 2.4vw, 28px);
+  font-size: clamp(21px, 2.5vw, 28px);
   line-height: 1.55;
 }
 
 .fine {
-  font-size: 15px;
-  line-height: 1.55;
-  opacity: 0.78;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.75;
 }
-
-/* =========================
-   DEFAULT TEXT WIDTHS
-========================= */
 
 .prose {
   max-width: 42ch;
@@ -243,34 +262,32 @@ em {
 
 .btn {
   display: inline-block;
+  padding: 12px 30px;
   border: 1px solid var(--ink);
-  border-radius: 9999px;
+  border-radius: 0;
   background: transparent;
   color: var(--ink);
-  padding: 12px 20px;
   cursor: pointer;
 
-  font: 700 12px/1 var(--font-ui);
-  letter-spacing: 0.08em;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 
   transition:
-    background 0.15s ease,
-    transform 0.05s ease,
-    border-color 0.15s ease,
-    opacity 0.15s ease;
+    background 0.18s ease,
+    color 0.18s ease,
+    opacity 0.18s ease;
 }
 
 .btn:hover {
-  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
-}
-
-.btn:active {
-  transform: translateY(1px);
+  background: var(--ink);
+  color: var(--bg);
 }
 
 .btn:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
+  outline: 2px solid rgba(29, 29, 29, 0.22);
   outline-offset: 3px;
 }
 
@@ -293,11 +310,13 @@ input,
 select,
 textarea {
   width: 100%;
-  background: #fff;
+  background: #fffdf8;
   border: 1px solid var(--ink);
   border-radius: 0;
   padding: 12px 14px;
-  font: 400 18px/1.4 var(--font-body);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.45;
 }
 
 textarea {
@@ -308,31 +327,34 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-  outline: 2px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+  outline: 2px solid rgba(29, 29, 29, 0.16);
   outline-offset: 2px;
 }
 
 label {
   display: block;
   margin-bottom: 8px;
-  font: 700 11px/1 var(--font-ui);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 /* =========================
-   SIMPLE CARD / PANEL
+   SIMPLE PANELS
 ========================= */
 
 .panel {
+  padding: 20px 0 24px;
   border-top: 2px solid var(--hair);
   border-bottom: 1px solid var(--hair);
-  padding: 18px 0 22px;
 }
 
 .card-soft {
   border: 1px solid var(--hair);
-  border-radius: var(--radius);
+  border-radius: 0;
   padding: 20px;
   background: transparent;
 }
@@ -352,24 +374,20 @@ li + li {
 }
 
 /* =========================
-   SELECTION
+   SELECTION / FOCUS
 ========================= */
 
 ::selection {
-  background: color-mix(in srgb, var(--ink) 12%, transparent);
+  background: rgba(29, 29, 29, 0.12);
 }
 
-/* =========================
-   FOCUS
-========================= */
-
 :focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
+  outline: 2px solid rgba(29, 29, 29, 0.22);
   outline-offset: 3px;
 }
 
 /* =========================
-   MOBILE TUNING
+   MOBILE
 ========================= */
 
 @media (max-width: 640px) {
@@ -378,12 +396,12 @@ li + li {
   }
 
   body {
-    font-size: 19px;
-    line-height: 1.62;
+    font-size: 16px;
+    line-height: 1.68;
   }
 
-  header {
-    padding: 24px 18px 18px;
+  header.site-header {
+    padding: 26px 18px 18px;
   }
 
   .logo img {
@@ -391,11 +409,11 @@ li + li {
   }
 
   .btn {
-    padding: 11px 16px;
-    font-size: 11px;
+    padding: 11px 22px;
+    font-size: 13px;
   }
 
   .fine {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
