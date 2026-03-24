@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chef Lil J Dinner Club</title>
+
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Reenie+Beanie&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+background:#e7e2d7;
+font-family:'EB Garamond', serif;
+color:#1d1d1d;
+}
+
+.container{
+max-width:650px;
+margin:auto;
+padding:80px 40px;
+text-align:center;
+}
+
+h1{
+font-family:'Reenie Beanie', cursive;
+font-size:56px;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:14px;
+letter-spacing:2px;
+margin-bottom:60px;
+}
+
+.section-title{
+font-family:'Reenie Beanie', cursive;
+font-size:36px;
+margin-top:60px;
+margin-bottom:25px;
+}
+
+.menu-item{
+font-size:16px;
+letter-spacing:1px;
+line-height:1.8;
+max-width:420px;
+margin:auto;
+}
+
+.divider{
+margin:80px auto;
+width:60px;
+height:1px;
+background:#000;
+opacity:0.2;
+}
+
+.dynamic{
+margin-top:20px;
+font-size:15px;
+letter-spacing:1px;
+opacity:0.8;
+cursor:pointer;
+}
+
+.dynamic span{
+display:block;
+margin:5px 0;
+}
+
+.agenda{
+margin-top:120px;
+}
+
+.agenda h2{
+font-family:'Reenie Beanie', cursive;
+font-size:42px;
+margin-bottom:60px;
+}
+
+.event{
+margin-bottom:70px;
+}
+
+.event-date{
+font-family:'Reenie Beanie', cursive;
+font-size:30px;
+}
+
+.event-info{
+font-size:15px;
+letter-spacing:1px;
+margin-top:10px;
+line-height:1.7;
+}
+
+.small{
+font-size:13px;
+opacity:0.7;
+}
+
+.seats{
+margin-top:10px;
+font-size:13px;
+letter-spacing:1px;
+opacity:0.6;
+}
+
+.button{
+display:inline-block;
+margin-top:25px;
+padding:12px 30px;
+border:1px solid #000;
+text-decoration:none;
+color:#000;
+font-size:14px;
+letter-spacing:2px;
+transition:0.2s;
+}
+
+.button:hover{
+background:#000;
+color:#fff;
+}
+
+.note{
+margin-top:20px;
+font-size:14px;
+opacity:0.7;
+max-width:400px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.newsletter{
+margin-top:120px;
+font-size:14px;
+}
+
+.newsletter a{
+border-bottom:1px solid #000;
+text-decoration:none;
+color:#000;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Chef Lil J</h1>
+<div class="subtitle">Dinner Club · Seasonal dinners in Leuven</div>
+
+
+<!-- STRUCTUUR -->
+
+<div class="section-title">The dinner</div>
+
+<div class="menu-item">
+4 gangen seizoensmenu<br>
+verse focaccia met opgeklopte kruidenboter<br>
+afsluitend met chocolade, pistache & karamel
+</div>
+
+<div class="note">
+Het menu groeit de komende weken — gebaseerd op seizoen, zin en wat ik tegenkom.
+</div>
+
+
+<!-- DYNAMISCHE SMAKEN -->
+
+<div class="section-title">What it might become</div>
+
+<div class="dynamic" onclick="spinMenu()">
+<span id="line1">dumplings · warme saus · frisse kruiden</span>
+<span id="line2">geroosterd · zacht · zuur</span>
+<span id="line3">citrus · vet · crunch</span>
+</div>
+
+<div class="note">(klik om te veranderen)</div>
+
+
+<div class="divider"></div>
+
+
+<!-- AGENDA -->
+
+<div class="agenda">
+
+<h2>Upcoming dinners</h2>
+
+<div class="event">
+
+<div class="event-date">20 June</div>
+
+<div class="event-info">
+Leuven · 19:00<br>
+4 courses · €69<br>
+<span class="small">water & aperitif included · wine pairing optional</span><br>
+<span class="small">25 seats at the table</span>
+</div>
+
+<a class="button" href="#">Reserve your seat</a>
+
+<div class="seats">
+12 seats remaining
+</div>
+
+</div>
+
+</div>
+
+
+<div class="newsletter">
+Want early access to new dinners?<br><br>
+<a href="#">Join the newsletter</a>
+</div>
+
+<div class="newsletter">
+Cooking between dinners:<br>
+<a href="#">Recipes & notes from my kitchen</a>
+</div>
+
+</div>
+
+
+<script>
+
+const options = [
+["dumplings · warme saus · frisse kruiden",
+ "gefermenteerd · diep · umami",
+ "zacht · romig · krokant"],
+
+["geroosterd · intens · citrus",
+ "aardse smaken · boter · zout",
+ "fris · groen · levendig"],
+
+["trage bereiding · rijke saus · kruiden",
+ "licht · zuur · crunchy",
+ "warm · rond · comfort"]
+];
+
+function spinMenu(){
+const set = options[Math.floor(Math.random() * options.length)];
+
+document.getElementById("line1").innerText = set[0];
+document.getElementById("line2").innerText = set[1];
+document.getElementById("line3").innerText = set[2];
+}
+
+</script>
+
+</body>
+</html>
