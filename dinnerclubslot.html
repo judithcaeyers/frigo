@@ -9,144 +9,194 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Reenie+Beanie&display=swap" rel="stylesheet">
 
 <style>
-
 body{
-margin:0;
-background:#e7e2d7;
-font-family:'EB Garamond', serif;
-color:#1d1d1d;
+  margin:0;
+  background:#e7e2d7;
+  font-family:'EB Garamond', serif;
+  color:#1d1d1d;
 }
 
 .container{
-max-width:650px;
-margin:auto;
-padding:80px 40px;
-text-align:center;
+  max-width:650px;
+  margin:auto;
+  padding:80px 40px;
+  text-align:center;
 }
 
 h1{
-font-family:'Reenie Beanie', cursive;
-font-size:56px;
-margin-bottom:10px;
+  font-family:'Reenie Beanie', cursive;
+  font-size:56px;
+  margin-bottom:10px;
 }
 
 .subtitle{
-font-size:14px;
-letter-spacing:2px;
-margin-bottom:60px;
+  font-size:14px;
+  letter-spacing:2px;
+  margin-bottom:60px;
 }
 
 .section-title{
-font-family:'Reenie Beanie', cursive;
-font-size:36px;
-margin-top:60px;
-margin-bottom:25px;
+  font-family:'Reenie Beanie', cursive;
+  font-size:36px;
+  margin-top:60px;
+  margin-bottom:25px;
 }
 
 .menu-item{
-font-size:16px;
-letter-spacing:1px;
-line-height:1.8;
-max-width:420px;
-margin:auto;
-}
-
-.divider{
-margin:80px auto;
-width:60px;
-height:1px;
-background:#000;
-opacity:0.2;
-}
-
-.dynamic{
-margin-top:20px;
-font-size:15px;
-letter-spacing:1px;
-opacity:0.8;
-cursor:pointer;
-}
-
-.dynamic span{
-display:block;
-margin:5px 0;
-}
-
-.agenda{
-margin-top:120px;
-}
-
-.agenda h2{
-font-family:'Reenie Beanie', cursive;
-font-size:42px;
-margin-bottom:60px;
-}
-
-.event{
-margin-bottom:70px;
-}
-
-.event-date{
-font-family:'Reenie Beanie', cursive;
-font-size:30px;
-}
-
-.event-info{
-font-size:15px;
-letter-spacing:1px;
-margin-top:10px;
-line-height:1.7;
-}
-
-.small{
-font-size:13px;
-opacity:0.7;
-}
-
-.seats{
-margin-top:10px;
-font-size:13px;
-letter-spacing:1px;
-opacity:0.6;
-}
-
-.button{
-display:inline-block;
-margin-top:25px;
-padding:12px 30px;
-border:1px solid #000;
-text-decoration:none;
-color:#000;
-font-size:14px;
-letter-spacing:2px;
-transition:0.2s;
-}
-
-.button:hover{
-background:#000;
-color:#fff;
+  font-size:16px;
+  letter-spacing:1px;
+  line-height:1.9;
+  max-width:460px;
+  margin:auto;
 }
 
 .note{
-margin-top:20px;
-font-size:14px;
-opacity:0.7;
-max-width:400px;
-margin-left:auto;
-margin-right:auto;
+  margin-top:18px;
+  font-size:14px;
+  opacity:0.72;
+  max-width:440px;
+  margin-left:auto;
+  margin-right:auto;
+  line-height:1.6;
+}
+
+.divider{
+  margin:80px auto;
+  width:60px;
+  height:1px;
+  background:#000;
+  opacity:0.2;
+}
+
+.slot-machine{
+  max-width:500px;
+  margin:30px auto 0;
+}
+
+.slot-row{
+  position:relative;
+  height:30px;
+  overflow:hidden;
+  margin:10px 0;
+}
+
+.reel{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  will-change:transform;
+}
+
+.reel-item{
+  height:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  letter-spacing:1px;
+  white-space:nowrap;
+}
+
+.teaser-button{
+  display:inline-block;
+  margin-top:24px;
+  padding:12px 28px;
+  border:1px solid #000;
+  background:transparent;
+  color:#000;
+  font-family:'EB Garamond', serif;
+  font-size:14px;
+  letter-spacing:2px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.teaser-button:hover{
+  background:#000;
+  color:#fff;
+}
+
+.agenda{
+  margin-top:120px;
+}
+
+.agenda h2{
+  font-family:'Reenie Beanie', cursive;
+  font-size:42px;
+  margin-bottom:60px;
+}
+
+.event{
+  margin-bottom:70px;
+}
+
+.event-date{
+  font-family:'Reenie Beanie', cursive;
+  font-size:30px;
+}
+
+.event-info{
+  font-size:15px;
+  letter-spacing:1px;
+  margin-top:10px;
+  line-height:1.7;
+}
+
+.small{
+  font-size:13px;
+  opacity:0.7;
+}
+
+.seats{
+  margin-top:10px;
+  font-size:13px;
+  letter-spacing:1px;
+  opacity:0.6;
+}
+
+.button{
+  display:inline-block;
+  margin-top:25px;
+  padding:12px 30px;
+  border:1px solid #000;
+  text-decoration:none;
+  color:#000;
+  font-size:14px;
+  letter-spacing:2px;
+  transition:0.2s;
+}
+
+.button:hover{
+  background:#000;
+  color:#fff;
 }
 
 .newsletter{
-margin-top:120px;
-font-size:14px;
+  margin-top:120px;
+  font-size:14px;
+  line-height:1.8;
 }
 
 .newsletter a{
-border-bottom:1px solid #000;
-text-decoration:none;
-color:#000;
+  border-bottom:1px solid #000;
+  text-decoration:none;
+  color:#000;
 }
 
+@media (max-width: 640px){
+  .container{
+    padding:60px 24px;
+  }
+
+  h1{
+    font-size:48px;
+  }
+
+  .reel-item{
+    font-size:14px;
+  }
+}
 </style>
 </head>
 
@@ -154,106 +204,192 @@ color:#000;
 
 <div class="container">
 
-<h1>Chef Lil J</h1>
-<div class="subtitle">Dinner Club · Seasonal dinners in Leuven</div>
+  <h1>Chef Lil J</h1>
+  <div class="subtitle">Dinner Club · Seasonal dinners in Leuven</div>
 
+  <div class="section-title">The dinner</div>
 
-<!-- STRUCTUUR -->
+  <div class="menu-item">
+    4 gangen seizoensmenu<br>
+    verse focaccia met opgeklopte kruidenboter<br>
+    afsluitend met chocolade, pistache & karamel
+  </div>
 
-<div class="section-title">The dinner</div>
+  <div class="note">
+    De rest van het menu krijgt de komende weken verder vorm.
+  </div>
 
-<div class="menu-item">
-4 gangen seizoensmenu<br>
-verse focaccia met opgeklopte kruidenboter<br>
-afsluitend met chocolade, pistache & karamel
+  <div class="section-title">To be announced</div>
+
+  <div class="slot-machine">
+    <div class="slot-row"><div class="reel" id="reel1"></div></div>
+    <div class="slot-row"><div class="reel" id="reel2"></div></div>
+    <div class="slot-row"><div class="reel" id="reel3"></div></div>
+  </div>
+
+  <button class="teaser-button" id="spinButton">See another direction</button>
+
+  <div class="note">
+    Mogelijke richtingen voor de gangen die nog in beweging zijn.
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="agenda">
+    <h2>Upcoming dinners</h2>
+
+    <div class="event">
+      <div class="event-date">20 June</div>
+      <div class="event-info">
+        Leuven · 19:00<br>
+        4 courses · €69<br>
+        <span class="small">water & aperitif included · wine pairing optional</span><br>
+        <span class="small">25 seats at the table</span>
+      </div>
+      <a class="button" href="#">Reserve your seat</a>
+      <div class="seats">12 seats remaining</div>
+    </div>
+
+    <div class="event">
+      <div class="event-date">27 June</div>
+      <div class="event-info">
+        Leuven · 19:00<br>
+        4 courses · €69<br>
+        <span class="small">water & aperitif included · wine pairing optional</span><br>
+        <span class="small">25 seats at the table</span>
+      </div>
+      <a class="button" href="#">Reserve your seat</a>
+      <div class="seats">Booking open</div>
+    </div>
+
+    <div class="event">
+      <div class="event-date">15 August</div>
+      <div class="event-info">
+        Leuven · 19:00<br>
+        4 courses · €69<br>
+        <span class="small">water & aperitif included · wine pairing optional</span><br>
+        <span class="small">25 seats at the table</span>
+      </div>
+      <a class="button" href="#">Reserve your seat</a>
+      <div class="seats">Booking open</div>
+    </div>
+  </div>
+
+  <div class="newsletter">
+    Want early access to new dinners?<br><br>
+    <a href="#">Join the newsletter</a>
+  </div>
+
+  <div class="newsletter">
+    Cooking between dinners:<br>
+    <a href="#">Recipes & notes from my kitchen</a>
+  </div>
+
 </div>
-
-<div class="note">
-Het menu groeit de komende weken — gebaseerd op seizoen, zin en wat ik tegenkom.
-</div>
-
-
-<!-- DYNAMISCHE SMAKEN -->
-
-<div class="section-title">What it might become</div>
-
-<div class="dynamic" onclick="spinMenu()">
-<span id="line1">dumplings · warme saus · frisse kruiden</span>
-<span id="line2">geroosterd · zacht · zuur</span>
-<span id="line3">citrus · vet · crunch</span>
-</div>
-
-<div class="note">(klik om te veranderen)</div>
-
-
-<div class="divider"></div>
-
-
-<!-- AGENDA -->
-
-<div class="agenda">
-
-<h2>Upcoming dinners</h2>
-
-<div class="event">
-
-<div class="event-date">20 June</div>
-
-<div class="event-info">
-Leuven · 19:00<br>
-4 courses · €69<br>
-<span class="small">water & aperitif included · wine pairing optional</span><br>
-<span class="small">25 seats at the table</span>
-</div>
-
-<a class="button" href="#">Reserve your seat</a>
-
-<div class="seats">
-12 seats remaining
-</div>
-
-</div>
-
-</div>
-
-
-<div class="newsletter">
-Want early access to new dinners?<br><br>
-<a href="#">Join the newsletter</a>
-</div>
-
-<div class="newsletter">
-Cooking between dinners:<br>
-<a href="#">Recipes & notes from my kitchen</a>
-</div>
-
-</div>
-
 
 <script>
-
-const options = [
-["dumplings · warme saus · frisse kruiden",
- "gefermenteerd · diep · umami",
- "zacht · romig · krokant"],
-
-["geroosterd · intens · citrus",
- "aardse smaken · boter · zout",
- "fris · groen · levendig"],
-
-["trage bereiding · rijke saus · kruiden",
- "licht · zuur · crunchy",
- "warm · rond · comfort"]
+const reelHeight = 30;
+const reels = [
+  document.getElementById('reel1'),
+  document.getElementById('reel2'),
+  document.getElementById('reel3')
 ];
 
-function spinMenu(){
-const set = options[Math.floor(Math.random() * options.length)];
+const wordBanks = [
+  [
+    "dumplings · warme saus · frisse kruiden",
+    "geroosterd · boter · citroen",
+    "seizoensgroenten · diepe smaken · crunch",
+    "zacht · romig · iets onverwacht",
+    "umami · groen · helder",
+    "comfort · vuur · zuur"
+  ],
+  [
+    "fluweelzacht · kruidig · warm",
+    "fris · vet · krokant",
+    "aards · boterig · levendig",
+    "rokerig · rond · zout",
+    "licht · gelaagd · groen",
+    "diep · zacht · sprankelend"
+  ],
+  [
+    "coming together",
+    "still unfolding",
+    "guided by the season",
+    "in the making",
+    "taking shape",
+    "to be announced"
+  ]
+];
 
-document.getElementById("line1").innerText = set[0];
-document.getElementById("line2").innerText = set[1];
-document.getElementById("line3").innerText = set[2];
+let spinning = false;
+
+function shuffle(array){
+  const arr = [...array];
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
 }
 
+function buildReelContent(reel, finalText, bank, loops = 12){
+  const shuffled = shuffle(bank.filter(item => item !== finalText));
+  const sequence = [];
+
+  for(let i = 0; i < loops; i++){
+    sequence.push(shuffled[i % shuffled.length]);
+  }
+
+  sequence.push(finalText);
+
+  reel.innerHTML = sequence
+    .map(text => `<div class="reel-item">${text}</div>`)
+    .join('');
+
+  return sequence.length - 1;
+}
+
+function animateReel(reel, stopIndex, duration, delay = 0){
+  reel.style.transition = 'none';
+  reel.style.transform = 'translateY(0px)';
+
+  setTimeout(() => {
+    reel.style.transition = `transform ${duration}ms cubic-bezier(0.12, 0.8, 0.18, 1)`;
+    reel.style.transform = `translateY(-${stopIndex * reelHeight}px)`;
+  }, delay);
+}
+
+function spinMenu(){
+  if(spinning) return;
+  spinning = true;
+
+  const finalCombo = [
+    wordBanks[0][Math.floor(Math.random() * wordBanks[0].length)],
+    wordBanks[1][Math.floor(Math.random() * wordBanks[1].length)],
+    wordBanks[2][Math.floor(Math.random() * wordBanks[2].length)]
+  ];
+
+  const stop1 = buildReelContent(reels[0], finalCombo[0], wordBanks[0], 14);
+  const stop2 = buildReelContent(reels[1], finalCombo[1], wordBanks[1], 17);
+  const stop3 = buildReelContent(reels[2], finalCombo[2], wordBanks[2], 20);
+
+  animateReel(reels[0], stop1, 1800, 50);
+  animateReel(reels[1], stop2, 2400, 120);
+  animateReel(reels[2], stop3, 3000, 200);
+
+  setTimeout(() => {
+    spinning = false;
+  }, 3400);
+}
+
+document.getElementById('spinButton').addEventListener('click', spinMenu);
+
+window.addEventListener('load', () => {
+  reels[0].innerHTML = `<div class="reel-item">dumplings · warme saus · frisse kruiden</div>`;
+  reels[1].innerHTML = `<div class="reel-item">fluweelzacht · kruidig · warm</div>`;
+  reels[2].innerHTML = `<div class="reel-item">still unfolding</div>`;
+});
 </script>
 
 </body>
