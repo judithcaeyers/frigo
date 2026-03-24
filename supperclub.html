@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,171 +9,198 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Reenie+Beanie&display=swap" rel="stylesheet">
 
 <style>
-
 body{
-margin:0;
-background:#e7e2d7;
-font-family:'EB Garamond', serif;
-color:#1d1d1d;
+    margin:0;
+    background:#e7e2d7;
+    font-family:'EB Garamond', serif;
+    color:#1d1d1d;
 }
 
 .container{
-max-width:650px;
-margin:auto;
-padding:80px 40px;
-text-align:center;
+    max-width:650px;
+    margin:auto;
+    padding:80px 40px;
+    text-align:center;
 }
 
 h1{
-font-family:'Reenie Beanie', cursive;
-font-size:56px;
-margin-bottom:10px;
+    font-family:'Reenie Beanie', cursive;
+    font-size:56px;
+    margin-bottom:10px;
 }
 
 .subtitle{
-font-size:14px;
-letter-spacing:2px;
-margin-bottom:20px;
+    font-size:14px;
+    letter-spacing:2px;
+    margin-bottom:18px;
 }
 
 .tagline{
-font-size:16px;
-max-width:420px;
-margin:0 auto 60px;
-line-height:1.6;
+    font-size:16px;
+    line-height:1.6;
+    max-width:460px;
+    margin:0 auto 60px;
 }
 
 .menu-date{
-font-size:14px;
-letter-spacing:2px;
-text-transform:uppercase;
-margin-bottom:30px;
+    font-size:14px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:30px;
+    transition:opacity 0.45s ease, transform 0.45s ease;
 }
 
-.section-title{
-font-family:'Reenie Beanie', cursive;
-font-size:36px;
-margin-top:60px;
-margin-bottom:25px;
-}
-
-.menu-item{
-font-size:16px;
-letter-spacing:1px;
-line-height:1.8;
-max-width:420px;
-margin:auto;
-}
-
-.menu-switch-bottom{
-margin-top:50px;
-}
-
-.menu-switch{
-display:inline-block;
-background:none;
-border:none;
-border-bottom:1px solid #000;
-padding:0;
-font-family:'EB Garamond', serif;
-font-size:15px;
-cursor:pointer;
-color:#000;
-}
-
-.menu-switch:hover{
-opacity:0.6;
+.menu-date.is-switching{
+    opacity:0;
+    transform:translateY(12px);
 }
 
 .menu-content{
-transition:opacity 0.35s ease, transform 0.35s ease;
+    transition:opacity 0.5s ease, transform 0.5s ease;
 }
 
 .menu-content.is-switching{
-opacity:0;
-transform:translateY(10px);
+    opacity:0;
+    transform:translateY(20px);
 }
 
-.divider{
-margin:80px auto;
-width:60px;
-height:1px;
-background:#000;
-opacity:0.2;
+.section-title{
+    font-family:'Reenie Beanie', cursive;
+    font-size:36px;
+    margin-top:60px;
+    margin-bottom:25px;
 }
 
-.agenda{
-margin-top:120px;
-}
-
-.agenda h2{
-font-family:'Reenie Beanie', cursive;
-font-size:42px;
-margin-bottom:60px;
-}
-
-.event{
-margin-bottom:70px;
-}
-
-.event-date{
-font-family:'Reenie Beanie', cursive;
-font-size:30px;
-}
-
-.event-info{
-font-size:15px;
-letter-spacing:1px;
-margin-top:10px;
-line-height:1.7;
-}
-
-.small{
-font-size:13px;
-opacity:0.7;
-}
-
-.seats{
-margin-top:10px;
-font-size:13px;
-letter-spacing:1px;
-opacity:0.6;
-}
-
-.button{
-display:inline-block;
-margin-top:25px;
-padding:12px 30px;
-border:1px solid #000;
-text-decoration:none;
-color:#000;
-font-size:14px;
-letter-spacing:2px;
-transition:0.2s;
-}
-
-.button:hover{
-background:#000;
-color:#fff;
+.menu-item{
+    font-size:16px;
+    letter-spacing:1px;
+    line-height:1.8;
+    max-width:420px;
+    margin:auto;
 }
 
 .diet-note{
-margin-top:18px;
-font-size:13px;
-opacity:0.75;
+    margin-top:38px;
+    font-size:13px;
+    opacity:0.72;
+    line-height:1.5;
+}
+
+.menu-switch-bottom{
+    margin-top:42px;
+}
+
+.menu-switch{
+    display:inline-block;
+    background:none;
+    border:none;
+    border-bottom:1px solid #000;
+    padding:0;
+    font-family:'EB Garamond', serif;
+    font-size:15px;
+    cursor:pointer;
+    color:#000;
+}
+
+.menu-switch:hover{
+    opacity:0.6;
+}
+
+.divider{
+    margin:80px auto;
+    width:60px;
+    height:1px;
+    background:#000;
+    opacity:0.2;
+}
+
+.agenda{
+    margin-top:120px;
+}
+
+.agenda h2{
+    font-family:'Reenie Beanie', cursive;
+    font-size:42px;
+    margin-bottom:60px;
+}
+
+.event{
+    margin-bottom:70px;
+}
+
+.event-date{
+    font-family:'Reenie Beanie', cursive;
+    font-size:30px;
+}
+
+.event-info{
+    font-size:15px;
+    letter-spacing:1px;
+    margin-top:10px;
+    line-height:1.7;
+}
+
+.small{
+    font-size:13px;
+    opacity:0.7;
+}
+
+.seats{
+    margin-top:10px;
+    font-size:13px;
+    letter-spacing:1px;
+    opacity:0.6;
+}
+
+.button{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 30px;
+    border:1px solid #000;
+    text-decoration:none;
+    color:#000;
+    font-size:14px;
+    letter-spacing:2px;
+    transition:0.2s;
+}
+
+.button:hover{
+    background:#000;
+    color:#fff;
 }
 
 .newsletter{
-margin-top:120px;
-font-size:14px;
+    margin-top:120px;
+    font-size:14px;
 }
 
 .newsletter a{
-border-bottom:1px solid #000;
-text-decoration:none;
-color:#000;
+    border-bottom:1px solid #000;
+    text-decoration:none;
+    color:#000;
 }
 
+@media (max-width:600px){
+    .container{
+        padding:60px 24px;
+    }
+
+    h1{
+        font-size:48px;
+    }
+
+    .section-title{
+        font-size:32px;
+    }
+
+    .agenda h2{
+        font-size:38px;
+    }
+
+    .tagline{
+        font-size:15px;
+    }
+}
 </style>
 </head>
 
@@ -181,119 +208,101 @@ color:#000;
 
 <div class="container">
 
-<h1>Chef Lil J</h1>
-<div class="subtitle">Dinner Club · Seasonal dinners in Leuven</div>
+    <h1>Chef Lil J</h1>
+    <div class="subtitle">Dinner Club · Leuven</div>
 
-<div class="tagline">
-Small dinners. Few tables. Surprising food, cooked & served by Chef Lil J.
-</div>
+    <div class="tagline">
+        Dinners by Chef Lil J — cooked, served and hosted in a relaxed setting.
+    </div>
 
+    <div class="menu-date" id="menu-date-label">June 27</div>
 
-<div class="menu-date" id="menu-date-label">June 27</div>
+    <div class="menu-content" id="menu-content">
+        <div class="section-title" id="course-1-title">To start</div>
+        <div class="menu-item" id="course-1-text">
+            Heritage tomato salad, burrata<br>
+            and garden herb gremolata
+        </div>
 
-<div class="menu-content" id="menu-content">
+        <div class="section-title" id="course-2-title">Second course</div>
+        <div class="menu-item" id="course-2-text">
+            Dumplings in a warm seasonal broth<br>
+            with fragrant herbs and chili crisp
+        </div>
 
-<div class="section-title">To start</div>
-<div class="menu-item">
-Heritage tomato salad, burrata<br>
-and garden herb gremolata
-</div>
+        <div class="section-title" id="course-3-title">Main course</div>
+        <div class="menu-item" id="course-3-text">
+            Lincolnshire potato, oak smoked cheddar,<br>
+            bbq spring onions and baby gem lettuce,<br>
+            lovage velouté
+        </div>
 
-<div class="section-title">Second course</div>
-<div class="menu-item">
-Dumplings in a warm seasonal broth<br>
-with fragrant herbs and chili crisp
-</div>
+        <div class="section-title" id="course-4-title">Dessert</div>
+        <div class="menu-item" id="course-4-text">
+            Sticky toffee pudding,<br>
+            vanilla ice cream
+        </div>
+    </div>
 
-<div class="section-title">Main course</div>
-<div class="menu-item">
-Lincolnshire potato, oak smoked cheddar,<br>
-bbq spring onions and baby gem lettuce,<br>
-lovage velouté
-</div>
+    <div class="diet-note">
+        Vegetarian, vegan or allergies? Let us know when booking.
+    </div>
 
-<div class="section-title">Dessert</div>
-<div class="menu-item">
-Sticky toffee pudding,<br>
-vanilla ice cream
-</div>
+    <div class="menu-switch-bottom">
+        <button class="menu-switch" id="menu-switch-btn" type="button">August 15 menu →</button>
+    </div>
 
-<div class="menu-switch-bottom">
-<button class="menu-switch" id="menu-switch-btn">
-August 15 menu →
-</button>
-</div>
+    <div class="divider"></div>
 
-</div>
+    <div class="agenda">
+        <h2>Upcoming dinners</h2>
 
+        <div class="event">
+            <div class="event-date">June 27</div>
 
-<div class="divider"></div>
+            <div class="event-info">
+                Leuven · 19:00<br>
+                4 courses · €67<br>
+                <span class="small">water & aperitif included · wine available</span><br>
+                <span class="small">20 seats at the table</span>
+            </div>
 
+            <a class="button" id="reserve-button-june" href="#">Reserve your seat</a>
 
-<div class="agenda">
+            <div class="seats">
+                Seats available
+            </div>
+        </div>
 
-<h2>Upcoming dinners</h2>
+        <div class="event">
+            <div class="event-date">August 15</div>
 
-<div class="event">
+            <div class="event-info">
+                Leuven · 19:00<br>
+                4 courses · €67<br>
+                <span class="small">water & aperitif included · wine available</span><br>
+                <span class="small">20 seats at the table</span>
+            </div>
 
-<div class="event-date" id="active-event-date">June 27</div>
+            <a class="button" id="reserve-button-august" href="#">Reserve your seat</a>
 
-<div class="event-info" id="active-event-info">
-Leuven · 19:00<br>
-4 courses · €67<br>
-<span class="small">water & aperitif included · wine available</span><br>
-<span class="small">20 seats at the table</span>
-</div>
+            <div class="seats">
+                Seats available
+            </div>
+        </div>
+    </div>
 
-<a class="button" id="reserve-button" href="#">Reserve your seat</a>
+    <div class="newsletter">
+        Want early access to new dinners?<br><br>
+        <a href="#">Join the newsletter</a>
+    </div>
 
-<div class="seats" id="active-seats">
-Seats available
-</div>
-
-<div class="diet-note">
-Vegetarian, vegan or allergies? Let us know when booking.
-</div>
-
-</div>
-
-
-<div class="event">
-
-<div class="event-date">August 15</div>
-
-<div class="event-info">
-Leuven · 19:00<br>
-4 courses · €67<br>
-<span class="small">water & aperitif included · wine available</span><br>
-<span class="small">20 seats at the table</span>
-</div>
-
-<button class="menu-switch" data-date="august">
-View this menu
-</button>
-
-<div class="seats">
-Seats available
-</div>
+    <div class="newsletter">
+        Cooking between dinners:<br>
+        <a href="#">Recipes & notes from my kitchen</a>
+    </div>
 
 </div>
-
-</div>
-
-
-<div class="newsletter">
-Want early access to new dinners?<br><br>
-<a href="#">Join the newsletter</a>
-</div>
-
-<div class="newsletter">
-Cooking between dinners:<br>
-<a href="#">Recipes & notes from my kitchen</a>
-</div>
-
-</div>
-
 
 <script>
 // Workflow door Judith Caeyers
@@ -303,7 +312,6 @@ const menus = {
         label: "June 27",
         switchText: "August 15 menu →",
         otherKey: "august",
-        eventDate: "June 27",
         courses: [
             {
                 title: "To start",
@@ -327,7 +335,6 @@ const menus = {
         label: "August 15",
         switchText: "June 27 menu →",
         otherKey: "june",
-        eventDate: "August 15",
         courses: [
             {
                 title: "To start",
@@ -354,43 +361,34 @@ let currentMenu = "june";
 const menuContent = document.getElementById("menu-content");
 const menuDateLabel = document.getElementById("menu-date-label");
 const menuSwitchBtn = document.getElementById("menu-switch-btn");
-const activeEventDate = document.getElementById("active-event-date");
 
 function renderMenu(key){
     const data = menus[key];
 
     menuDateLabel.textContent = data.label;
     menuSwitchBtn.textContent = data.switchText;
-    menuSwitchBtn.dataset.target = data.otherKey;
-
-    activeEventDate.textContent = data.eventDate;
 
     data.courses.forEach((course, index) => {
-        document.getElementsByClassName("section-title")[index].textContent = course.title;
-        document.getElementsByClassName("menu-item")[index].innerHTML = course.text;
+        document.getElementById(`course-${index + 1}-title`).textContent = course.title;
+        document.getElementById(`course-${index + 1}-text`).innerHTML = course.text;
     });
 
     currentMenu = key;
 }
 
 function switchMenu(targetKey){
+    menuDateLabel.classList.add("is-switching");
     menuContent.classList.add("is-switching");
 
     setTimeout(() => {
         renderMenu(targetKey);
+        menuDateLabel.classList.remove("is-switching");
         menuContent.classList.remove("is-switching");
-    }, 200);
+    }, 300);
 }
 
 menuSwitchBtn.addEventListener("click", () => {
     switchMenu(menus[currentMenu].otherKey);
-});
-
-document.querySelectorAll("[data-date]").forEach(button => {
-    button.addEventListener("click", () => {
-        switchMenu(button.dataset.date);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
 });
 
 renderMenu("june");
