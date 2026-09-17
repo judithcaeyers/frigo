@@ -31,6 +31,78 @@ window.RECIPES = [
       "Werk af met pinda’s en koriander."
     ]
   },
+{
+  slug: "ramen-bowl",
+  kicker: "Noedels",
+  title: "Ramen bowl",
+  description: "Romige kokos-miso ramen met rode curry, gehakt of tofu en vooral heel veel toppings naar keuze.",
+  time: "25–30 min",
+  prep: 30,
+  servings: 2,
+  level: "Makkelijk",
+  sfeer: ["weeknight", "comfort"],
+  dieet: ["flexibel"],
+  ingredientsFilter: [
+    "noedels",
+    "gehakt",
+    "tofu",
+    "miso",
+    "rode curry",
+    "kokosmelk",
+    "sojasaus",
+    "sugarsnaps",
+    "paksoi",
+    "lente-ui",
+    "koriander",
+    "limoen",
+    "sesam",
+    "edamame",
+    "komkommer",
+    "pinda",
+    "chili",
+    "ei"
+  ],
+
+  image: "assets/images/ramen-bowl.PNG",
+
+  ingredients: [
+    { qty: null, unit: "", label: "gehakt of tofu" },
+    { qty: null, unit: "", label: "teriyakisaus" },
+
+    { type: "divider" },
+
+    { qty: 1, unit: "el", label: "miso" },
+    { qty: 1, unit: "el", label: "rode currypasta" },
+    { qty: 1, unit: "el", label: "sojasaus" },
+    { qty: null, unit: "", label: "kokosmelk" },
+    { qty: null, unit: "", label: "noedels" },
+
+    { type: "divider" },
+
+    { qty: null, unit: "", label: "sugarsnaps" },
+    { qty: null, unit: "", label: "paksoi" },
+    { qty: null, unit: "", label: "lente-ui" },
+    { qty: null, unit: "", label: "koriander" },
+    { qty: null, unit: "", label: "limoen" },
+    { qty: null, unit: "", label: "sesamzaad" },
+    { qty: null, unit: "", label: "edamame" },
+    { qty: null, unit: "", label: "komkommer" },
+    { qty: null, unit: "", label: "pinda’s" },
+    { qty: null, unit: "", label: "chilivlokken" },
+    { qty: null, unit: "", label: "zachtgekookt ei" }
+  ],
+
+  steps: [
+    "Bak het gehakt of de tofu aan in een hete pan met een beetje teriyakisaus.",
+    "Bereid ondertussen de toppings voor. Gebruik wat je in huis hebt: sugarsnaps, paksoi, lente-ui, koriander, limoen, sesamzaad, edamame, komkommer, pinda’s, chilivlokken en/of een zachtgekookt eitje.",
+    "Meng de miso, rode currypasta en sojasaus in een kookpot en verwarm kort samen.",
+    "Giet de kokosmelk erbij, roer glad en verwarm tot de bouillon zachtjes begint te koken.",
+    "Voeg de noedels toe en laat ze rechtstreeks in de kokosbouillon garen.",
+    "Verdeel de noedels en bouillon over kommen. Voeg het gehakt of de tofu toe en werk af met zoveel toppings als je zin in hebt."
+  ],
+
+  notes: "Dit is vooral een koelkast-opmaak-ramen: de kokos-miso-currybasis blijft hetzelfde, de toppings zijn volledig vrij."
+},
 
 {
   slug: "vietnamese-spring-rolls",
